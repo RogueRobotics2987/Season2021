@@ -1,0 +1,470 @@
+[
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "debug",
+    "cppPath": "/Users/Robotics/wpilib/2020/roborio/bin/arm-frc2020-linux-gnueabi-g++",
+    "cPath": "/Users/Robotics/wpilib/2020/roborio/bin/arm-frc2020-linux-gnueabi-gcc",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+      "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/cff7e8b16231c3725f78896b35289f90/wpilibc-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/809f49d25b5bfe6454bab7f7eb17107d/ntcore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160b70fd1a588d9c218ef4a58eb9c07a/hal-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/dcbd2a88a865ea1cfa0d56eb1ff8b1c9/wpiutil-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/473496edcb0fe5ad3d9104162361d608/cameraserver-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a59b3a13b8ffe1f1d0bb5fb7a760f9c6/cscore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2d5550f2b42cf0a818cb079d28309274/opencv-cpp-3.4.7-2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/bd85faf3e8400b8bf088ce876708ef9e/navx-cpp-3.1.409-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/aa2f2ae983c9a948bd1c149719848b79/wpilibOldCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f6301795ecef4a0828ab6de71fa0302/wpilibNewCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/059a7d726fbe6a7e2cc95fb7dd1923ea/ColorSensorV3-cpp-1.2.0-source/"
+    ],
+    "allLibSources": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/cff7e8b16231c3725f78896b35289f90/wpilibc-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/809f49d25b5bfe6454bab7f7eb17107d/ntcore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160b70fd1a588d9c218ef4a58eb9c07a/hal-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/dcbd2a88a865ea1cfa0d56eb1ff8b1c9/wpiutil-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/473496edcb0fe5ad3d9104162361d608/cameraserver-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a59b3a13b8ffe1f1d0bb5fb7a760f9c6/cscore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2d5550f2b42cf0a818cb079d28309274/opencv-cpp-3.4.7-2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/bd85faf3e8400b8bf088ce876708ef9e/navx-cpp-3.1.409-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/aa2f2ae983c9a948bd1c149719848b79/wpilibOldCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f6301795ecef4a0828ab6de71fa0302/wpilibNewCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/059a7d726fbe6a7e2cc95fb7dd1923ea/ColorSensorV3-cpp-1.2.0-source/"
+    ],
+    "allLibHeaders": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+      "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++17",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-g",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-rdynamic",
+              "-pthread",
+              "-Og"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+          "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-g",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-Og"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-g",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-Og"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  },
+  {
+    "name": "linuxathena",
+    "architecture": "arm-v7",
+    "operatingSystem": "linux",
+    "flavor": "default",
+    "buildType": "release",
+    "cppPath": "/Users/Robotics/wpilib/2020/roborio/bin/arm-frc2020-linux-gnueabi-g++",
+    "cPath": "/Users/Robotics/wpilib/2020/roborio/bin/arm-frc2020-linux-gnueabi-gcc",
+    "msvc": false,
+    "gcc": true,
+    "systemCppMacros": [],
+    "systemCppArgs": [],
+    "systemCMacros": [],
+    "systemCArgs": [],
+    "allLibFiles": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+      "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/cff7e8b16231c3725f78896b35289f90/wpilibc-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/809f49d25b5bfe6454bab7f7eb17107d/ntcore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160b70fd1a588d9c218ef4a58eb9c07a/hal-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/dcbd2a88a865ea1cfa0d56eb1ff8b1c9/wpiutil-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/473496edcb0fe5ad3d9104162361d608/cameraserver-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a59b3a13b8ffe1f1d0bb5fb7a760f9c6/cscore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2d5550f2b42cf0a818cb079d28309274/opencv-cpp-3.4.7-2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/bd85faf3e8400b8bf088ce876708ef9e/navx-cpp-3.1.409-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/aa2f2ae983c9a948bd1c149719848b79/wpilibOldCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f6301795ecef4a0828ab6de71fa0302/wpilibNewCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/059a7d726fbe6a7e2cc95fb7dd1923ea/ColorSensorV3-cpp-1.2.0-source/"
+    ],
+    "allLibSources": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/cff7e8b16231c3725f78896b35289f90/wpilibc-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/809f49d25b5bfe6454bab7f7eb17107d/ntcore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160b70fd1a588d9c218ef4a58eb9c07a/hal-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/dcbd2a88a865ea1cfa0d56eb1ff8b1c9/wpiutil-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/473496edcb0fe5ad3d9104162361d608/cameraserver-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a59b3a13b8ffe1f1d0bb5fb7a760f9c6/cscore-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2d5550f2b42cf0a818cb079d28309274/opencv-cpp-3.4.7-2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/bd85faf3e8400b8bf088ce876708ef9e/navx-cpp-3.1.409-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/aa2f2ae983c9a948bd1c149719848b79/wpilibOldCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f6301795ecef4a0828ab6de71fa0302/wpilibNewCommands-cpp-2020.2.2-sources/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/059a7d726fbe6a7e2cc95fb7dd1923ea/ColorSensorV3-cpp-1.2.0-source/"
+    ],
+    "allLibHeaders": [
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+      "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+      "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+    ],
+    "binaries": [
+      {
+        "componentName": "frcUserProgram",
+        "sourceSets": [
+          {
+            "source": {
+              "srcDirs": [
+                "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "exportedHeaders": {
+              "srcDirs": [
+                "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+              ],
+              "includes": [
+                "**/*.cpp",
+                "**/*.cc"
+              ],
+              "excludes": []
+            },
+            "cpp": true,
+            "args": [
+              "-Wall",
+              "-Wextra",
+              "-std=c++17",
+              "-Wformat=2",
+              "-pedantic",
+              "-Wno-psabi",
+              "-g",
+              "-Wno-unused-parameter",
+              "-Wno-error=deprecated-declarations",
+              "-fPIC",
+              "-rdynamic",
+              "-pthread",
+              "-O2"
+            ],
+            "macros": []
+          }
+        ],
+        "libHeaders": [
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/99c347194450c3a7c2b28ee2db9fc409/hal-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/87e17ef966bab88cfd5b8a66a9e82cb0/wpiutil-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/21f9478acf33f3638f7e32002df7c51b/chipobject-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/67600fa99e37b0132d1947be4e3454a9/netcomm-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ba0afc25c2f4585ace8bf19c1a93f9/visa-2020.10.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/3bc88607f865c21f3d772fd3b70d0eca/cameraserver-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d31400994ec42c0d5f4eaac598fff37d/cscore-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/69303e4d2ba8e611bdca9d6ae1bb4503/opencv-cpp-3.4.7-2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/33b61060124c29ebbc243990679d2137/navx-cpp-3.1.409-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/b2f49e0887060074ff16ed46c41f76de/wpiapi-cpp-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/05efcfdb6a8410c2ad90aa43cb7e4c9d/api-cpp-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/d9e360794694d39f93cd1af4bafc642f/cci-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/2aa71998b3edc32095601b2d159097fa/diagnostics-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/1f94bd7def08964dc86ef5e0408d472c/canutils-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/9f0cc65529427ec7d644fb4a8a248167/platform-stub-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/52ffda3de4783fa531042a1733946dd7/core-5.18.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/7c2794d5d40b7aaa34994e0a988a8fff/wpilibOldCommands-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/160d5513160336d4ed50eeed2eebb00b/SparkMax-cpp-1.5.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/6cc007b40d54fe448c4cd3df86ba9971/SparkMax-driver-1.5.1-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/",
+          "/Users/Robotics/.gradle/caches/transforms-2/files-2.1/a3d6d0d88d4f09c694d07c706b286843/ColorSensorV3-cpp-1.2.0-headers/",
+          "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+        ],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "sourceBinaries": [
+      {
+        "source": {
+          "srcDirs": [
+            "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-g",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      },
+      {
+        "source": {
+          "srcDirs": [
+            "/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/"
+          ],
+          "includes": [
+            "**/*.cpp",
+            "**/*.cc"
+          ],
+          "excludes": []
+        },
+        "componentName": "frcUserProgram",
+        "cpp": true,
+        "args": [
+          "-Wall",
+          "-Wextra",
+          "-std=c++17",
+          "-Wformat=2",
+          "-pedantic",
+          "-Wno-psabi",
+          "-g",
+          "-Wno-unused-parameter",
+          "-Wno-error=deprecated-declarations",
+          "-fPIC",
+          "-rdynamic",
+          "-pthread",
+          "-O2"
+        ],
+        "macros": [],
+        "sharedLibrary": false,
+        "executable": true
+      }
+    ],
+    "nameBinaryMap": {
+      "frcUserProgram": 0
+    }
+  }
+]
