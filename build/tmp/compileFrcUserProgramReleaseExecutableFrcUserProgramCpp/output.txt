@@ -1,12 +1,81 @@
 See file:///Users/Robotics/Documents/FRC%202020/CompCode2020_v004/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling RobotContainer.cpp successful.
+
+compiling Constants.cpp successful.
+
+compiling Compressor.cpp successful.
+
+compiling Intake.cpp successful.
+
+compiling Climber.cpp successful.
+
+compiling Shooter.cpp successful.
+
+compiling ColorSensor.cpp successful.
+
+compiling ShooterActuator.cpp successful.
+/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/subsystems/ShooterActuator.cpp: In member function 'virtual void ShooterActuator::Periodic()':
+/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/subsystems/ShooterActuator.cpp:49:36: warning: 'static std::shared_ptr<nt::NetworkTable> nt::NetworkTable::GetTable(wpi::StringRef)' is deprecated: use NetworkTableInstance::GetTable() or NetworkTableInstance::GetEntry() instead [-Wdeprecated-declarations]
+     limelightTable = NetworkTable::GetTable("limelight-rr");
+                                    ^~~~~~~~
+In file included from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/frc/smartdashboard/SendableRegistry.h:13:0,
+                 from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/frc/smartdashboard/SendableHelper.h:16,
+                 from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/frc2/command/SubsystemBase.h:13,
+                 from /Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/subsystems/ShooterActuator.h:10,
+                 from /Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/subsystems/ShooterActuator.cpp:8:
+/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/networktables/NetworkTable.h:296:40: note: declared here
+   static std::shared_ptr<NetworkTable> GetTable(StringRef key);
+                                        ^~~~~~~~
+/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/subsystems/ShooterActuator.cpp:49:59: warning: 'static std::shared_ptr<nt::NetworkTable> nt::NetworkTable::GetTable(wpi::StringRef)' is deprecated: use NetworkTableInstance::GetTable() or NetworkTableInstance::GetEntry() instead [-Wdeprecated-declarations]
+     limelightTable = NetworkTable::GetTable("limelight-rr");
+                                                           ^
+In file included from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/frc/smartdashboard/SendableRegistry.h:13:0,
+                 from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/c2bc059e7f701e1f37ec6e98c3ca6083/wpilibc-cpp-2020.2.2-headers/frc/smartdashboard/SendableHelper.h:16,
+                 from /Users/Robotics/.gradle/caches/transforms-2/files-2.1/481c94a35407d86481ff9cf59de34dee/wpilibNewCommands-cpp-2020.2.2-headers/frc2/command/SubsystemBase.h:13,
+                 from /Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/include/subsystems/ShooterActuator.h:10,
+                 from /Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/subsystems/ShooterActuator.cpp:8:
+/Users/Robotics/.gradle/caches/transforms-2/files-2.1/feebe8faef8ccbdb8aa5037fbb6b2336/ntcore-cpp-2020.2.2-headers/networktables/NetworkTable.h:296:40: note: declared here
+   static std::shared_ptr<NetworkTable> GetTable(StringRef key);
+                                        ^~~~~~~~
+
+compiling shooterBackwards.cpp successful.
+
+compiling IntakeOut.cpp successful.
+
+compiling SpinWheel.cpp successful.
+/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/commands/SpinWheel.cpp: In member function 'virtual bool SpinWheel::IsFinished()':
+/Users/Robotics/Documents/FRC 2020/CompCode2020_v004/src/main/cpp/commands/SpinWheel.cpp:54:2: warning: no return statement in function returning non-void [-Wreturn-type]
+  }
+  ^
+
+compiling TrimAngle.cpp successful.
+
+compiling Climb.cpp successful.
+
 compiling DriveTrain.cpp successful.
+
+compiling PickupBall.cpp successful.
+
+compiling Robot.cpp successful.
+
+compiling ShootCmdCls.cpp successful.
+
+compiling ThirdStageWheel.cpp successful.
+
+compiling PrintColor.cpp successful.
+
+compiling PIDShoot.cpp successful.
+
+compiling BalanceRobot.cpp successful.
+
+compiling startConveyor.cpp successful.
+
+compiling ballReset.cpp successful.
+
+compiling beginCompressor.cpp successful.
 
 compiling Autonomous.cpp successful.
 
 compiling TankDrive.cpp successful.
-
-compiling Robot.cpp successful.
-
-compiling RobotContainer.cpp successful.
 
 Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///Users/Robotics/Documents/FRC%202020/CompCode2020_v004/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
