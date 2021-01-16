@@ -40,9 +40,13 @@ void PickupBall::Execute() {
 
   
   
+<<<<<<< HEAD
   //if(m_xbox->GetRawButton(1))
   if(m_Lstick->GetRawButton(1))
   {
+=======
+  if(m_xbox->GetRawButton(1)){
+>>>>>>> 119e8b76d8cbbb98afe2ba5b6ee254a4c9262844
     m_intake->StartConveyor(.5);
     dontRun = true; 
     

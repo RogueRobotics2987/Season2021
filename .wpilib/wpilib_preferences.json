@@ -1,6 +1,10 @@
 {
     "enableCppIntellisense": true,
     "currentLanguage": "cpp",
+<<<<<<< HEAD
     "projectYear": "2020",
+=======
+    "projectYear": "2021",
+>>>>>>> 119e8b76d8cbbb98afe2ba5b6ee254a4c9262844
     "teamNumber": 2987
 }

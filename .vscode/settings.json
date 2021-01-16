@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "java.configuration.updateBuildConfiguration": "disabled",
   "java.import.gradle.enabled": false,
@@ -19,3 +20,23 @@
     "*.inc": "cpp"
   }
 }
+=======
+{
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "java.import.gradle.enabled": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "bin/": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true,
+    "**/*~": true
+  },
+  "C_Cpp.default.configurationProvider": "vscode-wpilib"
+}
+>>>>>>> 119e8b76d8cbbb98afe2ba5b6ee254a4c9262844
