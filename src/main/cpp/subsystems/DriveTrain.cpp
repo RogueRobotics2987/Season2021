@@ -66,6 +66,41 @@ DriveTrain::DriveTrain() {
   // AddChild("Right Encoder", &m_rightEncoder);
   // AddChild("Rangefinder", &m_rangefinder);
   // AddChild("Gyro", &m_gyro);
+  frc::SmartDashboard::PutNumber("Set DriveP", kp);
+  frc::SmartDashboard::PutNumber("Set DriveI", ki);
+  frc::SmartDashboard::PutNumber("Set DriveD", kd);
+  frc::SmartDashboard::PutNumber("Set DriveFF", kff);
+  frc::SmartDashboard::PutNumber("Set Rotations", rotations);
+  leftdrivePID = new rev::CANPIDController(*LeftFront);
+  rightdrivePID = new rev::CANPIDController(*RightFront); 
+  leftdrivePID->SetP(kp);
+  leftdrivePID->SetI(ki);
+  leftdrivePID->SetD(kd);
+  leftdrivePID->SetFF(kff);
+  rightdrivePID->SetP(kp);
+  rightdrivePID->SetI(ki);
+  rightdrivePID->SetD(kd);
+  rightdrivePID->SetFF(kff);
+  // leftdrivePID->SetOutputRange(-1, 1);
+  // leftdrivePID->SetSmartMotionMaxVelocity(4000);
+  // leftdrivePID->SetSmartMotionMinOutputVelocity(1500);
+  // leftdrivePID->SetSmartMotionMaxAccel(1000.0/1.0);
+  // leftdrivePID->SetSmartMotionAllowedClosedLoopError(0.0);
+  // leftdrivePID->SetIZone(800);
+  // leftdrivePID->SetFF(0.7/3500
+  // rightdrivePID->SetOutputRange(-1, 1);
+  // rightdrivePID->SetSmartMotionMaxVelocity(4000);
+  // rightdrivePID->SetSmartMotionMinOutputVelocity(1500);
+  // rightdrivePID->SetSmartMotionMaxAccel(1000.0/1.0);
+  // rightdrivePID->SetSmartMotionAllowedClosedLoopError(0.0);
+  // rightdrivePID->SetIZone(800);
+  // rightdrivePID->SetFF(0.7/3500);
+
+
+
+
+
+
 }
 
 void DriveTrain::Log() {
@@ -77,24 +112,37 @@ void DriveTrain::Log() {
   // frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
 }
 
+
+// JOYSTICK DRIVE FUNCTION
 void DriveTrain::Drive(double y, double z) { 
   
-  //leftFrontEncoder->SetDistancePerPulse();
-//   frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
-//   frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
-//   frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
-//   frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
-//  //frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
+// leftFrontEncoder->SetDistancePerPulse();
+// frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
+// frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
+// frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
+// frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
+// frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
   m_robotDrive->ArcadeDrive(-y, z);
   
 }
+
+
 
 void DriveTrain::autonDrive(){
   m_robotDrive->ArcadeDrive(-.4, 0); 
 }
 
+void DriveTrain::AutoDrive() {
+  double rotations = frc::SmartDashboard::GetNumber("Set Rotations", 0);
+  leftdrivePID->SetReference(rotations, rev::ControlType::kPosition);
+  rightdrivePID->SetReference(rotations, rev::ControlType::kPosition);
+}
+
 void DriveTrain::Periodic(){
     //m_odometry->Update(frc::Rotation2d(units::degree_t(GetHeading())), units::meter_t(leftEncoder->GetPosition()), units::meter_t(rightEncoder->GetPosition()));
+
+
+    
 }
 // void DriveTrain::TrajectoryInit(){ 
 //   frc::TrajectoryConfig config(AutoConstants::kMaxSpeed,
