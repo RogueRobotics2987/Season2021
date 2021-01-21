@@ -21,6 +21,7 @@
 #include <frc/trajectory/Trajectory.h> 
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <units/units.h>
+#include "rev/CANPIDController.h"
 
 
 
@@ -80,7 +81,8 @@ void TrajectoryInit();
 frc::DifferentialDriveWheelSpeeds GetWheelSpeeds(); 
 void TankDriveVolts(units::volt_t left, units::volt_t right); 
 
-  
+  void AutoDrive(); 
+
 
  private:
 
@@ -93,6 +95,16 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
   frc::DifferentialDrive* m_robotDrive;
   AHRS* myAhrs; 
   frc::DifferentialDriveOdometry* m_odometry; 
+  rev::CANPIDController* leftdrivePID;  
+  rev::CANPIDController* rightdrivePID;  
+  double kp = 0;
+  double ki = 0;
+  double kd = 0;
+  double kff = 0;
+  double lastkp=0, lastki=0, lastkd=0, lastkff=0;
+  double rotations = 0;
+  
+
 
   // frc::PWMVictorSPX m_frontLeft{1};
   // frc::PWMVictorSPX m_rearLeft{2};
