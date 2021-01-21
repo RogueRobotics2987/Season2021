@@ -1,0 +1,89 @@
+See file:///C:/FRC2021/Season2021/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+compiling DriveTrain.cpp successful.
+In file included from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:23:0,
+                 from C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning is a GCC extension
+ #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead."
+  ^~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead." [-Wcpp]
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
+     enum class LimitSwitch { kForward, kReverse };
+                ^~~~~~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp: In constructor 'DriveTrain::DriveTrain()':
+C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:74:54: warning: 'rev::CANPIDController::CANPIDController(rev::CANSparkMax&)' is deprecated: Use CANSparkMax::GetPIDController instead [-Wdeprecated-declarations]
+   leftdrivePID = new rev::CANPIDController(*LeftFront);
+                                                      ^
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:40:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANPIDController.h:54:14: note: declared here
+     explicit CANPIDController(CANSparkMax& device);
+              ^~~~~~~~~~~~~~~~
+C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:75:56: warning: 'rev::CANPIDController::CANPIDController(rev::CANSparkMax&)' is deprecated: Use CANSparkMax::GetPIDController instead [-Wdeprecated-declarations]
+   rightdrivePID = new rev::CANPIDController(*RightFront);
+                                                        ^
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:40:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANPIDController.h:54:14: note: declared here
+     explicit CANPIDController(CANSparkMax& device);
+              ^~~~~~~~~~~~~~~~
+
+compiling Autonomous.cpp successful.
+In file included from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:23:0,
+                 from C:\FRC2021\Season2021\src\main\include/commands/Autonomous.h:13,
+                 from C:\FRC2021\Season2021\src\main\cpp\commands\Autonomous.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning is a GCC extension
+ #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead."
+  ^~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead." [-Wcpp]
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\include/commands/Autonomous.h:13,
+                 from C:\FRC2021\Season2021\src\main\cpp\commands\Autonomous.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
+     enum class LimitSwitch { kForward, kReverse };
+                ^~~~~~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+
+compiling TankDrive.cpp successful.
+In file included from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:23:0,
+                 from C:\FRC2021\Season2021\src\main\include/commands/TankDrive.h:14,
+                 from C:\FRC2021\Season2021\src\main\cpp\commands\TankDrive.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning is a GCC extension
+ #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead."
+  ^~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead." [-Wcpp]
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\include/commands/TankDrive.h:14,
+                 from C:\FRC2021\Season2021\src\main\cpp\commands\TankDrive.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
+     enum class LimitSwitch { kForward, kReverse };
+                ^~~~~~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+
+compiling RobotContainer.cpp successful.
+In file included from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:23:0,
+                 from C:\FRC2021\Season2021\src\main\include/commands/Autonomous.h:13,
+                 from C:\FRC2021\Season2021\src\main\include/RobotContainer.h:14,
+                 from C:\FRC2021\Season2021\src\main\cpp\RobotContainer.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning is a GCC extension
+ #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead."
+  ^~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\48cb864223843444b53785ee4ca77c33\wpimath-cpp-2021.1.2-headers/units/units.h:14:2: warning: #warning "Including this header drastically increases compilation times and is bad style. Include only what you use instead." [-Wcpp]
+In file included from C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
+                 from C:\FRC2021\Season2021\src\main\include/subsystems/DriveTrain.h:17,
+                 from C:\FRC2021\Season2021\src\main\include/commands/Autonomous.h:13,
+                 from C:\FRC2021\Season2021\src\main\include/RobotContainer.h:14,
+                 from C:\FRC2021\Season2021\src\main\cpp\RobotContainer.cpp:8:
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
+     enum class LimitSwitch { kForward, kReverse };
+                ^~~~~~~~~~~
+C:\Users\Rogue\.gradle\caches\transforms-2\files-2.1\a6c340acd4c3a45692d45aa253c1d4dd\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/FRC2021/Season2021/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
