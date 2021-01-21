@@ -1,61 +1,113 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+ 
+#include "Robot.h"
 
-#include <frc/Joystick.h>
-#include <frc/PWMVictorSPX.h>
-#include <frc/TimedRobot.h>
-#include <frc/Timer.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc/livewindow/LiveWindow.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/CommandScheduler.h>
 
-class Robot : public frc::TimedRobot {
- public:
-  Robot() {
-    m_robotDrive.SetExpiration(0.1);
-    m_timer.Start();
+void Robot::RobotInit() {}
+
+/**
+ * This function is called every robot packet, no matter the mode. Use
+ * this for items like diagnostics that you want to run during disabled,
+ * autonomous, teleoperated and test.
+ *
+ * <p> This runs after the mode specific periodic functions, but before
+ * LiveWindow and SmartDashboard integrated updating.
+ */
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
+void Robot::RobotPeriodic() { 
+  frc2::CommandScheduler::GetInstance().Run();
+  if(0)
+    {std::cout << "Not active" << std::endl;}
+  m_container.PeriodicDebug();
   }
+//test
+//test
+/**
+ * This function is called once each time the robot enters Disabled mode. You
+ * can use it to reset any subsystem information you want to clear when the
+ * robot is disabled.
+ */
+void Robot::DisabledInit() {}
 
-  void AutonomousInit() override {
-    m_timer.Reset();
-    m_timer.Start();
+void Robot::DisabledPeriodic() {}
+
+/**
+ * This autonomous runs the autonomous command selected by your {@link
+ * RobotContainer} class.
+ */
+void Robot::AutonomousInit() {
+  m_autonomousCommand = m_container.GetAutonomousCommand();
+
+  if (m_autonomousCommand != nullptr) {
+    m_autonomousCommand->Schedule();
   }
+}
 
-  void AutonomousPeriodic() override {
-    // Drive for 2 seconds
-    if (m_timer.Get() < 2.0) {
-      // Drive forwards half speed
-      m_robotDrive.ArcadeDrive(-0.5, 0.0);
-    } else {
-      // Stop robot
-      m_robotDrive.ArcadeDrive(0.0, 0.0);
-    }
+void Robot::AutonomousPeriodic() {
+
+}
+
+void Robot::TeleopInit() {
+  // This makes sure that the autonomous stops running when
+  // teleop starts running. If you want the autonomous to
+  // continue until interrupted by another command, remove
+  // this line or comment it out.
+  if (m_autonomousCommand != nullptr) {
+    m_autonomousCommand->Cancel();
+    m_autonomousCommand = nullptr;
   }
+}
 
-  void TeleopInit() override {}
+/**
+ * This function is called periodically during operator control.
+ */
+void Robot::TeleopPeriodic() {
+  // NON CMD-BASED Approach:
+  //drive robot 
+    //joystick input
+      // 2 axis
+        // x and y
+    //send joystick input to drivetrain
+  
+  // get the 2 joystick objects (joyLeft, joyRight)
+  // get drivetrain object (DiffDrivetrain)
+  // DiffDrivetrain.Drive(joyLeft.getYAxis(), joyRight.getYAxis())
 
-  void TeleopPeriodic() override {
-    // Drive with arcade style (use right stick)
-    m_robotDrive.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
-  }
 
-  void TestInit() override {}
 
-  void TestPeriodic() override {}
 
- private:
-  // Robot drive system
-  frc::PWMVictorSPX m_left{0};
-  frc::PWMVictorSPX m_right{1};
-  frc::DifferentialDrive m_robotDrive{m_left, m_right};
+}
 
-  frc::Joystick m_stick{0};
-  frc::LiveWindow& m_lw = *frc::LiveWindow::GetInstance();
-  frc::Timer m_timer;
-};
+/**
+ * This function is called periodically during test mode.
+ */
+void Robot::TestPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
-int main() {
-  return frc::StartRobot<Robot>();
-}
+int main() { return frc::StartRobot<Robot>(); }
 #endif
