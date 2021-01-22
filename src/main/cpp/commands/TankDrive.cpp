@@ -21,12 +21,13 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
-  if (m_stickLeft->GetRawButton(2)) {
-    m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } else {
-    m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
-  }
+  // if (m_stickLeft->GetRawButton(2)) {
+  //   m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
+  // } else {
+  //   m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
+  // }
   
+  m_drivetrain->AutoDrive();
   }
 
 // Make this return true when this Command no longer needs to run execute()
