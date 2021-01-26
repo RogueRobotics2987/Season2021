@@ -21,13 +21,38 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
-  if (m_stickLeft->GetRawButton(2)) {
-    m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } else {
-    m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
-  }
+  double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
+  double Right = m_stickRight ->GetX(); // X-position of joystick
+  static double lastleft = 0.0;
+  static double lastright = 0.0;
+  static double outleft = 0.0;
+  static double outright = 0.0;
+  double slope = 0.025;
   
+  // gradually changes speed
+  if (abs(Left-lastleft)>slope){
+    outleft = lastleft + copysignf(1.0, Left-lastleft)*slope;
+  } else{
+      outleft = Left;
   }
+  if (abs(Right-lastright)>slope){
+    outright = lastright + copysignf(1.0, Right-lastright)*slope;
+  } else{
+      outright = Right;
+  }
+
+  m_drivetrain -> Drive(outleft, outright);
+
+  lastleft = outleft;
+  lastright = outright;
+
+  /* if (m_stickLeft->GetRawButton(2)) { 
+    m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
+  } else {
+    m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
+  } */
+
+}
 
 // Make this return true when this Command no longer needs to run execute()
 bool TankDrive::IsFinished() { return false; }
