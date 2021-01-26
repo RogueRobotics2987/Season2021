@@ -36,6 +36,7 @@ void TankDrive::Execute() {
  
  frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
  frc::SmartDashboard::PutNumber("Left value", Left);
+ slope = frc::SmartDashboard::GetNumber("Slope", slope); 
 
   if (abs(Left-lastLeft) >slope) {
     outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*slope;
