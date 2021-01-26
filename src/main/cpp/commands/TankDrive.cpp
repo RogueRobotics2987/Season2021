@@ -29,7 +29,8 @@ void TankDrive::Execute() {
   static double lastRight = 0.0;
 
   double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
-  double Right = m_stickRight -> GetX();
+  double Right = m_stickRight -> GetX(); //comment
+
   double outLeft = 0;
   double outRight = 0;
   double slope = 0.025; //0.01 was too slow, 0.05 was too fast
