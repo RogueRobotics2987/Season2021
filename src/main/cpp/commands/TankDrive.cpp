@@ -30,13 +30,15 @@ void TankDrive::Execute() {
 
   double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
   double Right = m_stickRight -> GetX(); //comment
-
   double outLeft = 0;
   double outRight = 0;
   double slope = 0.025; //0.01 was too slow, 0.05 was too fast
  
  frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
  frc::SmartDashboard::PutNumber("Left value", Left);
+ frc::SmartDashboard::PutNumber("lastRight Value", lastRight);
+ frc::SmartDashboard::PutNumber("Right value", Right);
+ frc::SmartDashboard::GetNumber("Slope", slope); 
  slope = frc::SmartDashboard::GetNumber("Slope", slope); 
 
   if (abs(Left-lastLeft) >slope) {
