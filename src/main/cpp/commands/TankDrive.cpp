@@ -27,16 +27,16 @@ void TankDrive::Execute() {
   static double lastright = 0.0;
   static double outleft = 0.0;
   static double outright = 0.0;
-  double slope = 0.025;
+  double maxChange = 0.025;
   
   // gradually changes speed
-  if (abs(Left-lastleft)>slope){
-    outleft = lastleft + copysignf(1.0, Left-lastleft)*slope;
+  if (abs(Left-lastleft)>maxChange){
+    outleft = lastleft + copysignf(1.0, Left-lastleft)*maxChange;
   } else{
       outleft = Left;
   }
-  if (abs(Right-lastright)>slope){
-    outright = lastright + copysignf(1.0, Right-lastright)*slope;
+  if (abs(Right-lastright)>maxChange){
+    outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
   } else{
       outright = Right;
   }
