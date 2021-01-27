@@ -32,22 +32,22 @@ void TankDrive::Execute() {
   double Right = m_stickRight -> GetX(); //comment
   double outLeft = 0;
   double outRight = 0;
-  double slope = 0.025; //0.01 was too slow, 0.05 was too fast
+  double maxChange = 0.025; //per second
  
  frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
  frc::SmartDashboard::PutNumber("Left value", Left);
  frc::SmartDashboard::PutNumber("lastRight Value", lastRight);
  frc::SmartDashboard::PutNumber("Right value", Right);
- frc::SmartDashboard::GetNumber("Slope", slope); 
- slope = frc::SmartDashboard::GetNumber("Slope", slope); 
+ frc::SmartDashboard::GetNumber("maxChange", maxChange); 
+ maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
 
-  if (abs(Left-lastLeft) >slope) {
-    outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*slope;
+  if (abs(Left-lastLeft) >maxChange) {
+    outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*maxChange;
     } else {
       outLeft = Left;
   }
-  if (abs(Right-lastRight) >slope) {
-    outRight = lastRight + copysignf(1.0,Right - lastRight)*slope;
+  if (abs(Right-lastRight) >maxChange) {
+    outRight = lastRight + copysignf(1.0,Right - lastRight)*maxChange;
     } else {
       outRight = Right;
   }
