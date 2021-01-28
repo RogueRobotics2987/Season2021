@@ -25,16 +25,22 @@ class DifferentialDriveSubsystem : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
+  void Drive(double y, double z) { 
+  // Control DriveTrain with joystick inut  
+}
+
  private:
- WPI_TalonSRX FrontLeft = {12};
- WPI_TalonSRX FrontRight = {16};
- WPI_TalonSRX BackLeft = {14};
- WPI_TalonSRX BackRight = {15};
- frc::SpeedControllerGroup m_leftMoters{FrontLeft, BackLeft};
-
- frc::SpeedControllerGroup m_rightMoters{BackRight, FrontRight};
-
- frc::DifferentialDrive m_drive{m_leftMoters, m_rightMoters};
-  // Components (e.g. motor controllers and sensors) should generally be
+ // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+WPI_TalonSRX* FrontLeft;
+WPI_TalonSRX* FrontRight;
+WPI_TalonSRX* BackLeft;
+WPI_TalonSRX* BackRight;
+
+frc::SpeedControllerGroup* m_leftMoters;
+
+frc::SpeedControllerGroup* m_rightMoters;
+
+frc::DifferentialDrive* m_drive;
+
 };
