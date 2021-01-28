@@ -9,6 +9,7 @@
 #include <frc/Joystick.h>
 #include "subsystems/DifferentialDriveSubsystem.h"
 
+
 /**
  * An example command that uses an example subsystem.
  *
@@ -16,15 +17,15 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class TeleopCommand
-    : public frc2::CommandHelper<frc2::CommandBase, TeleopCommand> {
+class TeleopCommand : public frc2::CommandHelper<frc2::CommandBase, TeleopCommand> {
+    
  public:
   /**
    * Creates a new TeleopCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
+  TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
 
  private:
  DifferentialDriveSubsystem* m_subsystem;
