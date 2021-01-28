@@ -9,10 +9,6 @@
 #include "commands/teleopCommand.h"
 #include "subsystems/DifferentialDriveSubsystem.h"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dcd3e367e17464515bc9e8b8b0327aae4e8d57ef
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -20,6 +16,8 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+#include <frc/Joystick.h>
 class RobotContainer {
  public:
   RobotContainer();
@@ -29,12 +27,8 @@ class RobotContainer {
  private:
   // The robot's subsystems and commands are defined here...
   DifferentialDriveSubsystem m_subsystem;
-<<<<<<< HEAD
-  TeleopCommand m_autonomousCommand;
-=======
   TeleopCommand m_teleopCommand;
-  frc::Joystick stick{0};
->>>>>>> dcd3e367e17464515bc9e8b8b0327aae4e8d57ef
+  frc::Joystick stick {0};
 
   void ConfigureButtonBindings();
 };
