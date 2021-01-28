@@ -4,9 +4,11 @@
 
 #include "RobotContainer.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+  // m_subsystem = new DifferentialDriveSubsystem();
+  // m_teleopCommand = new TeleopCommand(*m_subsystem)
+  m_subsystem.SetDefaultCommand(TeleopCommand(&m_subsystem, &stick));
   // Configure the button bindings
   ConfigureButtonBindings();
 }

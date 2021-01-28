@@ -25,8 +25,9 @@ class RobotContainer {
 
  private:
   // The robot's subsystems and commands are defined here...
-  DifferentialDriveSubsystem m_subsystem;
-  TeleopCommand m_autonomousCommand;
+  DifferentialDriveSubsystem* m_subsystem;
+  TeleopCommand* m_teleopCommand;
+  frc::Joystick stick{0};
 
   void ConfigureButtonBindings();
 };

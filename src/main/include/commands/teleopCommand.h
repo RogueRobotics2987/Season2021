@@ -6,7 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-
+#include <frc/Joystick.h>
 #include "subsystems/DifferentialDriveSubsystem.h"
 
 /**
@@ -24,8 +24,9 @@ class TeleopCommand
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit TeleopCommand(DifferentialDriveSubsystem* subsystem);
+  explicit TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
 
  private:
-  DifferentialDriveSubsystem* m_subsystem;
+ DifferentialDriveSubsystem* m_subsystem;
+  
 };

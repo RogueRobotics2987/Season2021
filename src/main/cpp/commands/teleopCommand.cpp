@@ -4,5 +4,6 @@
 
 #include "commands/teleopCommand.h"
 
-TeleopCommand::TeleopCommand(DifferentialDriveSubsystem* subsystem)
+
+TeleopCommand::TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick)
     : m_subsystem{subsystem} {}
