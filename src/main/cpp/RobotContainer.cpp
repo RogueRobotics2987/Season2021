@@ -9,6 +9,7 @@ RobotContainer::RobotContainer() {
   // m_subsystem = new DifferentialDriveSubsystem();
   // m_teleopCommand = new TeleopCommand(*m_subsystem)
   m_subsystem.SetDefaultCommand(TeleopCommand(&m_subsystem, &stick));
+  m_armsubsystem.SetDefaultCommand(TeleopCommand(&m_armsubsystem, &xbox))
   // Configure the button bindings
   ConfigureButtonBindings();
 }

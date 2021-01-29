@@ -8,6 +8,7 @@
 
 #include "commands/teleopCommand.h"
 #include "subsystems/DifferentialDriveSubsystem.h"
+#include "subsystems/ArmSubsystem.h"
 
 
 /**
@@ -26,8 +27,10 @@ class RobotContainer {
  private:
   // The robot's subsystems and commands are defined here...
   DifferentialDriveSubsystem m_subsystem;
+  ArmSubsystem m_armsubsystem;
  // TeleopCommand m_teleopCommand;
   frc::Joystick stick{0};
+  frc::Joystick xbox{1};
 
   void ConfigureButtonBindings();
 };
