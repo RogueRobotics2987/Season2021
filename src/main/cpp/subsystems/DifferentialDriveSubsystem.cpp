@@ -12,11 +12,11 @@ DifferentialDriveSubsystem::DifferentialDriveSubsystem() {
   BackLeft = new WPI_TalonSRX(14);
   BackRight = new WPI_TalonSRX(15);
 
-   m_leftMotors = new frc::SpeedControllerGroup(*FrontLeft, *BackLeft);
+  m_leftMotors = new frc::SpeedControllerGroup(*FrontLeft, *BackLeft);
 
-   m_rightMotors = new frc::SpeedControllerGroup(*FrontRight, *BackRight);
+  m_rightMotors = new frc::SpeedControllerGroup(*FrontRight, *BackRight);
 
-   m_drive = new frc::DifferentialDrive(*m_leftMotors, *m_rightMotors);
+  m_drive = new frc::DifferentialDrive(*m_leftMotors, *m_rightMotors);
 
 };
 
