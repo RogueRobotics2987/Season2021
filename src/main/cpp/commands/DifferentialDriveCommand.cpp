@@ -6,7 +6,11 @@
 
 
 DifferentialDriveCommand::DifferentialDriveCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick)
-    : m_subsystem{subsystem} {}
+ {
+     m_subsystem = subsystem;
+     SetName("DifferentialDrive");
+     AddRequirements({m_subsystem});
+ }
 //DifferentialDriveCommand::DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
 //  : m_armsubsystem{subsystem} {}
 void DifferentialDriveCommand::Execute(){
