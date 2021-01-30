@@ -25,14 +25,14 @@ class DifferentialDriveCommand : public frc2::CommandHelper<frc2::CommandBase, D
    *
    * @param subsystem The subsystem used by this command.
    */
-  //DifferentialDriveCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
+  DifferentialDriveCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
   //DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
-    void Execute() override;
-    bool IsFinished() override;
-    void End(bool Interrupted) override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End(bool Interrupted) override;
  private:
  DifferentialDriveSubsystem* m_subsystem;
  ArmSubsystem* m_armsubsystem;
  frc::Joystick* stick;
- frc::Joystick* xbox; 
+frc::Joystick* xbox;
 };

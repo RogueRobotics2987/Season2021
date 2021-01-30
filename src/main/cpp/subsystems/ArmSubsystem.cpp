@@ -9,8 +9,8 @@ ArmSubsystem::ArmSubsystem() {
   
   Arm1 = new WPI_TalonSRX(23);
   Arm2 = new WPI_TalonSRX(18);
-  
 
+  
 };
 
 void ArmSubsystem::Periodic() {
@@ -22,6 +22,6 @@ void ArmSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void ArmSubsystem::ArmControl(double arm1, double arm2) {
- Arm1->Set(arm1);
- Arm2->Set(arm2);
+  Arm1->Set(arm1);
+  Arm2->Set(arm2);
 }

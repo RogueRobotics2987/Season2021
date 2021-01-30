@@ -6,9 +6,9 @@
 
 
 DifferentialDriveCommand::DifferentialDriveCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick)
-    : m_subsystem{subsystem} {m_subsystem->Drive(stick->GetRawAxis(1), stick->GetRawAxis(2));}
-DifferentialDriveCommand::DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
-//   : m_armsubsystem{subsystem} {}
+    : m_subsystem{subsystem} {}
+//DifferentialDriveCommand::DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
+//  : m_armsubsystem{subsystem} {}
 void DifferentialDriveCommand::Execute(){
     m_subsystem->Drive(stick->GetRawAxis(1), stick->GetRawAxis(2));
 }

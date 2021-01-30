@@ -8,7 +8,6 @@
 #include <frc2/command/SubsystemBase.h>
 
 
-
 class ArmSubsystem : public frc2::SubsystemBase {
  public:
   ArmSubsystem();
@@ -24,7 +23,7 @@ class ArmSubsystem : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
-  // Control arm with Xbox joystick input
+  // Control arm with xbox joystick input
   void ArmControl(double arm1, double arm2);
     
 
@@ -32,6 +31,7 @@ class ArmSubsystem : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+  
   WPI_TalonSRX* Arm1;
   WPI_TalonSRX* Arm2;
   

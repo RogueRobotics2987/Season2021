@@ -6,10 +6,13 @@
 
 #include <frc2/command/Command.h>
 
-#include "commands/teleopCommand.h"
+#include "commands/DifferentialDriveCommand.h"
 #include "subsystems/DifferentialDriveSubsystem.h"
 #include "subsystems/ArmSubsystem.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> c69ecd0a111b0fc165bf40fa22a4702a80a633fa
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -18,6 +21,8 @@
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and button mappings) should be declared here.
  */
+
+#include <frc/Joystick.h>
 class RobotContainer {
  public:
   RobotContainer();
@@ -28,7 +33,11 @@ class RobotContainer {
   // The robot's subsystems and commands are defined here...
   DifferentialDriveSubsystem m_subsystem;
   ArmSubsystem m_armsubsystem;
+<<<<<<< HEAD
  // TeleopCommand m_teleopCommand;
+=======
+ // DifferentialDriveCommand m_DifferentialDriveCommandmand;
+>>>>>>> c69ecd0a111b0fc165bf40fa22a4702a80a633fa
   frc::Joystick stick{0};
   frc::Joystick xbox{1};
 
