@@ -2,57 +2,71 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include <frc/Joystick.h>
-#include <frc/PWMVictorSPX.h>
-#include <frc/TimedRobot.h>
-#include <frc/Timer.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc/livewindow/LiveWindow.h>
+#include "Robot.h"
 
-class Robot : public frc::TimedRobot {
- public:
-  Robot() {
-    m_robotDrive.SetExpiration(0.1);
-    m_timer.Start();
+#include <iostream>
+
+#include <frc/smartdashboard/SmartDashboard.h>
+
+void Robot::RobotInit() {
+  m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
+  m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
+  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+}
+
+/**
+ * This function is called every robot packet, no matter the mode. Use
+ * this for items like diagnostics that you want ran during disabled,
+ * autonomous, teleoperated and test.
+ *
+ * <p> This runs after the mode specific periodic functions, but before
+ * LiveWindow and SmartDashboard integrated updating.
+ */
+void Robot::RobotPeriodic() {}
+
+/**
+ * This autonomous (along with the chooser code above) shows how to select
+ * between different autonomous modes using the dashboard. The sendable chooser
+ * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+ * remove all of the chooser code and uncomment the GetString line to get the
+ * auto name from the text box below the Gyro.
+ *
+ * You can add additional auto modes by adding additional comparisons to the
+ * if-else structure below with additional strings. If using the SendableChooser
+ * make sure to add them to the chooser code above as well.
+ */
+void Robot::AutonomousInit() {
+  m_autoSelected = m_chooser.GetSelected();
+  // m_autoSelected = SmartDashboard::GetString("Auto Selector",
+  //     kAutoNameDefault);
+  std::cout << "Auto selected: " << m_autoSelected << std::endl;
+
+  if (m_autoSelected == kAutoNameCustom) {
+    // Custom Auto goes here
+  } else {
+    // Default Auto goes here
   }
+}
 
-  void AutonomousInit() override {
-    m_timer.Reset();
-    m_timer.Start();
+void Robot::AutonomousPeriodic() {
+  if (m_autoSelected == kAutoNameCustom) {
+    // Custom Auto goes here
+  } else {
+    // Default Auto goes here
   }
+}
 
-  void AutonomousPeriodic() override {
-    // Drive for 2 seconds
-    if (m_timer.Get() < 2.0) {
-      // Drive forwards half speed
-      m_robotDrive.ArcadeDrive(-0.5, 0.0);
-    } else {
-      // Stop robot
-      m_robotDrive.ArcadeDrive(0.0, 0.0);
-    }
-  }
+void Robot::TeleopInit() {}
 
-  void TeleopInit() override {}
+void Robot::TeleopPeriodic() {}
 
-  void TeleopPeriodic() override {
-    // Drive with arcade style (use right stick)
-    m_robotDrive.ArcadeDrive(m_stick.GetY(), m_stick.GetX());
-  }
+void Robot::DisabledInit() {}
 
-  void TestInit() override {}
+void Robot::DisabledPeriodic() {}
 
-  void TestPeriodic() override {}
+void Robot::TestInit() {}
 
- private:
-  // Robot drive system
-  frc::PWMVictorSPX m_left{0};
-  frc::PWMVictorSPX m_right{1};
-  frc::DifferentialDrive m_robotDrive{m_left, m_right};
-
-  frc::Joystick m_stick{0};
-  frc::LiveWindow& m_lw = *frc::LiveWindow::GetInstance();
-  frc::Timer m_timer;
-};
+void Robot::TestPeriodic() {}
 
 #ifndef RUNNING_FRC_TESTS
 int main() {
