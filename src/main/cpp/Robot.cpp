@@ -7,6 +7,8 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include <frc2/command/CommandScheduler.h>
+
 void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
@@ -21,7 +23,8 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() {
+frc2::CommandScheduler::GetInstance().Run();}
 
 /**
  * This autonomous (along with the chooser code above) shows how to select
