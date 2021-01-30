@@ -27,7 +27,7 @@ void TankDrive::Execute() {
   static double lastright = 0.0;
   static double outleft = 0.0;
   static double outright = 0.0;
-  double maxChange = 0.025;
+  double maxChange = 0.04;
   
   // gradually changes speed
   if (abs(Left-lastleft)>maxChange){
