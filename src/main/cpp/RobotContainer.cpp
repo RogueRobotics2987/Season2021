@@ -7,9 +7,9 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   // m_subsystem = new DifferentialDriveSubsystem();
-  // m_teleopCommand = new TeleopCommand(*m_subsystem)
-  m_subsystem.SetDefaultCommand(TeleopCommand(&m_subsystem, &stick));
-  m_armsubsystem.SetDefaultCommand(TeleopCommand(&m_armsubsystem, &xbox))
+  // m_teleopCommand = new DifferentialDriveCommand(*m_subsystem)
+  m_subsystem.SetDefaultCommand(DifferentialDriveCommand(&m_subsystem, &stick));
+  m_armsubsystem.SetDefaultCommand(DifferentialDriveCommand(&m_armsubsystem, &xbox));
   // Configure the button bindings
   ConfigureButtonBindings();
 }
@@ -19,6 +19,6 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 // frc2::Command* RobotContainer::GetAutonomousCommand() {
-//   // An example command will be run in autonomous
-//   return new TeleopCommand;
+// An example command will be run in autonomous
+// return new DifferentialDriveCommand;
 // }
