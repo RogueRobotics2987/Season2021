@@ -9,6 +9,7 @@
 #include "commands/DifferentialDriveCommand.h"
 #include "subsystems/DifferentialDriveSubsystem.h"
 #include "subsystems/ArmSubsystem.h"
+#include "commands/ArmCommand.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
