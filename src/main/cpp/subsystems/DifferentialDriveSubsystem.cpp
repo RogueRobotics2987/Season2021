@@ -18,7 +18,7 @@ DifferentialDriveSubsystem::DifferentialDriveSubsystem() {
 
   m_drive = new frc::DifferentialDrive(*m_leftMotors, *m_rightMotors);
 
-};
+}
 
 void DifferentialDriveSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
