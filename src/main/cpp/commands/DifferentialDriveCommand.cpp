@@ -14,7 +14,7 @@ DifferentialDriveCommand::DifferentialDriveCommand(DifferentialDriveSubsystem* s
 //DifferentialDriveCommand::DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
 //  : m_armsubsystem{subsystem} {}
 void DifferentialDriveCommand::Execute(){
-    m_subsystem->Drive(stick->GetY(), stick->GetZ());
+    m_subsystem->Drive(stick->GetRawAxis(1), stick->GetRawAxis(2));
 }
 bool DifferentialDriveCommand::IsFinished(){
     return false;
