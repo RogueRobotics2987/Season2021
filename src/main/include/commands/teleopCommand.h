@@ -8,7 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
 #include "subsystems/DifferentialDriveSubsystem.h"
-
+#include "subsystems/ArmSubsystem.h"
 
 /**
  * An example command that uses an example subsystem.
@@ -26,8 +26,9 @@ class TeleopCommand : public frc2::CommandHelper<frc2::CommandBase, TeleopComman
    * @param subsystem The subsystem used by this command.
    */
   TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
-
+  TeleopCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
  private:
  DifferentialDriveSubsystem* m_subsystem;
+ ArmSubsystem* m_armsubsystem;
   
 };

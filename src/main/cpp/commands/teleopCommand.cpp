@@ -7,3 +7,5 @@
 
 TeleopCommand::TeleopCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick)
     : m_subsystem{subsystem} {}
+TeleopCommand::TeleopCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
+    : m_armsubsystem{subsystem} {}
