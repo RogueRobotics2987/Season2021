@@ -7,7 +7,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
-#include "subsystems/DifferentialDriveSubsystem.h"
+#include "subsystems/ArmSubsystem.h"
 
 
 /**
@@ -17,20 +17,20 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class DifferentialDriveCommand : public frc2::CommandHelper<frc2::CommandBase, DifferentialDriveCommand> {
+class ArmCommand : public frc2::CommandHelper<frc2::CommandBase, ArmCommand> {
     
  public:
   /**
-   * Creates a new DifferentialDriveCommand.
+   * Creates a new ArmCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  DifferentialDriveCommand(DifferentialDriveSubsystem* subsystem, frc::Joystick* stick);
-  //DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
+  ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
+  //ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
   void Execute() override;
   bool IsFinished() override;
   void End(bool Interrupted) override;
  private:
- DifferentialDriveSubsystem* m_subsystem;
-  frc::Joystick* stick;
-  };
+ ArmSubsystem* m_subsystem;
+ frc::Joystick* xbox;
+};
