@@ -38,10 +38,8 @@ DriveTrain::DriveTrain() {
   SetName("DriveTrain");
   LeftBack = new rev::CANSparkMax(56, rev::CANSparkMax::MotorType::kBrushless);
   LeftFront = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
-  //leftEncoder = new rev::CANEncoder(*LeftFront); 
   RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
   RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
-  //rightEncoder = new rev::CANEncoder(*RightFront); 
   myAhrs = new AHRS(frc::SerialPort::kMXP); 
   m_robotDrive = new frc::DifferentialDrive(*LeftFront, *RightFront);
   //m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
@@ -56,6 +54,12 @@ DriveTrain::DriveTrain() {
   // LeftFront->SetSmartCurrentLimit(5); 
   LeftBack->Follow(*LeftFront); 
   RightBack->Follow(*RightFront); 
+
+
+  //SYDNEYS TRAJECTORY VALUES
+  leftEncoder = new rev::CANEncoder(*LeftFront); 
+  rightEncoder = new rev::CANEncoder(*RightFront); 
+  
 
   // Let's show everything on the LiveWindow
   // AddChild("Front_Left Motor", &m_frontLeft);
@@ -165,7 +169,10 @@ void DriveTrain::AutoDrive() {
 }
 
 void DriveTrain::Periodic(){
-    //m_odometry->Update(frc::Rotation2d(units::degree_t(GetHeading())), units::meter_t(leftEncoder->GetPosition()), units::meter_t(rightEncoder->GetPosition()));
+  // m_odometry->Update(
+  //     frc::Rotation2d(GetHeading()), 
+  //     units::meter_t(leftEncoder->GetPosition()), 
+  //     units::meter_t(rightEncoder->GetPosition()));
 
 
     
@@ -178,21 +185,24 @@ void DriveTrain::Periodic(){
 // }
 
 // void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
+
+
+//BRANDONS OLD CODE
 //   // if(left > units::volt_t(.25)){ left = units::volt_t(.25); }
 //   // if(right > units::volt_t(.25)){ right = units::volt_t(.25); }
 //   frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
 //   frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
 //   frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
 //   frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
-//   frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
-  
+//   frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading());  
 //   LeftFront->SetVoltage(left);
 //   RightFront->SetVoltage(-right);
 //   m_robotDrive->Feed();
 
 // }
-// double DriveTrain::GetHeading() { 
-// return myAhrs->GetAngle(); }
+units::degree_t DriveTrain::GetHeading() { 
+        return units::degree_t(myAhrs->GetAngle() * 360.0 / 2 / M_PI); 
+}
 
 // void DriveTrain::Reset() {
 //   // m_gyro.Reset();
@@ -205,9 +215,10 @@ void DriveTrain::Periodic(){
 //   return 0;
 // }
 
-// frc::DifferentialDriveWheelSpeeds DriveTrain::GetWheelSpeeds() {
-// return {(-leftEncoder->GetVelocity() * 1_mps),(rightEncoder->GetVelocity() * 1_mps)};
-// }
+frc::DifferentialDriveWheelSpeeds DriveTrain::GetWheelSpeeds() {
+return {units::meters_per_second_t(-leftEncoder->GetVelocity()),
+        units::meters_per_second_t(rightEncoder->GetVelocity())};
+}
 
 
 
@@ -227,7 +238,7 @@ void DriveTrain::Periodic(){
 // }
 
 // frc::Pose2d DriveTrain::GetPose(){
-//   //return m_odometry->GetPose(); 
+//   return m_odometry->GetPose(); 
 // }
 
 // void DriveTrain::ResetEncoders(){ 

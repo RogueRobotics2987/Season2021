@@ -56,7 +56,7 @@ class DriveTrain : public frc2::SubsystemBase {
   /**
    * @return The robots heading in degrees.
    */
-  double GetHeading();
+  units::degree_t GetHeading();
   void ResetOdometry(frc::Pose2d pose); 
 
   /**
