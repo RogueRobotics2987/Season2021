@@ -1,4 +1,4 @@
-See file:///Users/Robotics/FRC2021/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
+See file:///C:/Users/Rogue/Desktop/Projects/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
 linking frcUserProgram successful.
 
-Finished linkFrcUserProgramReleaseExecutable, see full log file:///Users/Robotics/FRC2021/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.
+Finished linkFrcUserProgramReleaseExecutable, see full log file:///C:/Users/Rogue/Desktop/Projects/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.

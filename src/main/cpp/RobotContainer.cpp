@@ -88,10 +88,10 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // m_drivetrain.ResetEncoders(); 
-  // frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
-  //     frc::SimpleMotorFeedforward<units::meters>(
-  //     DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-  //     DriveConstants::kDriveKinematics, 10_V);
+  frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
+      frc::SimpleMotorFeedforward<units::meters>(
+      DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics, 10_V);
 
   // frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
   // config.SetKinematics(DriveConstants::kDriveKinematics);
