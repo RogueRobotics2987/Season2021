@@ -26,5 +26,5 @@ class TankDrive : public frc2::CommandHelper<frc2::CommandBase, TankDrive> {
  private:
   frc::Joystick* m_stickRight; 
   DriveTrain* m_drivetrain;
-  frc::Joystick* m_stickLeft; 
+  frc::Joystick* m_stickLeft;  
 };
