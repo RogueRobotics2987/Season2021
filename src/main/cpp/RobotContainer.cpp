@@ -93,39 +93,40 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
       DriveConstants::kDriveKinematics, 10_V);
 
-  // frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
-  // config.SetKinematics(DriveConstants::kDriveKinematics);
-  // config.AddConstraint(autoVoltageConstraint);
+  frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
+  config.SetKinematics(DriveConstants::kDriveKinematics);
+  config.AddConstraint(autoVoltageConstraint);
 
-  // auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
-  //     // Start at the origin facing the +X direction
-  //     frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
-  //     // Pass through these two interior waypoints, making an 's' curve path
-  //      {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
-  //     //  {frc::Translation2d(1_m, 1_m)}, 
+  auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      // Start at the origin facing the +X direction
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
+      // Pass through these two interior waypoints, making an 's' curve path
+       {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
+      //  {frc::Translation2d(1_m, 1_m)}, 
 
-  //     // End 3 meters straight ahead of where we started, facing forward
-  //     frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
-  //     // Pass the config                                                                      
-  //     config);
+      // End 3 meters straight ahead of where we started, facing forward
+      frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
+      // Pass the config                                                                      
+      config);
 
-  // frc2::RamseteCommand ramseteCommand(
-  //     exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
-  //     frc::RamseteController(AutoConstants::kRamseteB,
-  //                            AutoConstants::kRamseteZeta),
-  //     frc::SimpleMotorFeedforward<units::meters>(
-  //         DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-  //     DriveConstants::kDriveKinematics,
-  //     [this] { return m_drivetrain.GetWheelSpeeds(); },
-  //     frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-  //     frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-  //     [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
-  //     {&m_drivetrain});
+  frc2::RamseteCommand ramseteCommand(
+      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
-  //     return new frc2::SequentialCommandGroup(
-  //     std::move(ramseteCommand),
-  //     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
-  return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
+      return new frc2::SequentialCommandGroup(
+      std::move(ramseteCommand),
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
+  
+  // return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
 }
 
 

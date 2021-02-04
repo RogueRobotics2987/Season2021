@@ -71,7 +71,8 @@ DriveTrain::DriveTrain() {
   // AddChild("Rangefinder", &m_rangefinder);
   // AddChild("Gyro", &m_gyro);
 
-  frc::SmartDashboard::PutNumber("Get Heading", float(GetHeading()));
+  // frc::SmartDashboard::PutNumber("Get Heading", float(GetHeading()));  
+  frc::SmartDashboard::PutNumber("Get Heading", myAhrs->GetAngle());
   frc::SmartDashboard::PutNumber("Set DriveP", kp);
   frc::SmartDashboard::PutNumber("Set DriveI", ki);
   frc::SmartDashboard::PutNumber("Set DriveD", kd);
@@ -200,7 +201,7 @@ void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
 
 
   LeftFront->SetVoltage(left);
-  RightFront->SetVoltage(-right);
+  RightFront->SetVoltage(right);
   m_robotDrive->Feed();
 
 }
