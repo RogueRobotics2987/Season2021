@@ -32,5 +32,5 @@ class ArmCommand : public frc2::CommandHelper<frc2::CommandBase, ArmCommand> {
   void End(bool Interrupted) override;
  private:
  ArmSubsystem* m_subsystem;
- frc::Joystick* xbox;
+ frc::Joystick* m_xbox;
 };

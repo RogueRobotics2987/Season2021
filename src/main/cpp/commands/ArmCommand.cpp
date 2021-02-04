@@ -10,11 +10,12 @@ ArmCommand::ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
      m_subsystem = subsystem;
      SetName("ArmCommand");
      AddRequirements({m_subsystem});
+     m_xbox = xbox;
  }
 //ArmCommand::ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox)
 //  : m_armsubsystem{subsystem} {}
 void ArmCommand::Execute(){
-    m_subsystem->ArmControl(xbox->GetRawAxis(0), xbox->GetRawAxis(1));
+    m_subsystem->ArmControl(m_xbox->GetRawAxis(0), m_xbox->GetRawAxis(1));
 }
 bool ArmCommand::IsFinished(){
     return false;

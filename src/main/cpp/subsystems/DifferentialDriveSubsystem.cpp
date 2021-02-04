@@ -29,5 +29,5 @@ void DifferentialDriveSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void DifferentialDriveSubsystem::Drive(double y, double z) {
-  m_drive->ArcadeDrive(-y, z);
+  m_drive->ArcadeDrive(y, z);
 }
