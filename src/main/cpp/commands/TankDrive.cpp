@@ -9,7 +9,6 @@
 
 #include "Robot.h"
 
-
 TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joystick* stickLeft)
     {
   
@@ -18,13 +17,10 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   m_stickRight = stickRight; 
   SetName("TankDrive");
   AddRequirements({m_drivetrain});
-  
-  
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
-<<<<<<< HEAD
   double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
   double Right = m_stickRight ->GetX(); // X-position of joystick
   static double lastleft = 0.0;
@@ -43,44 +39,6 @@ void TankDrive::Execute() {
     outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
   } else{
       outright = Right;
-=======
-  
-  static double lastLeft = 0.0; 
-  static double lastRight = 0.0;
-
-  double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
-  double Right = m_stickRight -> GetX(); //comment
-  double outLeft = 0;
-  double outRight = 0;
-  double maxChange = 0.025; //per second
- 
- frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
- frc::SmartDashboard::PutNumber("Left value", Left);
- frc::SmartDashboard::PutNumber("lastRight Value", lastRight);
- frc::SmartDashboard::PutNumber("Right value", Right);
- frc::SmartDashboard::GetNumber("maxChange", maxChange); 
- maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
-
-  if (abs(Left-lastLeft) >maxChange) {
-    outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*maxChange;
-    } else {
-      outLeft = Left;
-  }
-  if (abs(Right-lastRight) >maxChange) {
-    outRight = lastRight + copysignf(1.0,Right - lastRight)*maxChange;
-    } else {
-      outRight = Right;
-  }
-  
-  m_drivetrain -> Drive(outLeft, outRight);
-   lastLeft = outLeft;
-  lastRight = outRight; 
-  /*if (m_stickLeft->GetRawButton(2)) {
-    m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } else {
-    m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } */
->>>>>>> a1a7b1b3157c2db5b9ffc121575f37e602fc6a11
   }
 
   m_drivetrain -> Drive(outleft, outright);
