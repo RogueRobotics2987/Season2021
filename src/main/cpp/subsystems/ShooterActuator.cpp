@@ -36,10 +36,14 @@ void ShooterActuator::switchCam(bool flag){
     }
 }
 
+void ShooterActuator:: limeStream(int num){
+    limelightTable -> PutNumber("pipeline", num);
+}
+
 // This method will be called once per scheduler run
 void ShooterActuator::Periodic() {
     double startTime = myTimer->Get();
-    int limeStream;
+    
 
     bool shooterActuatorWorking = true; 
     if(angleMotorH->GetFirmwareString() != firmwareVersion || angleMotorV->GetFirmwareString() != firmwareVersion){
