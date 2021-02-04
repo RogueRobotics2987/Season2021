@@ -8,7 +8,7 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   // m_subsystem = new DifferentialDriveSubsystem();
   // DifferentialDriveCommand = new DifferentialDriveCommand(*m_subsystem)
-  m_subsystem.SetDefaultCommand(DifferentialDriveCommand(&m_subsystem, &stick));
+  //m_subsystem.SetDefaultCommand(DifferentialDriveCommand(&m_subsystem, &stick));
   m_armsubsystem.SetDefaultCommand(ArmCommand(&m_armsubsystem, &xbox));
   //m_armsubsystem.SetDefaultCommand(DifferentialDriveCommand(&m_armsubsystem, &xbox));
   // Configure the button bindings
