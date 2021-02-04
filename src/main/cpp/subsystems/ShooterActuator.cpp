@@ -39,6 +39,7 @@ void ShooterActuator::switchCam(bool flag){
 // This method will be called once per scheduler run
 void ShooterActuator::Periodic() {
     double startTime = myTimer->Get();
+    int limeStream;
 
     bool shooterActuatorWorking = true; 
     if(angleMotorH->GetFirmwareString() != firmwareVersion || angleMotorV->GetFirmwareString() != firmwareVersion){
@@ -47,6 +48,8 @@ void ShooterActuator::Periodic() {
     
     frc::SmartDashboard::PutBoolean("Shooter Actuator Working", shooterActuatorWorking); 
     limelightTable = NetworkTable::GetTable("limelight-rr");
+
+    limelightTable -> PutNumber("pipeline", limeStream);
 
     //must be moved to command 
     tx = limelightTable->GetNumber("tx", 0.0); 
