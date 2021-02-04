@@ -10,6 +10,7 @@
 #include "subsystems/DifferentialDriveSubsystem.h"
 #include "subsystems/ArmSubsystem.h"
 #include "commands/ArmCommand.h"
+#include <frc/XboxController.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -31,8 +32,8 @@ class RobotContainer {
   DifferentialDriveSubsystem m_subsystem;
   ArmSubsystem m_armsubsystem;
  // DifferentialDriveCommand m_DifferentialDriveCommandmand;
-  frc::Joystick stick{0};
-  frc::Joystick xbox{1};
+  frc::Joystick* stick;
+  frc::Joystick* xbox;
 
   void ConfigureButtonBindings();
 };

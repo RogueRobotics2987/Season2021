@@ -22,6 +22,8 @@ void ArmSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void ArmSubsystem::ArmControl(double arm1, double arm2) {
-  Arm1->Set(arm1);
-  Arm2->Set(arm2);
+  Arm1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm1);
+  Arm2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm2);
+  frc::SmartDashboard::PutNumber("Arm1 Motor Output", arm1);
+  frc::SmartDashboard::PutNumber("Arm2 Motor Output", arm2);
 }
