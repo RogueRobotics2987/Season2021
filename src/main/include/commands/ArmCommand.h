@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
 #include "subsystems/ArmSubsystem.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 /**
  * An example command that uses an example subsystem.
@@ -16,20 +17,20 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ArmCommand : public frc2::CommandHelper<frc2::CommandBase, ArmCommand>{
+class ArmCommand : public frc2::CommandHelper<frc2::CommandBase, ArmCommand> {
     
  public:
   /**
-   * Creates a new DifferentialDriveCommand.
+   * Creates a new ArmCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
   ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
-  //DifferentialDriveCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
+  //ArmCommand(ArmSubsystem* subsystem, frc::Joystick* xbox);
   void Execute() override;
   bool IsFinished() override;
   void End(bool Interrupted) override;
  private:
  ArmSubsystem* m_subsystem;
-frc::Joystick* xbox;
+ frc::Joystick* m_xbox;
 };

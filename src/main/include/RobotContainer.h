@@ -9,6 +9,7 @@
 #include "commands/DifferentialDriveCommand.h"
 #include "subsystems/DifferentialDriveSubsystem.h"
 #include "subsystems/ArmSubsystem.h"
+#include "commands/ArmCommand.h"
 
 
 /**
@@ -29,8 +30,8 @@ class RobotContainer {
   DifferentialDriveSubsystem m_subsystem;
   ArmSubsystem m_armsubsystem;
  // DifferentialDriveCommand m_teleopCommand;
-  frc::Joystick stick{0};
-  frc::Joystick xbox{1};
+  frc::Joystick* stick;
+  frc::Joystick* xbox;
 
   void ConfigureButtonBindings();
 };

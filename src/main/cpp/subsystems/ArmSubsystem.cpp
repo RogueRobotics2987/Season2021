@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/ArmSubsystem.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 ArmSubsystem::ArmSubsystem() {
   // Implementation of subsystem constructor goes here.
@@ -15,6 +16,7 @@ ArmSubsystem::ArmSubsystem() {
 
 void ArmSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
+  
 }
 
 void ArmSubsystem::SimulationPeriodic() {
@@ -22,6 +24,8 @@ void ArmSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void ArmSubsystem::ArmControl(double arm1, double arm2) {
-  Arm1->Set(arm1);
-  Arm2->Set(arm2);
+  Arm1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm1);
+  Arm2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm2);
+  frc::SmartDashboard::PutNumber("Arm1 motor output", arm1);
+  frc::SmartDashboard::PutNumber("Arm2 motor output", arm2);
 }

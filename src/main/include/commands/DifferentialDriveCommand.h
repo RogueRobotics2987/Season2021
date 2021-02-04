@@ -8,7 +8,6 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
 #include "subsystems/DifferentialDriveSubsystem.h"
-#include "subsystems/ArmSubsystem.h"
 
 /**
  * An example command that uses an example subsystem.
@@ -32,7 +31,5 @@ class DifferentialDriveCommand : public frc2::CommandHelper<frc2::CommandBase, D
   void End(bool Interrupted) override;
  private:
  DifferentialDriveSubsystem* m_subsystem;
- ArmSubsystem* m_armsubsystem;
- frc::Joystick* stick;
-frc::Joystick* xbox;
-};
+  frc::Joystick* stick;
+  };
