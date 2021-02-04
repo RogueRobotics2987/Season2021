@@ -11,7 +11,7 @@ ArmSubsystem::ArmSubsystem() {
   Arm2 = new WPI_TalonSRX(18);
 
   
-};
+}
 
 void ArmSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
