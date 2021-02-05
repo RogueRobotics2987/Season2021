@@ -37,7 +37,7 @@ void TrimAngle::Execute() {
       m_actuator->setAngleH(rStick->GetRawAxis(0)); // updated button
       m_actuator->setAngleV(rStick->GetRawAxis(1)); // updated button
       
-      // switches pipeline using xbox control.
+      // switches pipeline using xbox control. (remove x's)
       if(rStick -> GetPOV(x)){
         m_actuator -> limeStream(1);
       } else if(rStick -> GetPOV(xx)){
