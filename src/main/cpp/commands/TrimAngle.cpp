@@ -38,13 +38,13 @@ void TrimAngle::Execute() {
       m_actuator->setAngleV(rStick->GetRawAxis(1)); // updated button
       
       // switches pipeline using xbox control. (remove x's)
-      if(rStick -> GetPOV(x)){
+      if(rStick -> GetPOV()==0){
         m_actuator -> limeStream(1);
-      } else if(rStick -> GetPOV(xx)){
+      } else if(rStick -> GetPOV()==90){
         m_actuator -> limeStream(2);
-      } else if(rStick -> GetPOV(xxx)){
+      } else if(rStick -> GetPOV()==180){
         m_actuator -> limeStream(3);
-      } else if(rStick -> GetPOV(xxxx)){
+      } else if(rStick -> GetPOV()==270){
         m_actuator -> limeStream(4);
       } else {
         m_actuator -> limeStream(2);
