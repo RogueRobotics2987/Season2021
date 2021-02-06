@@ -13,6 +13,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <wpi/math>
 #include "rev/CANSparkMax.h"
+#include "rev/CANEncoder.h"
 
 #include "Constants.h"
 
@@ -22,15 +23,19 @@ class SwerveModule {
                            units::inverse<units::squared<units::second>>>;
 
  public:
-  SwerveModule(int driveMotorChannel, int turningMotorChannel,
-               const int driveEncoderPorts[2], const int turningEncoderPorts[2],
-               bool driveEncoderReversed, bool turningEncoderReversed);
-
+//   SwerveModule(int driveMotorChannel, int turningMotorChannel,
+//                const int driveEncoderPorts[2], const int turningEncoderPorts[2],
+//                bool driveEncoderReversed, bool turningEncoderReversed);
+    SwerveModule(int m_MotorController, rev::CANEncoder::EncoderType m_EncoderType, int m_counts_per_rev, 
+    int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning, int m_counts_per_revTurning,
+    bool driveEncoderReversed,
+    bool turningEncoderReversed);
+    ~SwerveModule();
   frc::SwerveModuleState GetState();
 
   void SetDesiredState(frc::SwerveModuleState& state);
 
-  void ResetEncoders();
+//   void ResetEncoders();
 
  private:
   // We have to use meters here instead of radians due to the fact that
@@ -46,13 +51,13 @@ class SwerveModule {
 
 //   frc::Spark m_driveMotor;
 //   frc::Spark m_turningMotor;
-  rev::CANSparkMax samDriveMotor;
-  rev::CANSparkMax samTurningMotor;
+  rev::CANSparkMax* samDriveMotor;
+  rev::CANSparkMax* samTurningMotor;
 
 //   frc::Encoder m_driveEncoder;
 //   frc::Encoder m_turningEncoder;
-  rev::CANEncoder samDriveEncoder;
-  rev::CANEncoder samTurningEncoder;
+  rev::CANEncoder* samDriveEncoder;
+  rev::CANEncoder* samTurningEncoder;
 
   bool m_reverseDriveEncoder;
   bool m_reverseTurningEncoder;

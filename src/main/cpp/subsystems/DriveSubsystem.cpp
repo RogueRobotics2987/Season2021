@@ -14,27 +14,48 @@
 using namespace DriveConstants;
 
 DriveSubsystem::DriveSubsystem()
-    : m_frontLeft{kFrontLeftDriveMotorPort,
-                  kFrontLeftTurningMotorPort,
-                  kFrontLeftDriveEncoderPorts,
-                  kFrontLeftTurningEncoderPorts,
-                  kFrontLeftDriveEncoderReversed,
-                  kFrontLeftTurningEncoderReversed},
+    : 
+    // m_frontLeft{kFrontLeftDriveMotorPort,
+    //               kFrontLeftTurningMotorPort,
+    //               kFrontLeftDriveEncoderPorts,
+    //               kFrontLeftTurningEncoderPorts,
+    //               kFrontLeftDriveEncoderReversed,
+    //               kFrontLeftTurningEncoderReversed},
 
-      m_rearLeft{
-          kRearLeftDriveMotorPort,       kRearLeftTurningMotorPort,
-          kRearLeftDriveEncoderPorts,    kRearLeftTurningEncoderPorts,
-          kRearLeftDriveEncoderReversed, kRearLeftTurningEncoderReversed},
+      // m_rearLeft{
+      //     kRearLeftDriveMotorPort,       kRearLeftTurningMotorPort,
+      //     kRearLeftDriveEncoderPorts,    kRearLeftTurningEncoderPorts,
+      //     kRearLeftDriveEncoderReversed, kRearLeftTurningEncoderReversed},
 
+      // m_frontRight{
+      //     kFrontRightDriveMotorPort,       kFrontRightTurningMotorPort,
+      //     kFrontRightDriveEncoderPorts,    kFrontRightTurningEncoderPorts,
+      //     kFrontRightDriveEncoderReversed, kFrontRightTurningEncoderReversed},
+
+      // m_rearRight{
+      //     kRearRightDriveMotorPort,       kRearRightTurningMotorPort,
+      //     kRearRightDriveEncoderPorts,    kRearRightTurningEncoderPorts,
+      //     kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed},
+      m_frontLeft{
+        kFrontLeftDriveMotorPort, m_EncoderType, kFrontLeftDriveCPR, 
+        kFrontLeftTurningMotorPort, m_EncoderType, kFrontLeftTurningCPR,
+        kFrontLeftDriveEncoderReversed, kFrontLeftTurningEncoderReversed
+      },
       m_frontRight{
-          kFrontRightDriveMotorPort,       kFrontRightTurningMotorPort,
-          kFrontRightDriveEncoderPorts,    kFrontRightTurningEncoderPorts,
-          kFrontRightDriveEncoderReversed, kFrontRightTurningEncoderReversed},
-
+        kFrontRightDriveMotorPort, m_EncoderType, kFrontRightDriveCPR, 
+        kFrontRightTurningMotorPort, m_EncoderType, kFrontRightTurningCPR,
+        kFrontRightDriveEncoderReversed, kFrontRightTurningEncoderReversed
+      },
+      m_rearLeft{
+        kRearLeftDriveMotorPort, m_EncoderType, kRearLeftDriveCPR, 
+        kRearLeftTurningMotorPort, m_EncoderType, kRearLeftTurningCPR,
+        kRearLeftDriveEncoderReversed, kRearLeftTurningEncoderReversed
+      },
       m_rearRight{
-          kRearRightDriveMotorPort,       kRearRightTurningMotorPort,
-          kRearRightDriveEncoderPorts,    kRearRightTurningEncoderPorts,
-          kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed},
+        kRearRightDriveMotorPort, m_EncoderType, kRearRightDriveCPR, 
+        kRearRightTurningMotorPort, m_EncoderType, kRearRightTurningCPR,
+        kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed
+      },
 
       m_odometry{kDriveKinematics, m_gyro.GetRotation2d(), frc::Pose2d()} {}
 
@@ -74,12 +95,12 @@ void DriveSubsystem::SetModuleStates(
   m_rearRight.SetDesiredState(desiredStates[3]);
 }
 
-void DriveSubsystem::ResetEncoders() {
-  m_frontLeft.ResetEncoders();
-  m_rearLeft.ResetEncoders();
-  m_frontRight.ResetEncoders();
-  m_rearRight.ResetEncoders();
-}
+// void DriveSubsystem::ResetEncoders() {
+//   m_frontLeft.ResetEncoders();
+//   m_rearLeft.ResetEncoders();
+//   m_frontRight.ResetEncoders();
+//   m_rearRight.ResetEncoders();
+// }
 
 units::degree_t DriveSubsystem::GetHeading() const {
   return m_gyro.GetRotation2d().Degrees();
