@@ -27,15 +27,15 @@
  */
 
 namespace DriveConstants {
-constexpr int kFrontLeftDriveMotorPort = 0;
-constexpr int kRearLeftDriveMotorPort = 2;
-constexpr int kFrontRightDriveMotorPort = 4;
-constexpr int kRearRightDriveMotorPort = 6;
+constexpr int kFrontLeftDriveMotorPort = 1;
+constexpr int kRearLeftDriveMotorPort = 7;
+constexpr int kFrontRightDriveMotorPort = 3;
+constexpr int kRearRightDriveMotorPort = 5;
 
-constexpr int kFrontLeftTurningMotorPort = 1;
-constexpr int kRearLeftTurningMotorPort = 3;
-constexpr int kFrontRightTurningMotorPort = 5;
-constexpr int kRearRightTurningMotorPort = 7;
+constexpr int kFrontLeftTurningMotorPort = 2;
+constexpr int kRearLeftTurningMotorPort = 8;
+constexpr int kFrontRightTurningMotorPort = 4;
+constexpr int kRearRightTurningMotorPort = 6;
 
 // constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
 // constexpr int kRearLeftTurningEncoderPorts[2]{2, 3};
@@ -57,15 +57,15 @@ constexpr bool kRearLeftDriveEncoderReversed = true;
 constexpr bool kFrontRightDriveEncoderReversed = false;
 constexpr bool kRearRightDriveEncoderReversed = true;
 
-constexpr int kFrontLeftDriveCPR = 4095;
-constexpr int kRearLeftDriveCPR = 4095;
-constexpr int kFrontRightDriveCPR = 4095;
-constexpr int kRearRightDriveCPR = 4095;
+constexpr int kFrontLeftDriveCPR = 42;
+constexpr int kRearLeftDriveCPR = 42;
+constexpr int kFrontRightDriveCPR = 42;
+constexpr int kRearRightDriveCPR = 42;
 
-constexpr int kFrontLeftTurningCPR = 4095;
-constexpr int kRearLeftTurningCPR = 4095;
-constexpr int kFrontRightTurningCPR = 4095;
-constexpr int kRearRightTurningCPR = 4095;
+constexpr int kFrontLeftTurningCPR = 42;
+constexpr int kRearLeftTurningCPR = 42;
+constexpr int kFrontRightTurningCPR = 42;
+constexpr int kRearRightTurningCPR = 42;
 
 constexpr rev::CANEncoder::EncoderType m_EncoderType = rev::CANEncoder::EncoderType::kHallSensor;
 
@@ -87,7 +87,7 @@ constexpr double kPRearRightVel = 0.5;
 
 namespace ModuleConstants {
 constexpr int kEncoderCPR = 1024;
-constexpr double kWheelDiameterMeters = .15;
+constexpr double kWheelDiameterMeters = .102;
 constexpr double kDriveEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
     (kWheelDiameterMeters * wpi::math::pi) / static_cast<double>(kEncoderCPR);

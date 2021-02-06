@@ -28,7 +28,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+  // frc2::Command* GetAutonomousCommand();
 
  private:
   // The driver's controller
