@@ -32,8 +32,8 @@ class RobotContainer {
   DifferentialDriveSubsystem m_subsystem;
   ArmSubsystem m_armsubsystem;
  // DifferentialDriveCommand m_DifferentialDriveCommandmand;
-  frc::Joystick* stick;
-  frc::Joystick* xbox;
+  frc::Joystick stick{0};
+  frc::Joystick xbox{1};
 
   void ConfigureButtonBindings();
 };

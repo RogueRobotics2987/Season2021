@@ -5,13 +5,13 @@
 #include "RobotContainer.h"
 #include <frc/Joystick.h>
 RobotContainer::RobotContainer() {
-  xbox = new frc::Joystick(1);
-  stick = new frc::Joystick(0);
+  // xbox = new frc::Joystick(1);
+  // stick = new frc::Joystick(0);
   // Initialize all of your commands and subsystems here
   // m_subsystem = new DifferentialDriveSubsystem();
   // DifferentialDriveCommand = new DifferentialDriveCommand(*m_subsystem)
-  m_subsystem.SetDefaultCommand(DifferentialDriveCommand(&m_subsystem, stick));
-  m_armsubsystem.SetDefaultCommand(ArmCommand(&m_armsubsystem, xbox));
+  m_subsystem.SetDefaultCommand(DifferentialDriveCommand(&m_subsystem, &stick));
+  m_armsubsystem.SetDefaultCommand(ArmCommand(&m_armsubsystem, &xbox));
   //m_armsubsystem.SetDefaultCommand(DifferentialDriveCommand(&m_armsubsystem, &xbox));
   // Configure the button bindings
   ConfigureButtonBindings();
