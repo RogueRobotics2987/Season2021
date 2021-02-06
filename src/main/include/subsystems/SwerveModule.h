@@ -13,6 +13,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <wpi/math>
 #include "rev/CANSparkMax.h"
+#include <rev/CANEncoder.h"
 
 #include "Constants.h"
 
@@ -22,15 +23,19 @@ class SwerveModule {
                            units::inverse<units::squared<units::second>>>;
 
  public:
-  SwerveModule(int driveMotorChannel, int turningMotorChannel,
-               const int driveEncoderPorts[2], const int turningEncoderPorts[2],
-               bool driveEncoderReversed, bool turningEncoderReversed);
+//   SwerveModule(int driveMotorChannel, int turningMotorChannel,
+//                const int driveEncoderPorts[2], const int turningEncoderPorts[2],
+//                bool driveEncoderReversed, bool turningEncoderReversed);
+     SwerveModule(int m_MotorController, rev::CANEncoder::EncoderType m_EncoderType, int m_counts_per_rev)
+     int m_MotorControllerTruning, rev::CANENCODER::EncoderType m_EncoderTypeTurning, int m_counts_per_revTruning
+     bool driveEncoderReversed,
+     bool turningEncoderReversed);
 
   frc::SwerveModuleState GetState();
 
   void SetDesiredState(frc::SwerveModuleState& state);
 
-  void ResetEncoders();
+  // void ResetEncoders();
 
  private:
   // We have to use meters here instead of radians due to the fact that
