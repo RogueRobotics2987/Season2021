@@ -14,6 +14,7 @@
 #include <wpi/math>
 #include "rev/CANSparkMax.h"
 #include "rev/CANEncoder.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.h"
 

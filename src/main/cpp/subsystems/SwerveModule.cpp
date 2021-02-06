@@ -8,6 +8,7 @@
 #include <wpi/math>
 
 #include "Constants.h"
+#include <string>
 
 // SwerveModule::SwerveModule(int driveMotorChannel, int turningMotorChannel,
 //                            const int driveEncoderPorts[],
@@ -54,7 +55,7 @@ int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning,
     //   m_reverseTurningEncoder(turningEncoderReversed)
        {
          samDriveMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
-         samTurningMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
+         samTurningMotor = new rev::CANSparkMax(m_MotorControllerTurning, rev::CANSparkMax::MotorType::kBrushless);
          samDriveEncoder = new rev::CANEncoder(*samDriveMotor, m_EncoderType, m_counts_per_rev);
          samTurningEncoder = new rev::CANEncoder(*samTurningMotor, m_EncoderTypeTurning, m_counts_per_revTurning);
          m_reverseDriveEncoder = driveEncoderReversed;
@@ -91,6 +92,7 @@ void SwerveModule::SetDesiredState(frc::SwerveModuleState& state) {
   // Calculate the turning motor output from the turning PID controller.
   auto turnOutput = m_turningPIDController.Calculate(
       units::radian_t(samTurningEncoder->GetPosition()), state.angle.Radians());
+  frc::SmartDashboard::PutNumber(std::to_string(samDriveMotor->GetFeedbackDeviceID()), driveOutput);
 
   // Set the motor outputs.
   samDriveMotor->Set(driveOutput);
