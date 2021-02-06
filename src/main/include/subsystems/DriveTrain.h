@@ -22,6 +22,8 @@
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <units/units.h>
 #include "rev/CANPIDController.h"
+#include <frc/smartdashboard/Field2d.h>
+
 
 
 
@@ -103,6 +105,9 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
   double kff = 0;
   double lastkp=0, lastki=0, lastkd=0, lastkff=0;
   double rotations = 0;
+
+  frc::Field2d m_field;
+
   
 
 

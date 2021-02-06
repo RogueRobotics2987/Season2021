@@ -19,6 +19,10 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   AddRequirements({m_drivetrain});
 }
 
+void TankDrive::Initialize() {
+  m_drivetrain->Reset();
+}
+
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
   if (m_stickLeft->GetRawButton(2)) {

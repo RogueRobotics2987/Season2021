@@ -172,10 +172,21 @@ void DriveTrain::AutoDrive() {
 }
 
 void DriveTrain::Periodic(){
-  m_odometry->Update(
+  frc::SmartDashboard::PutNumber("Get Heading (ahrs)", myAhrs->GetAngle());
+  frc::SmartDashboard::PutNumber("Get Heading (converted)", double(GetHeading()));
+
+    m_odometry->Update(
       frc::Rotation2d(GetHeading()), 
-      units::meter_t(leftEncoder->GetPosition()), 
-      units::meter_t(rightEncoder->GetPosition()));
+      units::meter_t(leftEncoder->GetPosition() * 0.044), 
+      units::meter_t(-1.0 * rightEncoder->GetPosition() * 0.044)
+      );
+  
+  frc::SmartDashboard::PutNumber("left Encoder Val", leftEncoder->GetPosition());
+  frc::SmartDashboard::PutNumber("right Encoder Val", -1.0 * rightEncoder->GetPosition());
+
+  m_field.SetRobotPose(m_odometry->GetPose());
+  frc::SmartDashboard::PutData("Field", &m_field);
+
     
 
     
@@ -206,14 +217,14 @@ void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
 
 }
 units::degree_t DriveTrain::GetHeading() { 
-        return units::degree_t(myAhrs->GetAngle() * 360.0 / 2 / M_PI); 
+        return units::degree_t(-1.0 * myAhrs->GetAngle()); 
 }
 
-// void DriveTrain::Reset() {
-//   // m_gyro.Reset();
-//   // m_leftEncoder.Reset();
-//   // m_rightEncoder.Reset();
-// }
+void DriveTrain::Reset() {
+  myAhrs->Reset();
+  leftEncoder->SetPosition(0.0);
+  rightEncoder->SetPosition(0.0);
+}
 
 // double DriveTrain::GetDistance() {
 //   // return (m_leftEncoder.GetDistance() + m_rightEncoder.GetDistance()) / 2.0;
@@ -243,6 +254,7 @@ return {units::meters_per_second_t(-leftEncoder->GetVelocity()),
 // }
 
 frc::Pose2d DriveTrain::GetPose(){
+  // m_odometry->GetPose().X();
   return m_odometry->GetPose(); 
 }
 
