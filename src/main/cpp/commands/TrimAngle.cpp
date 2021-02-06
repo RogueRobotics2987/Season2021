@@ -40,14 +40,19 @@ void TrimAngle::Execute() {
       // switches pipeline using xbox control. (remove x's)
       if(rStick -> GetPOV()==0){
         m_actuator -> limeStream(1);
+        frc::SmartDashboard::PutNumber("Set RPM", 3500); 
+
       } else if(rStick -> GetPOV()==90){
         m_actuator -> limeStream(2);
+        frc::SmartDashboard::PutNumber("Set RPM", 3950); 
+
       } else if(rStick -> GetPOV()==180){
         m_actuator -> limeStream(3);
+        frc::SmartDashboard::PutNumber("Set RPM", 3950); 
+
       } else if(rStick -> GetPOV()==270){
         m_actuator -> limeStream(4);
-      } else {
-        m_actuator -> limeStream(2);
+        frc::SmartDashboard::PutNumber("Set RPM", 3800); 
       }
 
       m_actuator->SetAutoAim(rStick->GetRawButton(7)); // updated button
