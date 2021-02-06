@@ -22,6 +22,11 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   
 }
 
+  void TankDrive::Initialize() {
+    m_drivetrain->Reset();
+  }
+
+
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
   

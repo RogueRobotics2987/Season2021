@@ -38,13 +38,13 @@ DriveTrain::DriveTrain() {
   SetName("DriveTrain");
   LeftBack = new rev::CANSparkMax(56, rev::CANSparkMax::MotorType::kBrushless);
   LeftFront = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
-  //leftEncoder = new rev::CANEncoder(*LeftFront); 
+  leftEncoder = new rev::CANEncoder(*LeftFront); 
   RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
   RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
-  //rightEncoder = new rev::CANEncoder(*RightFront); 
+  rightEncoder = new rev::CANEncoder(*RightFront); 
   //myAhrs = new AHRS(frc::SerialPort::kMXP); 
   m_robotDrive = new frc::DifferentialDrive(*LeftFront, *RightFront);
-  //m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
+  m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
   // RightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   // LeftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   // RightBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
@@ -94,7 +94,24 @@ void DriveTrain::autonDrive(){
 }
 
 void DriveTrain::Periodic(){
-    //m_odometry->Update(frc::Rotation2d(units::degree_t(GetHeading())), units::meter_t(leftEncoder->GetPosition()), units::meter_t(rightEncoder->GetPosition()));
+  frc::SmartDashboard::PutNumber("Get Heading (ahrs)", myAhrs->GetAngle());
+  frc::SmartDashboard::PutNumber("Get Heading (converted)", double(GetHeading()));
+
+    m_odometry->Update(
+      frc::Rotation2d(GetHeading()), 
+      units::meter_t(leftEncoder->GetPosition() * 0.044), 
+      units::meter_t(rightEncoder->GetPosition() * 0.044)
+      );
+  
+  frc::SmartDashboard::PutNumber("left Encoder Val", leftEncoder->GetPosition() * 0.044);
+  frc::SmartDashboard::PutNumber("right Encoder Val", rightEncoder->GetPosition() * 0.044);
+
+  m_field.SetRobotPose(m_odometry->GetPose());
+  frc::SmartDashboard::PutData("Field", &m_field);
+
+
+
+
 }
 // void DriveTrain::TrajectoryInit(){ 
 //   frc::TrajectoryConfig config(AutoConstants::kMaxSpeed,
@@ -117,8 +134,17 @@ void DriveTrain::Periodic(){
 //   m_robotDrive->Feed();
 
 // }
-// double DriveTrain::GetHeading() { 
-// return myAhrs->GetAngle(); }
+units::degree_t DriveTrain::GetHeading() { 
+  return units::degree_t(myAhrs->GetAngle() * 360.0 / 2 / M_PI); // TODO: Fixed Units
+}
+
+
+void DriveTrain::Reset() {
+  myAhrs->Reset();
+  leftEncoder->SetPosition(0.0);
+  rightEncoder->SetPosition(0.0);
+
+} 
 
 // void DriveTrain::Reset() {
 //   // m_gyro.Reset();

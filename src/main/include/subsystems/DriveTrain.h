@@ -21,6 +21,8 @@
 #include <frc/trajectory/Trajectory.h> 
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <units/units.h>
+#include <frc/smartdashboard/Field2d.h>
+
 
 
 
@@ -55,7 +57,7 @@ class DriveTrain : public frc2::SubsystemBase {
   /**
    * @return The robots heading in degrees.
    */
-  double GetHeading();
+  units::degree_t GetHeading();
   void ResetOdometry(frc::Pose2d pose); 
 
   /**
@@ -93,6 +95,9 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
   frc::DifferentialDrive* m_robotDrive;
   AHRS* myAhrs; 
   frc::DifferentialDriveOdometry* m_odometry; 
+
+  frc::Field2d m_field;
+
 
   // frc::PWMVictorSPX m_frontLeft{1};
   // frc::PWMVictorSPX m_rearLeft{2};
