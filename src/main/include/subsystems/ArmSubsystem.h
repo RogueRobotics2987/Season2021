@@ -33,8 +33,8 @@ class ArmSubsystem : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   
-  WPI_TalonSRX* Arm1;
-  WPI_TalonSRX* Arm2;
+  WPI_TalonSRX Arm1{23};
+  WPI_TalonSRX Arm2{18};
   
 
  };

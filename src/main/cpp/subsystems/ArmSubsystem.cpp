@@ -7,8 +7,8 @@
 ArmSubsystem::ArmSubsystem() {
   // Implementation of subsystem constructor goes here.
   
-  Arm1 = new WPI_TalonSRX(23);
-  Arm2 = new WPI_TalonSRX(18);
+  // Arm1 = new WPI_TalonSRX(23);
+  // Arm2 = new WPI_TalonSRX(18);
 
   
 }
@@ -22,8 +22,8 @@ void ArmSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void ArmSubsystem::ArmControl(double arm1, double arm2) {
-  Arm1->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm1);
-  Arm2->Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm2);
+  Arm1.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm1);
+  Arm2.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, arm2);
   frc::SmartDashboard::PutNumber("Arm1 Motor Output", arm1);
   frc::SmartDashboard::PutNumber("Arm2 Motor Output", arm2);
 }

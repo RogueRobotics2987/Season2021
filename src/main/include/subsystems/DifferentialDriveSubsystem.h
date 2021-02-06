@@ -33,15 +33,15 @@ class DifferentialDriveSubsystem : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  WPI_TalonSRX* FrontLeft;
-  WPI_TalonSRX* FrontRight;
-  WPI_TalonSRX* BackLeft;
-  WPI_TalonSRX* BackRight;
+  WPI_TalonSRX FrontLeft{12};
+  WPI_TalonSRX FrontRight{16};
+  WPI_TalonSRX BackLeft{14};
+  WPI_TalonSRX BackRight{15};
 
 
-  frc::SpeedControllerGroup* m_leftMotors;
+  frc::SpeedControllerGroup m_leftMotors{FrontLeft, BackLeft};
 
-  frc::SpeedControllerGroup* m_rightMotors;
+  frc::SpeedControllerGroup m_rightMotors{FrontRight, BackRight};
 
-  frc::DifferentialDrive* m_drive;
+  frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
  };

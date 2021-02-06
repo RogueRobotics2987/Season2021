@@ -7,16 +7,16 @@
 DifferentialDriveSubsystem::DifferentialDriveSubsystem() {
   // Implementation of subsystem constructor goes here.
   
-  FrontLeft = new WPI_TalonSRX(12);
-  FrontRight = new WPI_TalonSRX(16);
-  BackLeft = new WPI_TalonSRX(14);
-  BackRight = new WPI_TalonSRX(15);
+  // FrontLeft = new WPI_TalonSRX(12);
+  // FrontRight = new WPI_TalonSRX(16);
+  // BackLeft = new WPI_TalonSRX(14);
+  // BackRight = new WPI_TalonSRX(15);
 
-  m_leftMotors = new frc::SpeedControllerGroup(*FrontLeft, *BackLeft);
+  // m_leftMotors = new frc::SpeedControllerGroup(*FrontLeft, *BackLeft);
 
-  m_rightMotors = new frc::SpeedControllerGroup(*FrontRight, *BackRight);
+  // m_rightMotors = new frc::SpeedControllerGroup(*FrontRight, *BackRight);
 
-  m_drive = new frc::DifferentialDrive(*m_leftMotors, *m_rightMotors);
+  // m_drive = new frc::DifferentialDrive(*m_leftMotors, *m_rightMotors);
 
 }
 
@@ -29,5 +29,5 @@ void DifferentialDriveSubsystem::SimulationPeriodic() {
 }
 // Control drive train with joystick input
 void DifferentialDriveSubsystem::Drive(double y, double z) {
-  m_drive->ArcadeDrive(y, z);
+  m_drive.ArcadeDrive(y, z);
 }
