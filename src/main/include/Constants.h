@@ -13,6 +13,7 @@
 #include <units/velocity.h>
 #include <units/voltage.h>
 #include <wpi/math>
+#include "rev/CANEncoder.h"
 
 #pragma once
 
@@ -36,25 +37,37 @@ constexpr int kRearLeftTurningMotorPort = 3;
 constexpr int kFrontRightTurningMotorPort = 5;
 constexpr int kRearRightTurningMotorPort = 7;
 
-constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
-constexpr int kRearLeftTurningEncoderPorts[2]{2, 3};
-constexpr int kFrontRightTurningEncoderPorts[2]{4, 5};
-constexpr int kRearRightTurningEncoderPorts[2]{5, 6};
+// constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
+// constexpr int kRearLeftTurningEncoderPorts[2]{2, 3};
+// constexpr int kFrontRightTurningEncoderPorts[2]{4, 5};
+// constexpr int kRearRightTurningEncoderPorts[2]{5, 6};
 
 constexpr bool kFrontLeftTurningEncoderReversed = false;
 constexpr bool kRearLeftTurningEncoderReversed = true;
 constexpr bool kFrontRightTurningEncoderReversed = false;
 constexpr bool kRearRightTurningEncoderReversed = true;
 
-constexpr int kFrontLeftDriveEncoderPorts[2]{0, 1};
-constexpr int kRearLeftDriveEncoderPorts[2]{2, 3};
-constexpr int kFrontRightDriveEncoderPorts[2]{4, 5};
-constexpr int kRearRightDriveEncoderPorts[2]{5, 6};
+// constexpr int kFrontLeftDriveEncoderPorts[2]{0, 1};
+// constexpr int kRearLeftDriveEncoderPorts[2]{2, 3};
+// constexpr int kFrontRightDriveEncoderPorts[2]{4, 5};
+// constexpr int kRearRightDriveEncoderPorts[2]{5, 6};
 
 constexpr bool kFrontLeftDriveEncoderReversed = false;
 constexpr bool kRearLeftDriveEncoderReversed = true;
 constexpr bool kFrontRightDriveEncoderReversed = false;
 constexpr bool kRearRightDriveEncoderReversed = true;
+
+constexpr int kFrontLeftDriveCPR = 4095;
+constexpr int kRearLeftDriveCPR = 4095;
+constexpr int kFrontRightDriveCPR = 4095;
+constexpr int kRearRightDriveCPR = 4095;
+
+constexpr int kFrontLeftTurningCPR = 4095;
+constexpr int kRearLeftTurningCPR = 4095;
+constexpr int kFrontRightTurningCPR = 4095;
+constexpr int kRearRightTurningCPR = 4095;
+
+constexpr rev::CANEncoder::EncoderType m_EncoderType = rev::CANEncoder::EncoderType::kHallSensor;
 
 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
 // These characterization values MUST be determined either experimentally or

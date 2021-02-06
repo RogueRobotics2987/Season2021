@@ -48,7 +48,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
   /**
    * Resets the drive encoders to currently read a position of 0.
    */
-  void ResetEncoders();
+//   void ResetEncoders();
 
   /**
    * Sets the drive SpeedControllers to a power from -1 to 1.
