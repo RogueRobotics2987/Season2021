@@ -42,7 +42,8 @@ DriveTrain::DriveTrain() {
   RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
   RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
   rightEncoder = new rev::CANEncoder(*RightFront); 
-  //myAhrs = new AHRS(frc::SerialPort::kMXP); 
+  //rightEncoder->SetInverted(true);
+  myAhrs = new AHRS(frc::SerialPort::kMXP); 
   m_robotDrive = new frc::DifferentialDrive(*LeftFront, *RightFront);
   m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
   // RightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
@@ -100,11 +101,11 @@ void DriveTrain::Periodic(){
     m_odometry->Update(
       frc::Rotation2d(GetHeading()), 
       units::meter_t(leftEncoder->GetPosition() * 0.044), 
-      units::meter_t(rightEncoder->GetPosition() * 0.044)
+      units::meter_t(-1.0 * rightEncoder->GetPosition() * 0.044)
       );
   
-  frc::SmartDashboard::PutNumber("left Encoder Val", leftEncoder->GetPosition() * 0.044);
-  frc::SmartDashboard::PutNumber("right Encoder Val", rightEncoder->GetPosition() * 0.044);
+  frc::SmartDashboard::PutNumber("left Encoder Val", leftEncoder->GetPosition());
+  frc::SmartDashboard::PutNumber("right Encoder Val", -1.0 * rightEncoder->GetPosition());
 
   m_field.SetRobotPose(m_odometry->GetPose());
   frc::SmartDashboard::PutData("Field", &m_field);
@@ -135,7 +136,7 @@ void DriveTrain::Periodic(){
 
 // }
 units::degree_t DriveTrain::GetHeading() { 
-  return units::degree_t(myAhrs->GetAngle() * 360.0 / 2 / M_PI); // TODO: Fixed Units
+  return units::degree_t(-1.0 * myAhrs->GetAngle()); // TODO: Fixed Units
 }
 
 
