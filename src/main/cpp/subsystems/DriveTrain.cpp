@@ -200,6 +200,8 @@ void DriveTrain::Periodic(){
 
 void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
 
+  frc::SmartDashboard::PutNumber("Volts Left", double(left));
+  frc::SmartDashboard::PutNumber("Volts right", double(right));
 
 //BRANDONS OLD CODE
 //   // if(left > units::volt_t(.25)){ left = units::volt_t(.25); }
@@ -212,7 +214,7 @@ void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
 
 
   LeftFront->SetVoltage(left);
-  RightFront->SetVoltage(right);
+  RightFront->SetVoltage(-1.0 * right); // This is probably not right...
   m_robotDrive->Feed();
 
 }
