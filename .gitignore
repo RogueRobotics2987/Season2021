@@ -159,5 +159,4 @@ imgui.ini
 
 
 # End of https://www.gitignore.io/api/c++,java,linux,macos,gradle,windows,visualstudiocode
-build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt
-build/tmp/*
+build/tmp/
