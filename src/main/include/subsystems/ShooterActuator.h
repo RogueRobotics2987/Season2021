@@ -34,6 +34,7 @@ class ShooterActuator : public frc2::SubsystemBase {
   double GetTY(); 
   double GetTX(); 
   void switchCam(bool flag); 
+  void limeStream(int num);
 
 
 
@@ -50,6 +51,7 @@ class ShooterActuator : public frc2::SubsystemBase {
    float PositionH;
    float PositionV;
    frc::Timer* myTimer;
+   int num = 2;
 
    bool AutoAimMode = false;
    double safeStick(double stickVal, double pos);

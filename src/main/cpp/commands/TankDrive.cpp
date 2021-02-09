@@ -41,7 +41,7 @@ void TankDrive::Execute() {
  frc::SmartDashboard::GetNumber("maxChange", maxChange); 
  maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
 
-  if (abs(Left-lastLeft) >maxChange) {
+  /*if (abs(Left-lastLeft) >maxChange) {
     outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*maxChange;
     } else {
       outLeft = Left;
@@ -53,13 +53,14 @@ void TankDrive::Execute() {
   }
   
   m_drivetrain -> Drive(outLeft, outRight);
-   lastLeft = outLeft;
+  lastLeft = outLeft;
   lastRight = outRight; 
-  /*if (m_stickLeft->GetRawButton(2)) {
+  */
+  if (m_stickLeft->GetRawButton(2)) {
     m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
   } else {
     m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } */
+  } 
   }
 
 // Make this return true when this Command no longer needs to run execute()
