@@ -110,7 +110,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       config);
 
   frc2::RamseteCommand ramseteCommand(
-      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      exampleTrajectory, 
+      [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
