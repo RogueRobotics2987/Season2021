@@ -30,11 +30,11 @@ class Autonomous
 
   bool IsFinished() override;
  private:
-  DriveTrain* m_driveTrain;
-  Shooter* m_shooter;
-  ShooterActuator* m_shooterActuator;
-  Intake* m_intake;
-  frc::Timer* m_timer;
+  DriveTrain* m_driveTrain = nullptr;
+  Shooter* m_shooter = nullptr;
+  ShooterActuator* m_shooterActuator = nullptr;
+  Intake* m_intake = nullptr;
+  frc::Timer* m_timer = nullptr;
   double state = 0;
   double driveTime = 0; 
   bool stop = false; 
