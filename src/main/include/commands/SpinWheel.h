@@ -32,5 +32,5 @@ class SpinWheel
   bool IsFinished() override;
 
   private:
-  ColorSensor* cSensor;
+  ColorSensor* cSensor = nullptr;
 };

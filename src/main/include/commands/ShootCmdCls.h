@@ -36,6 +36,6 @@ class ShootCmdCls
 
   bool IsFinished() override;
   private:
-  Shooter* m_shooter;
+  Shooter* m_shooter=nullptr;
   //frc::Joystick* m_joystick;
 };
