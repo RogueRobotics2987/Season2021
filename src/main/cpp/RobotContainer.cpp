@@ -33,7 +33,7 @@ RobotContainer::RobotContainer() {
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
           frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetY(frc::GenericHID::kLeftHand));
-          frc::SmartDashboard::PutNumber("Right Hand Y", m_driverController.GetY(frc::GenericHID::kRightHand)-1.00069);
+          frc::SmartDashboard::PutNumber("Right Hand Y", m_driverController.GetY(frc::GenericHID::kRightHand));
           frc::SmartDashboard::PutNumber("Left Hand X", m_driverController.GetX(frc::GenericHID::kLeftHand));
         m_drive.Drive(units::meters_per_second_t(
                           m_driverController.GetY(frc::GenericHID::kLeftHand)),
