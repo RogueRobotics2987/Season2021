@@ -52,7 +52,7 @@ constexpr bool kRearRightTurningEncoderReversed = true;
 // constexpr int kFrontRightDriveEncoderPorts[2]{4, 5};
 // constexpr int kRearRightDriveEncoderPorts[2]{5, 6};
 
-constexpr bool kFrontLeftDriveEncoderReversed = false;
+constexpr bool kFrontLeftDriveEncoderReversed = true;
 constexpr bool kRearLeftDriveEncoderReversed = true;
 constexpr bool kFrontRightDriveEncoderReversed = false;
 constexpr bool kRearRightDriveEncoderReversed = true;
@@ -96,8 +96,9 @@ constexpr double kTurningEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
     (wpi::math::pi * 2) / static_cast<double>(kEncoderCPR);
 
-constexpr double kPModuleTurningController = 1;
-constexpr double kPModuleDriveController = 1;
+constexpr double kPModuleTurningController = 0;
+constexpr double kPModuleDriveController = 0.0079;
+// TODO Lower Value of P to 0.0001,  Change Value of p Till its the Highest Without Osilation, 
 }  // namespace ModuleConstants
 
 namespace AutoConstants {
