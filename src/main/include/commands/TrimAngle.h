@@ -45,7 +45,7 @@ class TrimAngle
    ShooterActuator* m_actuator = nullptr;
    // Real Val
    frc::Joystick* rStick = nullptr; 
-   frc::Timer* myTimer = nullptr;
+   frc::Timer* myTimer = nullptr; 
    frc::Joystick* mJoy = nullptr; 
    bool camVal = false; 
    bool run = true; 
