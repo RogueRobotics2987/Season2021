@@ -33,7 +33,7 @@ class PIDShoot
   bool IsFinished() override;
 
   private:
-  Shooter* m_shooter;
-  Intake* m_intake;
+  Shooter* m_shooter = nullptr;
+  Intake* m_intake = nullptr;
 
 };
