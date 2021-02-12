@@ -86,15 +86,15 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
 
  private:
 
-  rev::CANSparkMax* LeftBack;
-  rev::CANSparkMax* LeftFront;
-  rev::CANSparkMax* RightBack;
-  rev::CANSparkMax* RightFront;
-  rev::CANEncoder* leftEncoder;
-  rev::CANEncoder* rightEncoder; 
-  frc::DifferentialDrive* m_robotDrive;
-  AHRS* myAhrs; 
-  frc::DifferentialDriveOdometry* m_odometry; 
+  rev::CANSparkMax* LeftBack = nullptr;
+  rev::CANSparkMax* LeftFront = nullptr;
+  rev::CANSparkMax* RightBack = nullptr;
+  rev::CANSparkMax* RightFront = nullptr;
+  rev::CANEncoder* leftEncoder = nullptr;
+  rev::CANEncoder* rightEncoder = nullptr; 
+  frc::DifferentialDrive* m_robotDrive = nullptr;
+  AHRS* myAhrs = nullptr; 
+  frc::DifferentialDriveOdometry* m_odometry = nullptr; 
 
   frc::Field2d m_field;
 
