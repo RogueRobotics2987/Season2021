@@ -33,9 +33,9 @@ class PickupBall
   bool IsFinished() override;
 
  private:
-  Intake* m_intake;
-  frc::Joystick* m_xbox; 
-  frc::Joystick* m_Lstick; 
+  Intake* m_intake = nullptr;
+  frc::Joystick* m_xbox = nullptr; 
+  frc::Joystick* m_Lstick = nullptr; 
   bool dontRun = false; 
 
 

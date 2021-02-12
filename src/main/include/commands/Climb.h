@@ -35,7 +35,7 @@ class Climb
   bool IsFinished() override;
 
  private:
-  Climber* m_climber;
-  frc::Joystick* m_stick;
-  frc::Timer* matchTimer; 
+  Climber* m_climber = nullptr;
+  frc::Joystick* m_stick = nullptr;
+  frc::Timer* matchTimer = nullptr; 
 };

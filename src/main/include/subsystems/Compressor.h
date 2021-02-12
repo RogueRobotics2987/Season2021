@@ -21,7 +21,7 @@ class CompressorObject : public frc2::SubsystemBase {
   void startCompressor();
 
  private:
-  frc::Compressor* m_compressor;
+  frc::Compressor* m_compressor = nullptr;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
