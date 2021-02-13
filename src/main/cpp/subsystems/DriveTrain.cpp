@@ -58,6 +58,9 @@ DriveTrain::DriveTrain() {
   LeftBack->Follow(*LeftFront); 
   RightBack->Follow(*RightFront); 
 
+  DriveTrain::Reset();
+
+
   // Let's show everything on the LiveWindow
   // AddChild("Front_Left Motor", &m_frontLeft);
   // AddChild("Rear Left Motor", &m_rearLeft);
@@ -95,6 +98,7 @@ void DriveTrain::autonDrive(){
 }
 
 void DriveTrain::Periodic(){
+
   frc::SmartDashboard::PutNumber("Get Heading (ahrs)", myAhrs->GetAngle());
   frc::SmartDashboard::PutNumber("Get Heading (converted)", double(GetHeading()));
   
@@ -184,7 +188,7 @@ frc::DifferentialDriveWheelSpeeds DriveTrain::GetWheelSpeeds() {
 // }
 
 void DriveTrain::ResetOdometry(frc::Pose2d pose){ 
-  ResetEncoders(); 
+  Reset(); //reset encoders and ahrs  
   m_odometry->ResetPosition(pose, frc::Rotation2d(units::degree_t(GetHeading()))); 
 }
 
