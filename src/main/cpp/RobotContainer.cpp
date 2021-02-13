@@ -42,7 +42,7 @@ RobotContainer::RobotContainer()
 
     //Dannalyn's shooter code
    // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); 
-    actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
+    //actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
     m_climber.SetDefaultCommand(Climb(&m_climber, &xbox));
@@ -87,45 +87,55 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // m_drivetrain.ResetEncoders(); 
-  // frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
-  //     frc::SimpleMotorFeedforward<units::meters>(
-  //     DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-  //     DriveConstants::kDriveKinematics, 10_V);
+  frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
+      frc::SimpleMotorFeedforward<units::meters>(
+      DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics, 10_V);
 
-  // frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
-  // config.SetKinematics(DriveConstants::kDriveKinematics);
-  // config.AddConstraint(autoVoltageConstraint);
+  frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
+  config.SetKinematics(DriveConstants::kDriveKinematics);
+  config.AddConstraint(autoVoltageConstraint);
 
-  // auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
-  //     // Start at the origin facing the +X direction
-  //     frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
-  //     // Pass through these two interior waypoints, making an 's' curve path
-  //      {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
-  //     //  {frc::Translation2d(1_m, 1_m)}, 
+  auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+      // Start at the origin facing the +X direction
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
+      //just go straight forward
+      // {frc::Translation2d(1_m, 0_m)},
 
-  //     // End 3 meters straight ahead of where we started, facing forward
-  //     frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
-  //     // Pass the config                                                                      
-  //     config);
 
-  // frc2::RamseteCommand ramseteCommand(
-  //     exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
-  //     frc::RamseteController(AutoConstants::kRamseteB,
-  //                            AutoConstants::kRamseteZeta),
-  //     frc::SimpleMotorFeedforward<units::meters>(
-  //         DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-  //     DriveConstants::kDriveKinematics,
-  //     [this] { return m_drivetrain.GetWheelSpeeds(); },
-  //     frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-  //     frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-  //     [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
-  //     {&m_drivetrain});
+      //  // Pass through these two interior waypoints, making an 's' curve path
+       {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
+      //  {frc::Translation2d(1_m, 1_m)}, 
 
-  //     return new frc2::SequentialCommandGroup(
-  //     std::move(ramseteCommand),
-  //     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
-  return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
+      // End 3 meters straight ahead of where we started, facing forward
+      frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
+      // Pass the config                                                                      
+      config);
+
+      m_drivetrain.ResetOdometry(exampleTrajectory.InitialPose()); 
+
+  frc2::RamseteCommand ramseteCommand(
+      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+
+
+      return new frc2::SequentialCommandGroup(
+      std::move(ramseteCommand),
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
+
+
+
+  // return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
 }
 
 

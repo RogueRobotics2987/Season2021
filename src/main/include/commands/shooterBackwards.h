@@ -30,5 +30,5 @@ class shooterBackwards
 
   bool IsFinished() override;
 private:
-  Shooter* m_shooter; 
+  Shooter* m_shooter = nullptr; 
 };

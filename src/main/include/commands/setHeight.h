@@ -16,7 +16,7 @@ class setHeight : public frc2::CommandHelper<frc2::CommandBase, setHeight>{
 
 
     private: 
-        Elevator* elevator; 
+        Elevator* elevator = nullptr; 
         double heightVal; 
 
 

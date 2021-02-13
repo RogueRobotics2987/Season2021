@@ -32,7 +32,7 @@ class startConveyor
   bool IsFinished() override;
 
   private:
-    Intake* m_intake; 
+    Intake* m_intake = nullptr; 
     double m_conveyorVal; 
 
 };

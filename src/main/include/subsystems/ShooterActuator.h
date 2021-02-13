@@ -38,8 +38,8 @@ class ShooterActuator : public frc2::SubsystemBase {
   int num;
 
  private:
-   rev::CANSparkMax* angleMotorH; 
-   rev::CANSparkMax* angleMotorV; 
+   rev::CANSparkMax* angleMotorH = nullptr; 
+   rev::CANSparkMax* angleMotorV = nullptr; 
    std::shared_ptr<NetworkTable> limelightTable;
    int H_AimState = 0;
    int V_AimState = 0;
@@ -49,7 +49,7 @@ class ShooterActuator : public frc2::SubsystemBase {
    float AimV_P = 0.32;
    float PositionH;
    float PositionV;
-   frc::Timer* myTimer;
+   frc::Timer* myTimer = nullptr;
 
    bool AutoAimMode = false;
    double safeStick(double stickVal, double pos);

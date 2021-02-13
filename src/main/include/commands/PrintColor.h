@@ -33,5 +33,5 @@ class PrintColor
   bool IsFinished() override;
 
   private:
-    ColorSensor* myColorSensor; 
+    ColorSensor* myColorSensor = nullptr; 
 };

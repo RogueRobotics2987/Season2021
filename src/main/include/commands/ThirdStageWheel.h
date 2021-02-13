@@ -31,6 +31,6 @@ class ThirdStageWheel
   bool IsFinished() override;
   
   private:
-    ColorSensor* mColorSensor; 
+    ColorSensor* mColorSensor = nullptr; 
   
 };
