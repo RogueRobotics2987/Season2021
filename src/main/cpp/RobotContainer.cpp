@@ -103,12 +103,28 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // {frc::Translation2d(1_m, 0_m)},
 
 
+//SYDNEYS FIRST ATTEMPT AT BARREL
+     {frc::Translation2d(2.76_m, -0.01_m), 
+      frc::Translation2d(3.11_m, -1.17_m), 
+      frc::Translation2d(1.72_m, -1.39_m),
+      frc::Translation2d(1.67_m, -0.27_m),
+      frc::Translation2d(5.41_m, 0.27_m),
+      frc::Translation2d(5.19_m, 1.5_m),
+      frc::Translation2d(4.01_m, 1.42_m),
+      frc::Translation2d(3.7_m, 0.4_m),
+      frc::Translation2d(5.87_m, -1.47_m),
+      frc::Translation2d(7_m, -0.95_m),
+      frc::Translation2d(6.52_m, -0.08_m),
+      frc::Translation2d(1.34_m, -0.1_m)
+     },
+
+
       //  // Pass through these two interior waypoints, making an 's' curve path
-       {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
+      //  {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
       //  {frc::Translation2d(1_m, 1_m)}, 
 
       // End 3 meters straight ahead of where we started, facing forward
-      frc::Pose2d(3_m, 0_m, frc::Rotation2d(0_deg)),
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(180_deg)),
       // Pass the config                                                                      
       config);
 
