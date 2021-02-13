@@ -31,7 +31,7 @@ void TankDrive::Execute() {
   
   // gradually changes speed
   // commented out for now
-  /*if (abs(Left-lastleft)>maxChange){
+  if (abs(Left-lastleft)>maxChange){
     outleft = lastleft + copysignf(1.0, Left-lastleft)*maxChange;
   } else{
       outleft = Left;
@@ -40,7 +40,7 @@ void TankDrive::Execute() {
     outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
   } else{
       outright = Right;
-  }*/
+  }
 
   m_drivetrain -> Drive(outleft, outright);
 
