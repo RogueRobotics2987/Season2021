@@ -45,13 +45,13 @@ void Climb::Execute() {
   }
   //m_climber->TheClimb(m_stick->GetRawAxis(5)); 
   m_climber->Balance(m_stick->GetRawAxis(4)); // updated button
-  if(m_stick->GetPOV() == 0) {
+//  if(m_stick->GetPOV() == 0) {
 //  if(m_stick->GetRawButton(5)){
-    m_climber->movePin(true); 
-  } 
-  else if (m_stick->GetPOV() == 180) {
-  m_climber->movePin(false); 
-  }
+//    m_climber->movePin(true); 
+//  } 
+//  else if (m_stick->GetPOV() == 180) {
+//  m_climber->movePin(false); 
+//  }
 
 }
 

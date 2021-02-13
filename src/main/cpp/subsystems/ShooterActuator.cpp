@@ -32,17 +32,18 @@ void ShooterActuator::switchCam(bool flag){
     nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("stream", 1); 
     }
     else{
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("stream",2);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("stream", 2); 
     }
 }
 
-void ShooterActuator::limeStream(int num){
-    NetworkTable::GetTable("limelight-rr")->PutNumber("pipeline",num);
-}
+void ShooterActuator:: limeStream(int num){
+   nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr") -> PutNumber("pipeline", num);
+}   // or possiblly limelightTable ^
 
 // This method will be called once per scheduler run
 void ShooterActuator::Periodic() {
     double startTime = myTimer->Get();
+    
 
     bool shooterActuatorWorking = true; 
     if(angleMotorH->GetFirmwareString() != firmwareVersion || angleMotorV->GetFirmwareString() != firmwareVersion){
@@ -51,6 +52,8 @@ void ShooterActuator::Periodic() {
     
     frc::SmartDashboard::PutBoolean("Shooter Actuator Working", shooterActuatorWorking); 
     limelightTable = NetworkTable::GetTable("limelight-rr");
+
+//    limelightTable -> PutNumber("pipeline", num);
 
     //must be moved to command 
     tx = limelightTable->GetNumber("tx", 0.0); 

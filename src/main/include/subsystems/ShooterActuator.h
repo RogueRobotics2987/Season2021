@@ -37,7 +37,6 @@ class ShooterActuator : public frc2::SubsystemBase {
   void limeStream(int num);
 
 
-
  private:
    rev::CANSparkMax* angleMotorH; 
    rev::CANSparkMax* angleMotorV; 
@@ -51,7 +50,6 @@ class ShooterActuator : public frc2::SubsystemBase {
    float PositionH;
    float PositionV;
    frc::Timer* myTimer;
-   int num = 2;
 
    bool AutoAimMode = false;
    double safeStick(double stickVal, double pos);
