@@ -53,7 +53,7 @@ void ShooterActuator::Periodic() {
     frc::SmartDashboard::PutBoolean("Shooter Actuator Working", shooterActuatorWorking); 
     limelightTable = NetworkTable::GetTable("limelight-rr");
 
-    limelightTable -> PutNumber("pipeline", num);
+    // limelightTable -> PutNumber("pipeline", num);
 
     //must be moved to command 
     tx = limelightTable->GetNumber("tx", 0.0); 
