@@ -35,7 +35,7 @@ class ShooterActuator : public frc2::SubsystemBase {
   double GetTX(); 
   void switchCam(bool flag); 
   void limeStream(int Num);
-  int num:
+  int num = 2;
 
  private:
    rev::CANSparkMax* angleMotorH; 
