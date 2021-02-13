@@ -34,7 +34,7 @@ class ShooterActuator : public frc2::SubsystemBase {
   double GetTY(); 
   double GetTX(); 
   void switchCam(bool flag); 
-
+  void limeStream(int Num);
 
 
  private:
