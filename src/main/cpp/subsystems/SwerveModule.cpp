@@ -86,6 +86,7 @@ frc::SwerveModuleState SwerveModule::GetState() {
 
 void SwerveModule::SetDesiredState(frc::SwerveModuleState& state) {
   // Calculate the drive output from the drive PID controller.
+  m_drivePIDController.SetP(frc::SmartDashboard::GetNumber("Enter P Value", 1E-5));
   const auto driveOutput = m_drivePIDController.Calculate(
       samDriveEncoder->GetVelocity(), state.speed.to<double>());
 
@@ -97,7 +98,7 @@ void SwerveModule::SetDesiredState(frc::SwerveModuleState& state) {
 
 
   // Set the motor outputs.
-  samDriveMotor->Set(-driveOutput);
+  samDriveMotor->Set(driveOutput);
   samTurningMotor->Set(turnOutput);
 }
 
