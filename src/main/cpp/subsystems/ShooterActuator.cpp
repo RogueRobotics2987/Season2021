@@ -37,7 +37,7 @@ void ShooterActuator::switchCam(bool flag){
 }
 
 void ShooterActuator:: limeStream(int num){
-   NetworkTable::GetDefault().GetTable("limelight-rr") -> PutNumber("pipeline", num);
+   nt::NetworkTable::GetDefault().GetTable("limelight-rr") -> PutNumber("pipeline", num);
 }   // or possiblly limelightTable ^
 
 // This method will be called once per scheduler run
