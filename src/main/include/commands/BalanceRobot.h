@@ -32,5 +32,5 @@ class BalanceRobot
   bool IsFinished() override;
 
   private:
-    Climber* m_climber; 
+    Climber* m_climber = nullptr; 
 };

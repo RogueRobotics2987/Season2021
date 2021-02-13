@@ -21,7 +21,8 @@
 #include <frc/trajectory/Trajectory.h> 
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <units/units.h>
-#include "rev/CANPIDController.h"
+#include <frc/smartdashboard/Field2d.h>
+//#include "rev/CANPIDController.h"
 
 
 
@@ -56,7 +57,7 @@ class DriveTrain : public frc2::SubsystemBase {
   /**
    * @return The robots heading in degrees.
    */
-  double GetHeading();
+  units::degree_t GetHeading();
   void ResetOdometry(frc::Pose2d pose); 
 
   /**
@@ -81,29 +82,22 @@ void TrajectoryInit();
 frc::DifferentialDriveWheelSpeeds GetWheelSpeeds(); 
 void TankDriveVolts(units::volt_t left, units::volt_t right); 
 
-  void AutoDrive(); 
+  
 
 
  private:
 
-  rev::CANSparkMax* LeftBack;
-  rev::CANSparkMax* LeftFront;
-  rev::CANSparkMax* RightBack;
-  rev::CANSparkMax* RightFront;
-  rev::CANEncoder* leftEncoder;
-  rev::CANEncoder* rightEncoder; 
-  frc::DifferentialDrive* m_robotDrive;
-  AHRS* myAhrs; 
-  frc::DifferentialDriveOdometry* m_odometry; 
-  rev::CANPIDController* leftdrivePID;  
-  rev::CANPIDController* rightdrivePID;  
-  double kp = 0;
-  double ki = 0;
-  double kd = 0;
-  double kff = 0;
-  double lastkp=0, lastki=0, lastkd=0, lastkff=0;
-  double rotations = 0;
-  
+  rev::CANSparkMax* LeftBack = nullptr;
+  rev::CANSparkMax* LeftFront = nullptr;
+  rev::CANSparkMax* RightBack = nullptr;
+  rev::CANSparkMax* RightFront = nullptr;
+  rev::CANEncoder* leftEncoder = nullptr;
+  rev::CANEncoder* rightEncoder = nullptr; 
+  frc::DifferentialDrive* m_robotDrive = nullptr;
+  AHRS* myAhrs = nullptr; 
+  frc::DifferentialDriveOdometry* m_odometry = nullptr; 
+
+  frc::Field2d m_field; 
 
 
   // frc::PWMVictorSPX m_frontLeft{1};

@@ -32,5 +32,5 @@ class beginCompressor
   bool IsFinished() override;
 
   private:
-  CompressorObject* m_compressor;
+  CompressorObject* m_compressor = nullptr;
 };

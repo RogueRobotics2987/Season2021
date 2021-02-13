@@ -19,6 +19,11 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   AddRequirements({m_drivetrain});
 }
 
+  void TankDrive::Initialize() {
+    m_drivetrain->Reset();
+  }
+
+
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
   double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick

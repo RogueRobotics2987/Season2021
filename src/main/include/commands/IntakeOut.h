@@ -32,7 +32,7 @@ class IntakeOut
   bool IsFinished() override;
 
   private:
-    Intake* m_intake; 
+    Intake* m_intake = nullptr; 
     bool m_SolState = false;
 
 };

@@ -29,10 +29,10 @@ class Climber : public frc2::SubsystemBase {
   void movePin(bool State); 
 
  private:
-  WPI_TalonFX* p_climbyBoiFalco; //57
-  WPI_TalonSRX* p_rollieBoiTalo; //
-  frc::Timer* matchTimer; 
-  frc::DoubleSolenoid* climbingPiston;
+  WPI_TalonFX* p_climbyBoiFalco = nullptr; //57
+  WPI_TalonSRX* p_rollieBoiTalo = nullptr; //
+  frc::Timer* matchTimer = nullptr; 
+  frc::DoubleSolenoid* climbingPiston = nullptr;
 
   bool pistonVal = false; 
 
