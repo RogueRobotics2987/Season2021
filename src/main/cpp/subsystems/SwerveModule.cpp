@@ -97,7 +97,7 @@ void SwerveModule::SetDesiredState(frc::SwerveModuleState& state) {
 
 
   // Set the motor outputs.
-  samDriveMotor->Set(driveOutput);
+  samDriveMotor->Set(-driveOutput);
   samTurningMotor->Set(turnOutput);
 }
 
