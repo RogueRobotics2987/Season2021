@@ -35,17 +35,17 @@ RobotContainer::RobotContainer() {
           frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetY(frc::GenericHID::kLeftHand));
           frc::SmartDashboard::PutNumber("Right Hand Y", m_driverController.GetY(frc::GenericHID::kRightHand));
           frc::SmartDashboard::PutNumber("Left Hand X", m_driverController.GetX(frc::GenericHID::kLeftHand));
-        // m_drive.Drive(units::meters_per_second_t(
-        //                   m_driverController.GetY(frc::GenericHID::kLeftHand)),
-        //               units::meters_per_second_t(
-        //                   m_driverController.GetY(frc::GenericHID::kRightHand)),
-        //               units::radians_per_second_t(
-        //                   m_driverController.GetX(frc::GenericHID::kLeftHand)),
-        //               false);
-        m_drive.Drive(units::meters_per_second_t(0),
-        units::meters_per_second_t(1),
-        units::radians_per_second_t(0),
-        false);
+        m_drive.Drive(units::meters_per_second_t(
+                          m_driverController.GetY(frc::GenericHID::kLeftHand)),
+                      units::meters_per_second_t(
+                          m_driverController.GetY(frc::GenericHID::kRightHand)),
+                      units::radians_per_second_t(
+                          m_driverController.GetX(frc::GenericHID::kLeftHand)),
+                      false);
+        // m_drive.Drive(units::meters_per_second_t(0),
+        // units::meters_per_second_t(1),
+        // units::radians_per_second_t(0),
+        // false);
       },
       {&m_drive}));
 }

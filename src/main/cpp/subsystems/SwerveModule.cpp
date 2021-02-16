@@ -77,6 +77,8 @@ int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning,
   // to be continuous.
   m_turningPIDController.EnableContinuousInput(units::radian_t(-wpi::math::pi),
                                                units::radian_t(wpi::math::pi));
+  m_drivePIDController.SetP(frc::SmartDashboard::PutNumber("Enter P Value" + std::to_string(samDriveMotor->GetDeviceId()), 1E-5));
+
 }
 
 frc::SwerveModuleState SwerveModule::GetState() {
@@ -86,14 +88,16 @@ frc::SwerveModuleState SwerveModule::GetState() {
 
 void SwerveModule::SetDesiredState(frc::SwerveModuleState& state) {
   // Calculate the drive output from the drive PID controller.
-  m_drivePIDController.SetP(frc::SmartDashboard::GetNumber("Enter P Value", 1E-5));
+  m_drivePIDController.SetP(frc::SmartDashboard::GetNumber("Enter P Value" + std::to_string(samDriveMotor->GetDeviceId()), 1E-5));
   const auto driveOutput = m_drivePIDController.Calculate(
-      samDriveEncoder->GetVelocity(), state.speed.to<double>());
+     (samDriveEncoder->GetVelocity(), state.speed.to<double>()) / 100);
+
 
   // Calculate the turning motor output from the turning PID controller.
   auto turnOutput = m_turningPIDController.Calculate(
       units::radian_t(samTurningEncoder->GetPosition()), state.angle.Radians());
   frc::SmartDashboard::PutNumber(std::to_string(samDriveMotor->GetDeviceId()), driveOutput);
+  frc::SmartDashboard::PutNumber("Get Velocity output" + std::to_string(samDriveMotor->GetDeviceId()), samDriveEncoder->GetVelocity() / 100);
   frc::SmartDashboard::PutNumber(std::to_string(samTurningMotor->GetDeviceId()), turnOutput);
 
 
