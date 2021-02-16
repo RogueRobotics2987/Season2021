@@ -35,22 +35,6 @@ void TrimAngle::Execute() {
       frc::SmartDashboard::PutNumber("Left Y", rStick->GetRawAxis(1));
       frc::SmartDashboard::PutNumber("Right X", rStick->GetRawAxis(4));
       frc::SmartDashboard::PutNumber("Right Y", rStick->GetRawAxis(5)); 
-      if (rStick->GetPOV() == 0){
-        m_actuator->limeStream(1);
-        frc::SmartDashboard::PutNumber("Set RPM",3500);
-      }
-      else if (rStick->GetPOV() == 90){
-        m_actuator->limeStream(2);
-        frc::SmartDashboard::PutNumber("Set RPM",3950);
-      }
-      else if (rStick->GetPOV() == 180){
-        m_actuator->limeStream(3);
-        frc::SmartDashboard::PutNumber("Set RPM",3950);
-      }
-      else if (rStick->GetPOV() == 270){
-        m_actuator->limeStream(4);
-        frc::SmartDashboard::PutNumber("Set RPM",3800);
-      }
       
       m_actuator->setAngleH(rStick->GetRawAxis(0)); // updated button
       m_actuator->setAngleV(rStick->GetRawAxis(1)); // updated button
