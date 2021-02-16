@@ -32,7 +32,7 @@ void TankDrive::Execute() {
   static double lastright = 0.0;
   static double outleft = 0.0;
   static double outright = 0.0;
-  double maxChange = 0.04;
+  double maxChange = 0.025;
   
   // gradually changes speed
   if (abs(Left-lastleft)>maxChange){
@@ -44,17 +44,6 @@ void TankDrive::Execute() {
     outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
   } else{
       outright = Right;
-  // commented out for now
-  if (abs(Left-lastleft)>maxChange){
-    outleft = lastleft + copysignf(1.0, Left-lastleft)*maxChange;
-  } else{
-      outleft = Left;
->>>>>>> b1fee1c5f34f8c6ce84760171d6cc751489817cd
-  }
-  if (abs(Right-lastright)>maxChange){
-    outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
-  } else{
-      outright = Right;
   }
 
   m_drivetrain -> Drive(outleft, outright);
@@ -62,20 +51,7 @@ void TankDrive::Execute() {
   lastleft = outleft;
   lastright = outright;
 
-  if (m_stickLeft->GetRawButton(2)) { 
-    m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
-  } else {
-    m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
-  } 
-
-}
-
-  m_drivetrain -> Drive(outleft, outright);
-
-  lastleft = outleft;
-  lastright = outright;
-
-  /* if (m_stickLeft->GetRawButton(2)) { 
+  /*if (m_stickLeft->GetRawButton(2)) { 
     m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
   } else {
     m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
