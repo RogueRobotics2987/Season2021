@@ -58,7 +58,7 @@ DriveTrain::DriveTrain() {
   LeftBack->Follow(*LeftFront); 
   RightBack->Follow(*RightFront); 
 
-  DriveTrain::Reset();
+  DriveTrain::Reset(); 
 
 
   // Let's show everything on the LiveWindow
@@ -70,7 +70,8 @@ DriveTrain::DriveTrain() {
   // AddChild("Right Encoder", &m_rightEncoder);
   // AddChild("Rangefinder", &m_rangefinder);
   // AddChild("Gyro", &m_gyro);
-  frc::SmartDashboard::PutNumber("Set DriveP", kp);
+  //idk for the next lines
+  /*frc::SmartDashboard::PutNumber("Set DriveP", kp);
   frc::SmartDashboard::PutNumber("Set DriveI", ki);
   frc::SmartDashboard::PutNumber("Set DriveD", kd);
   frc::SmartDashboard::PutNumber("Set DriveFF", kff);
@@ -84,7 +85,7 @@ DriveTrain::DriveTrain() {
   rightdrivePID->SetP(kp);
   rightdrivePID->SetI(ki);
   rightdrivePID->SetD(kd);
-  rightdrivePID->SetFF(kff);
+  rightdrivePID->SetFF(kff); */
   // leftdrivePID->SetOutputRange(-1, 1);
   // leftdrivePID->SetSmartMotionMaxVelocity(4000);
   // leftdrivePID->SetSmartMotionMinOutputVelocity(1500);
@@ -130,16 +131,8 @@ void DriveTrain::Drive(double y, double z) {
   
 }
 
-
-
 void DriveTrain::autonDrive(){
   m_robotDrive->ArcadeDrive(-.4, 0); 
-}
-
-void DriveTrain::AutoDrive() {
-  double rotations = frc::SmartDashboard::GetNumber("Set Rotations", 0);
-  leftdrivePID->SetReference(rotations, rev::ControlType::kPosition);
-  rightdrivePID->SetReference(rotations, rev::ControlType::kPosition);
 }
 
 void DriveTrain::Periodic(){

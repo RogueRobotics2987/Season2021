@@ -21,7 +21,8 @@
 #include <frc/trajectory/Trajectory.h> 
 #include <frc/trajectory/TrajectoryGenerator.h>
 #include <units/units.h>
-#include "rev/CANPIDController.h"
+#include <frc/smartdashboard/Field2d.h>
+//#include "rev/CANPIDController.h"
 
 
 
@@ -81,11 +82,12 @@ void TrajectoryInit();
 frc::DifferentialDriveWheelSpeeds GetWheelSpeeds(); 
 void TankDriveVolts(units::volt_t left, units::volt_t right); 
 
-  void AutoDrive(); 
+  
 
 
  private:
 
+<<<<<<< HEAD
   rev::CANSparkMax* LeftBack;
   rev::CANSparkMax* LeftFront;
   rev::CANSparkMax* RightBack;
@@ -104,6 +106,19 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
   double lastkp=0, lastki=0, lastkd=0, lastkff=0;
   double rotations = 0;
   
+=======
+  rev::CANSparkMax* LeftBack = nullptr;
+  rev::CANSparkMax* LeftFront = nullptr;
+  rev::CANSparkMax* RightBack = nullptr;
+  rev::CANSparkMax* RightFront = nullptr;
+  rev::CANEncoder* leftEncoder = nullptr;
+  rev::CANEncoder* rightEncoder = nullptr; 
+  frc::DifferentialDrive* m_robotDrive = nullptr;
+  AHRS* myAhrs = nullptr; 
+  frc::DifferentialDriveOdometry* m_odometry = nullptr; 
+
+  frc::Field2d m_field; 
+>>>>>>> ae4811b59531cfa0fef54d8430d48b7d82395b79
 
 
   // frc::PWMVictorSPX m_frontLeft{1};
