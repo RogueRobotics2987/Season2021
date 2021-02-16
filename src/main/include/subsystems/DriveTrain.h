@@ -87,26 +87,6 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
 
  private:
 
-<<<<<<< HEAD
-  rev::CANSparkMax* LeftBack;
-  rev::CANSparkMax* LeftFront;
-  rev::CANSparkMax* RightBack;
-  rev::CANSparkMax* RightFront;
-  rev::CANEncoder* leftEncoder;
-  rev::CANEncoder* rightEncoder; 
-  frc::DifferentialDrive* m_robotDrive;
-  AHRS* myAhrs; 
-  frc::DifferentialDriveOdometry* m_odometry; 
-  rev::CANPIDController* leftdrivePID;  
-  rev::CANPIDController* rightdrivePID;  
-  double kp = 0;
-  double ki = 0;
-  double kd = 0;
-  double kff = 0;
-  double lastkp=0, lastki=0, lastkd=0, lastkff=0;
-  double rotations = 0;
-  
-=======
   rev::CANSparkMax* LeftBack = nullptr;
   rev::CANSparkMax* LeftFront = nullptr;
   rev::CANSparkMax* RightBack = nullptr;
@@ -118,7 +98,6 @@ void TankDriveVolts(units::volt_t left, units::volt_t right);
   frc::DifferentialDriveOdometry* m_odometry = nullptr; 
 
   frc::Field2d m_field; 
->>>>>>> ae4811b59531cfa0fef54d8430d48b7d82395b79
 
 
   // frc::PWMVictorSPX m_frontLeft{1};
