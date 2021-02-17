@@ -6,19 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/DriveTrain.h"
-#include <frc/Joystick.h>
-#include <frc/smartdashboard/SmartDashboard.h>
-#include "AHRS.h"
-#include "Constants.h" 
-#include <frc/controller/RamseteController.h>
-#include <frc/trajectory/constraint/DifferentialDriveVoltageConstraint.h>
-#include <frc2/command/InstantCommand.h>
-#include <frc2/command/RamseteCommand.h>
 
-
-
-
-// coreys code is now different than brandons!
 DriveTrain::DriveTrain() {
 // Encoders may measure differently in the real world and in
 // simulation. In this example the robot moves 0.042 barleycorns
@@ -36,30 +24,25 @@ DriveTrain::DriveTrain() {
   //                                    360.0);
 #endif
   SetName("DriveTrain");
-  LeftBack = new rev::CANSparkMax(56, rev::CANSparkMax::MotorType::kBrushless);
-  LeftFront = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
-  leftEncoder = new rev::CANEncoder(*LeftFront); 
-  RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
-  RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
-  rightEncoder = new rev::CANEncoder(*RightFront); 
-  //rightEncoder->SetInverted(true);
+
   myAhrs = new AHRS(frc::SerialPort::kMXP); 
   m_robotDrive = new frc::DifferentialDrive(*LeftFront, *RightFront);
-  m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
   // RightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   // LeftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   // RightBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   // LeftBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
-
-  // leftEncoder->SetPosition(0); 
-  // rightEncoder->SetPosition(0); 
-  // RightFront->SetSmartCurrentLimit(5); 
-  // LeftFront->SetSmartCurrentLimit(5); 
   LeftBack->Follow(*LeftFront); 
   RightBack->Follow(*RightFront); 
 
-  DriveTrain::Reset();
+  // LeftEncoder.SetPosition(0); 
+  // RightEncoder.SetPosition(0); 
 
+  // RightFront->SetSmartCurrentLimit(5); 
+  // LeftFront->SetSmartCurrentLimit(5); 
+
+  m_odometry = new frc::DifferentialDriveOdometry{frc::Rotation2d(units::degree_t(GetHeading()))};
+
+  DriveTrain::Reset();
 
   // Let's show everything on the LiveWindow
   // AddChild("Front_Left Motor", &m_frontLeft);
@@ -86,8 +69,8 @@ void DriveTrain::Drive(double y, double z) {
   //leftFrontEncoder->SetDistancePerPulse();
 //   frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
 //   frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
-//   frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
-//   frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
+//   frc::SmartDashboard::PutNumber("Left Distance", LeftEncoder.GetPosition());
+//   frc::SmartDashboard::PutNumber("Right Distance", RightEncoder.GetPosition());
 //  //frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
   m_robotDrive->ArcadeDrive(-y, z);
   
@@ -110,12 +93,12 @@ void DriveTrain::Periodic(){
 
     m_odometry->Update(
       frc::Rotation2d(GetHeading()), 
-      units::meter_t(leftEncoder->GetPosition() * 0.044), 
-      units::meter_t(-1.0 * rightEncoder->GetPosition() * 0.044)
+      units::meter_t(LeftEncoder.GetPosition() * 0.044), 
+      units::meter_t(-1.0 * RightEncoder.GetPosition() * 0.044)
       );
   
-  frc::SmartDashboard::PutNumber("left Encoder Val", leftEncoder->GetPosition());
-  frc::SmartDashboard::PutNumber("right Encoder Val", -1.0 * rightEncoder->GetPosition());
+  frc::SmartDashboard::PutNumber("left Encoder Val", LeftEncoder.GetPosition());
+  frc::SmartDashboard::PutNumber("right Encoder Val", -1.0 * RightEncoder.GetPosition());
 
   m_field.SetRobotPose(m_odometry->GetPose());
   frc::SmartDashboard::PutData("Field", &m_field);
@@ -134,8 +117,8 @@ void DriveTrain::Periodic(){
 void DriveTrain::TankDriveVolts(units::volt_t left, units::volt_t right) {
 //   // if(left > units::volt_t(.25)){ left = units::volt_t(.25); }
 //   // if(right > units::volt_t(.25)){ right = units::volt_t(.25); }
-  frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
-  frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
+  frc::SmartDashboard::PutNumber("Left Distance", LeftEncoder.GetPosition());
+  frc::SmartDashboard::PutNumber("Right Distance", RightEncoder.GetPosition());
   frc::SmartDashboard::PutNumber("Tank Drive Volts Left", double(left));
   frc::SmartDashboard::PutNumber("Tank Drive Volts Right", double(right));
   // frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
@@ -152,40 +135,16 @@ units::degree_t DriveTrain::GetHeading() {
 
 void DriveTrain::Reset() {
   myAhrs->Reset();
-  leftEncoder->SetPosition(0.0);
-  rightEncoder->SetPosition(0.0);
-
+  LeftEncoder.SetPosition(0.0);
+  RightEncoder.SetPosition(0.0);
 } 
 
-// void DriveTrain::Reset() {
-//   // m_gyro.Reset();
-//   // m_leftEncoder.Reset();
-//   // m_rightEncoder.Reset();
-// }
-
-// double DriveTrain::GetDistance() {
-//   // return (m_leftEncoder.GetDistance() + m_rightEncoder.GetDistance()) / 2.0;
-//   return 0;
-// }
-
 frc::DifferentialDriveWheelSpeeds DriveTrain::GetWheelSpeeds() {
-  // units::meter_t(leftEncoder->GetPosition() * 0.044), 
-  // units::meter_t(-1.0 * rightEncoder->GetPosition() * 0.044)
-  return {(leftEncoder->GetVelocity() * 1_mps * 0.044 / 60),
-      (-rightEncoder->GetVelocity() * 1_mps * 0.044 / 60)};
+  // units::meter_t(LeftEncoder.GetPosition() * 0.044), 
+  // units::meter_t(-1.0 * RightEncoder.GetPosition() * 0.044)
+  return {(LeftEncoder.GetVelocity() * 1_mps * 0.044 / 60),
+      (-RightEncoder.GetVelocity() * 1_mps * 0.044 / 60)};
 }
-
-
-
-// double DriveTrain::GetDistanceToObstacle() {
-//   // Really meters in simulation since it's a rangefinder...
-//   // return m_rangefinder.GetAverageVoltage();
-//   return 0;
-// }
-
-// double DriveTrain::GetTurnRate(){ 
-//   return myAhrs->GetRate(); 
-// }
 
 void DriveTrain::ResetOdometry(frc::Pose2d pose){ 
   Reset(); //reset encoders and ahrs  
@@ -197,6 +156,6 @@ frc::Pose2d DriveTrain::GetPose(){
 }
 
 void DriveTrain::ResetEncoders(){ 
-  rightEncoder->SetPosition(0); 
-  leftEncoder->SetPosition(0); 
+  RightEncoder.SetPosition(0); 
+  LeftEncoder.SetPosition(0); 
 }

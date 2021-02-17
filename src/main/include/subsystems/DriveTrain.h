@@ -7,31 +7,20 @@
 
 #pragma once
 #include "AHRS.h"
-#include <frc/AnalogGyro.h>
-#include <frc/AnalogInput.h>
-#include <frc/Encoder.h>
-#include <frc/PWMVictorSPX.h>
-#include <frc/SpeedControllerGroup.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc2/command/SubsystemBase.h>
 #include "rev/CANSparkMax.h"
+
+#include <frc/drive/DifferentialDrive.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <frc/kinematics/DifferentialDriveWheelSpeeds.h>
 #include <frc/geometry/Rotation2d.h>
-#include <frc/trajectory/Trajectory.h> 
-#include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/Field2d.h>
+#include <frc2/command/SubsystemBase.h>
+
 //#include <units/units.h>
 #include <units/angle.h>
-#include <frc/smartdashboard/Field2d.h>
 
-
-
-
-
-
-namespace frc {
-class Joystick;
-}  // namespace frc
+#include "Constants.h" 
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -39,79 +28,51 @@ class Joystick;
  * and a gyro.
  */
 class DriveTrain : public frc2::SubsystemBase {
- public:
-  DriveTrain();
+  public:
+    DriveTrain();
 
-  /**
-   * The log method puts interesting information to the SmartDashboard.
-   */
-  void Log();
-  void Periodic(); 
-  void autonDrive(); 
-  /**
-   * Tank style driving for the DriveTrain.
-   * @param left Speed in range [-1,1]
-   * @param right Speed in range [-1,1]
-   */
-  void Drive(double y, double z);
+    /**
+     * The log method puts interesting information to the SmartDashboard.
+     */
+    void Log();
+    void Periodic(); 
+    void autonDrive(); 
+    /**
+     * Tank style driving for the DriveTrain.
+     * @param left Speed in range [-1,1]
+     * @param right Speed in range [-1,1]
+     */
+    void Drive(double y, double z);
 
-  /**
-   * @return The robots heading in degrees.
-   */
-  units::degree_t GetHeading();
-  void ResetOdometry(frc::Pose2d pose); 
+    /**
+     * @return The robots heading in degrees.
+     */
+    units::degree_t GetHeading();
+    void ResetOdometry(frc::Pose2d pose); 
 
-  /**
-   * Reset the robots sensors to the zero states.
-   */
-  void Reset();
+    /**
+     * Reset the robots sensors to the zero states.
+     */
+    void Reset();
 
-  /**
-   * @return The distance driven (average of left and right encoders).
-   */
-  double GetDistance();
-
-  /**
-   * @return The distance to the obstacle detected by the rangefinder.
-   */
-  double GetDistanceToObstacle();
-  double GetTurnRate(); 
-
-frc::Pose2d GetPose(); 
-void ResetEncoders(); 
-void TrajectoryInit(); 
-frc::DifferentialDriveWheelSpeeds GetWheelSpeeds(); 
-void TankDriveVolts(units::volt_t left, units::volt_t right); 
-
-  
-
- private:
-
-  rev::CANSparkMax* LeftBack = nullptr;
-  rev::CANSparkMax* LeftFront = nullptr;
-  rev::CANSparkMax* RightBack = nullptr;
-  rev::CANSparkMax* RightFront = nullptr;
-  rev::CANEncoder* leftEncoder = nullptr;
-  rev::CANEncoder* rightEncoder = nullptr; 
-  frc::DifferentialDrive* m_robotDrive = nullptr;
-  AHRS* myAhrs = nullptr; 
-  frc::DifferentialDriveOdometry* m_odometry = nullptr; 
-
-  frc::Field2d m_field;
+    frc::Pose2d GetPose(); 
+    void ResetEncoders(); 
+    void TrajectoryInit(); 
+    frc::DifferentialDriveWheelSpeeds GetWheelSpeeds(); 
+    void TankDriveVolts(units::volt_t left, units::volt_t right); 
 
 
-  // frc::PWMVictorSPX m_frontLeft{1};
-  // frc::PWMVictorSPX m_rearLeft{2};
-  // frc::SpeedControllerGroup m_left{LeftFront, LeftBack};
+  private:
+    rev::CANSparkMax* LeftBack = new rev::CANSparkMax(56, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* LeftFront = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANEncoder LeftEncoder = LeftFront->GetEncoder(); 
+    rev::CANSparkMax* RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANEncoder RightEncoder = RightFront->GetEncoder();
 
-  // frc::PWMVictorSPX m_frontRight{3};
-  // frc::PWMVictorSPX m_rearRight{4};
-  // frc::SpeedControllerGroup m_right{RightFront, RightBack};
+    frc::DifferentialDrive* m_robotDrive = nullptr;
+    AHRS* myAhrs = nullptr; 
+    frc::DifferentialDriveOdometry* m_odometry = nullptr; 
 
-  // frc::DifferentialDrive m_robotDrive{m_left, m_right};
-
-  // frc::Encoder m_leftEncoder{1, 2};
-  // frc::Encoder m_rightEncoder{3, 4};
-  // frc::AnalogInput m_rangefinder{6};
-  // frc::AnalogGyro m_gyro{1};
+    frc::Field2d m_field;
 };
