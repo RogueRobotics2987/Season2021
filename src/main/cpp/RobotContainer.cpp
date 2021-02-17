@@ -27,6 +27,10 @@
 #include "commands/IntakeOut.h" 
 #include "commands/startConveyor.h" 
 #include "commands/shooterBackwards.h" 
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/Path.h>
+#include <wpi/SmallString.h>
 
 
 
@@ -37,7 +41,11 @@ RobotContainer::RobotContainer()
     {
     //frc::SmartDashboard::PutData(&m_drivetrain);
 
-  
+
+
+
+
+
     m_drivetrain.Log(); 
 
     //Dannalyn's shooter code
@@ -87,6 +95,22 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
+
+//PATHWEAVER JSON ATTEMPT
+    wpi::SmallString<64> deployDirectory;
+    frc::filesystem::GetDeployDirectory(deployDirectory);
+    wpi::sys::path::append(deployDirectory, "paths");
+
+//CHANGE TRAJECTORY HERE
+    wpi::sys::path::append(deployDirectory, "bounce_v001.wpilib.json");
+
+
+    std::cout << deployDirectory << std::endl;
+
+    frc::Trajectory myTrajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
+
+
+
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
       DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
@@ -95,6 +119,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
   config.SetKinematics(DriveConstants::kDriveKinematics);
   config.AddConstraint(autoVoltageConstraint);
+
+
+//COMMENT IN/OUT WHEN DOING AUTO RUN / GALACTIC SEARCH
+  // config.SetReversed(true);
 
   auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
       // Start at the origin facing the +X direction
@@ -128,10 +156,21 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // Pass the config                                                                      
       config);
 
-      m_drivetrain.ResetOdometry(exampleTrajectory.InitialPose()); 
+
+  m_drivetrain.ResetOdometry(myTrajectory.InitialPose()); 
+
+
+
+
+//COMMENT IN/OUT FOR AUTO STUFF/GALACTIC SEARCH
+  //m_intake.IntakeBall(1.0);
+
+
+
+
 
   frc2::RamseteCommand ramseteCommand(
-      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      myTrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
