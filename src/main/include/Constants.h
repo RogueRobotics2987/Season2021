@@ -62,10 +62,10 @@ constexpr int kRearLeftDriveCPR = 42;
 constexpr int kFrontRightDriveCPR = 42;
 constexpr int kRearRightDriveCPR = 42;
 
-constexpr int kFrontLeftTurningCPR = 42;
-constexpr int kRearLeftTurningCPR = 42;
-constexpr int kFrontRightTurningCPR = 42;
-constexpr int kRearRightTurningCPR = 42;
+constexpr int kFrontLeftTurningCPR = 1;
+constexpr int kRearLeftTurningCPR = 1;
+constexpr int kFrontRightTurningCPR = 1;
+constexpr int kRearRightTurningCPR = 1;
 
 constexpr rev::CANEncoder::EncoderType m_EncoderType = rev::CANEncoder::EncoderType::kHallSensor;
 
@@ -96,8 +96,8 @@ constexpr double kTurningEncoderDistancePerPulse =
     // Assumes the encoders are directly mounted on the wheel shafts
     (wpi::math::pi * 2) / static_cast<double>(kEncoderCPR);
 
-constexpr double kPModuleTurningController = 0;
-constexpr double kPModuleDriveController = 1;
+constexpr double kPModuleTurningController = 24;
+constexpr double kPModuleDriveController = 8;
 // TODO Lower Value of P to 0.0001,  Change Value of p Till its the Highest Without Osilation, 
 }  // namespace ModuleConstants
 

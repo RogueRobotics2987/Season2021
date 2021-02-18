@@ -79,6 +79,9 @@ void DriveSubsystem::Drive(units::meters_per_second_t xSpeed,
 
   auto [fl, fr, bl, br] = states;
 
+  frc::SmartDashboard::PutNumber("Motor Speed - Front Left", double(fl.speed));
+  frc::SmartDashboard::PutNumber("Motor Angle - Front Left", double(fl.angle.Degrees()));
+
   m_frontLeft.SetDesiredState(fl);
   m_frontRight.SetDesiredState(fr);
   m_rearLeft.SetDesiredState(bl);
