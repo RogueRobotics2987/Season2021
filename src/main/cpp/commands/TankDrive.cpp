@@ -17,8 +17,8 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   m_stickRight = stickRight; 
   SetName("TankDrive");
   AddRequirements({m_drivetrain});
-}
 
+}
   void TankDrive::Initialize() {
     m_drivetrain->Reset();
   }
@@ -26,6 +26,7 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
+  
   double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
   double Right = m_stickRight ->GetX(); // X-position of joystick
   static double lastleft = 0.0;
@@ -51,12 +52,11 @@ void TankDrive::Execute() {
   lastleft = outleft;
   lastright = outright;
 
-  /*if (m_stickLeft->GetRawButton(2)) { 
+  if (m_stickLeft->GetRawButton(2)) { 
     m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
   } else {
     m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
-  } */
-
+  } 
 }
 
 // Make this return true when this Command no longer needs to run execute()

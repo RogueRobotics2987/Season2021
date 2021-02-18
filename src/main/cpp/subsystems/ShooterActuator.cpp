@@ -40,7 +40,7 @@ void ShooterActuator:: limeStream(int num){
    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr") -> PutNumber("pipeline", num);
 }   // or possiblly limelightTable ^
 
-// This method will be called once per scheduler run
+// This method will be called once per scheduler ru
 void ShooterActuator::Periodic() {
     double startTime = myTimer->Get();
     
