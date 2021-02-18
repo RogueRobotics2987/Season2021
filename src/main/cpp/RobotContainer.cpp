@@ -42,7 +42,7 @@ RobotContainer::RobotContainer()
 
     //Dannalyn's shooter code
    // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); 
-    //actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
+    actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
     m_climber.SetDefaultCommand(Climb(&m_climber, &xbox));

@@ -9,6 +9,7 @@
 
 #include "Robot.h"
 
+
 TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joystick* stickLeft)
     {
   
@@ -17,6 +18,8 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   m_stickRight = stickRight; 
   SetName("TankDrive");
   AddRequirements({m_drivetrain});
+
+
 }
 
   void TankDrive::Initialize() {
@@ -26,16 +29,23 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
+  
   double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
   double Right = m_stickRight ->GetX(); // X-position of joystick
+  
   static double lastleft = 0.0;
   static double lastright = 0.0;
-  static double outleft = 0.0;
-  static double outright = 0.0;
-  double maxChange = 0.04;
+  double outleft = 0.0; // in dan_pose is a double not a static double
+  double outright = 0.0; // in dan_pose is a double not a static double
+  double maxChange = 0.04; //per second //was 0.025  
   
-  // gradually changes speed
-  // commented out for now
+ frc::SmartDashboard::PutNumber("lastLeft Value", lastleft);
+ frc::SmartDashboard::PutNumber("Left value", Left);
+ frc::SmartDashboard::PutNumber("lastRight Value", lastright);
+ frc::SmartDashboard::PutNumber("Right value", Right);
+ frc::SmartDashboard::GetNumber("maxChange", maxChange); 
+ maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
+
   if (abs(Left-lastleft)>maxChange){
     outleft = lastleft + copysignf(1.0, Left-lastleft)*maxChange;
   } else{
@@ -52,12 +62,11 @@ void TankDrive::Execute() {
   lastleft = outleft;
   lastright = outright;
 
-  if (m_stickLeft->GetRawButton(2)) { 
+ /* if (m_stickLeft->GetRawButton(2)) { 
     m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
   } else {
     m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
-  } 
-
+  } */
 }
 
 // Make this return true when this Command no longer needs to run execute()
