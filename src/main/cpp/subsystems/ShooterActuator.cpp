@@ -44,7 +44,7 @@ void ShooterActuator:: limeStream(int num){
 void ShooterActuator::Periodic() {
     double startTime = myTimer->Get();
     
-
+    // possibly comment out
     bool shooterActuatorWorking = true; 
     if(angleMotorH->GetFirmwareString() != firmwareVersion || angleMotorV->GetFirmwareString() != firmwareVersion){
          shooterActuatorWorking = false; 

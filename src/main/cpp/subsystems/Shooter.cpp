@@ -11,7 +11,7 @@
 Shooter::Shooter() {
     //42 test motor on Ollie 
     //56 ws on Robot on a board
-    //frc::SmartDashboard::PutNumber("Set RPM", 3800); 
+    frc::SmartDashboard::PutNumber("Set RPM", 3800); 
     frc::SmartDashboard::PutNumber("Set P", kp); 
     frc::SmartDashboard::PutNumber("Set I", ki); 
     frc::SmartDashboard::PutNumber("Set D", kd); 
