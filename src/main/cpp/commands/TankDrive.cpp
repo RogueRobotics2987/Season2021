@@ -37,7 +37,7 @@ void TankDrive::Execute() {
   double Right = m_stickRight -> GetX(); //comment
   double outLeft = 0;
   double outRight = 0;
-  double maxChange = 0.025; //per second
+  double maxChange = 0.04; //per second
  
  frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
  frc::SmartDashboard::PutNumber("Left value", Left);
