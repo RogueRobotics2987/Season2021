@@ -41,7 +41,7 @@ RobotContainer::RobotContainer()
     m_drivetrain.Log(); 
 
     //Dannalyn's shooter code
-   // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); 
+   // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); //don't need in 2021
     actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
