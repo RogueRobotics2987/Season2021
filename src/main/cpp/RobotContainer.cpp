@@ -97,17 +97,22 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 //PATHWEAVER JSON ATTEMPT
-    wpi::SmallString<64> deployDirectory;
-    frc::filesystem::GetDeployDirectory(deployDirectory);
-    wpi::sys::path::append(deployDirectory, "paths");
-
-//CHANGE TRAJECTORY HERE
-    wpi::sys::path::append(deployDirectory, "bounce_v001.wpilib.json");
+    wpi::SmallString<64> toA3;
+    frc::filesystem::GetDeployDirectory(toA3);
+    wpi::sys::path::append(toA3, "paths/toA3.wpilib.json");
+    frc::Trajectory toA3trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA3);
 
 
-    std::cout << deployDirectory << std::endl;
+    wpi::SmallString<64> toA6;
+    frc::filesystem::GetDeployDirectory(toA6);
+    wpi::sys::path::append(toA6, "paths/toA6.wpilib.json");
+    frc::Trajectory toA6trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA6);
 
-    frc::Trajectory myTrajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
+
+    wpi::SmallString<64> toA9;
+    frc::filesystem::GetDeployDirectory(toA9);
+    wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
+    frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
 
 
 
@@ -157,20 +162,41 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       config);
 
 
-  m_drivetrain.ResetOdometry(myTrajectory.InitialPose()); 
-
-
-
-
 //COMMENT IN/OUT FOR AUTO STUFF/GALACTIC SEARCH
   //m_intake.IntakeBall(1.0);
 
 
+  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
 
 
+  frc2::RamseteCommand ramseteCommandA3(
+      toA3trajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCommand(
-      myTrajectory, [this]() { return m_drivetrain.GetPose(); },
+  frc2::RamseteCommand ramseteCommandA6(
+      toA6trajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramseteCommandA9(
+      toA9trajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
@@ -185,7 +211,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
       return new frc2::SequentialCommandGroup(
-      std::move(ramseteCommand),
+      std::move(ramseteCommandA3),
+      std::move(ramseteCommandA6),
+      std::move(ramseteCommandA9),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
 
 
