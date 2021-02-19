@@ -32,27 +32,27 @@ RobotContainer::RobotContainer() {
   // Set up default drive command
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
-          frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetY(frc::GenericHID::kLeftHand));
+          frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetX(frc::GenericHID::kLeftHand));
           frc::SmartDashboard::PutNumber("Right Hand Y", m_driverController.GetY(frc::GenericHID::kRightHand));
-          frc::SmartDashboard::PutNumber("Left Hand X", m_driverController.GetX(frc::GenericHID::kLeftHand));
+          frc::SmartDashboard::PutNumber("Left Hand X", m_driverController.GetZ());
         
         
         
-        double safeX = m_driverController.GetY(frc::GenericHID::kLeftHand);
+        double safeX = m_driverController.GetX(frc::GenericHID::kLeftHand);
         if(fabs(safeX)<0.1 ) {
             safeX=0;}
         double safeY = m_driverController.GetY(frc::GenericHID::kRightHand);
         if(fabs(safeY)<0.1 ) {
             safeY=0;}
-        double safeRot =  m_driverController.GetX(frc::GenericHID::kLeftHand);
+        double safeRot =  m_driverController.GetZ();
         if(fabs(safeRot)<0.1 ) {
             safeRot=0;}
         
         
         m_drive.Drive(units::meters_per_second_t(
-                         safeX),
+                         -safeX),
                       units::meters_per_second_t(
-                         safeY),
+                         -safeY),
                       units::radians_per_second_t(
                          safeRot),
                       false);
