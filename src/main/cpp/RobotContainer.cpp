@@ -52,7 +52,7 @@ RobotContainer::RobotContainer() {
         m_drive.Drive(units::meters_per_second_t(
                          -safeX),
                       units::meters_per_second_t(
-                         -safeY),
+                         safeY),
                       units::radians_per_second_t(
                          safeRot),
                       false);
