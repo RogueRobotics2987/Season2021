@@ -38,23 +38,31 @@ DriveSubsystem::DriveSubsystem()
       //     kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed},
       m_frontLeft{
         kFrontLeftDriveMotorPort, m_EncoderType, kFrontLeftDriveCPR, 
-        kFrontLeftTurningMotorPort, m_EncoderType, kFrontLeftTurningCPR,
-        kFrontLeftDriveEncoderReversed, kFrontLeftTurningEncoderReversed
+        kFrontLeftTurningMotorPort, 
+        kFrontLeftDriveEncoderReversed, 
+        kFrontLeftTurningEncoderNumber,
+        kFrontLeftTurningEncoderReversed
       },
       m_frontRight{
         kFrontRightDriveMotorPort, m_EncoderType, kFrontRightDriveCPR, 
-        kFrontRightTurningMotorPort, m_EncoderType, kFrontRightTurningCPR,
-        kFrontRightDriveEncoderReversed, kFrontRightTurningEncoderReversed
+        kFrontRightTurningMotorPort,
+        kFrontRightDriveEncoderReversed, 
+        kFrontRightTurningEncoderNumber,
+        kFrontRightTurningEncoderReversed
       },
       m_rearLeft{
         kRearLeftDriveMotorPort, m_EncoderType, kRearLeftDriveCPR, 
-        kRearLeftTurningMotorPort, m_EncoderType, kRearLeftTurningCPR,
-        kRearLeftDriveEncoderReversed, kRearLeftTurningEncoderReversed
+        kRearLeftTurningMotorPort, 
+        kRearLeftDriveEncoderReversed, 
+        kRearLeftTurningEncoderNumber,
+        kRearLeftTurningEncoderReversed
       },
       m_rearRight{
         kRearRightDriveMotorPort, m_EncoderType, kRearRightDriveCPR, 
-        kRearRightTurningMotorPort, m_EncoderType, kRearRightTurningCPR,
-        kRearRightDriveEncoderReversed, kRearRightTurningEncoderReversed
+        kRearRightTurningMotorPort, 
+        kRearRightDriveEncoderReversed, 
+        kRearRightTurningEncoderNumber,
+        kRearRightTurningEncoderReversed
       },
 
       m_odometry{kDriveKinematics, m_gyro.GetRotation2d(), frc::Pose2d(frc::Translation2d(), frc::Rotation2d(units::degree_t(90)))} {}

@@ -15,6 +15,7 @@
 #include "rev/CANSparkMax.h"
 #include "rev/CANEncoder.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "ctre/Phoenix.h"
 
 #include "Constants.h"
 
@@ -28,9 +29,11 @@ class SwerveModule {
 //                const int driveEncoderPorts[2], const int turningEncoderPorts[2],
 //                bool driveEncoderReversed, bool turningEncoderReversed);
     SwerveModule(int m_MotorController, rev::CANEncoder::EncoderType m_EncoderType, int m_counts_per_rev, 
-    int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning, int m_counts_per_revTurning,
-    bool driveEncoderReversed,
-    bool turningEncoderReversed);
+      int m_MotorControllerTurning, 
+      bool driveEncoderReversed,
+      int TurningEncoderNumber,
+      bool turningEncoderReversed
+ );
     ~SwerveModule();
   frc::SwerveModuleState GetState();
 
@@ -58,7 +61,9 @@ class SwerveModule {
 //   frc::Encoder m_driveEncoder;
 //   frc::Encoder m_turningEncoder;
   rev::CANEncoder* samDriveEncoder;
-  rev::CANEncoder* samTurningEncoder;
+  // rev::CANEncoder* samTurningEncoder;
+  ctre::phoenix::sensors::CANCoder* samTurningEncoder;
+
 
   bool m_reverseDriveEncoder;
   bool m_reverseTurningEncoder;

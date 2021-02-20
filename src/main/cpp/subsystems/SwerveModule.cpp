@@ -40,9 +40,11 @@
 // }
 
 SwerveModule::SwerveModule(int m_MotorController, rev::CANEncoder::EncoderType m_EncoderType, int m_counts_per_rev, 
-int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning, int m_counts_per_revTurning,
+int m_MotorControllerTurning, 
  bool driveEncoderReversed,
- bool turningEncoderReversed)
+ int TurningEncoderNumber,
+ bool turningEncoderReversed
+)
     // : //m_driveMotor(driveMotorChannel),
     //   // m_turningMotor(turningMotorChannel),
     //   //m_driveEncoder(driveEncoderPorts[0], driveEncoderPorts[1]),
@@ -57,22 +59,25 @@ int m_MotorControllerTurning, rev::CANEncoder::EncoderType m_EncoderTypeTurning,
          samDriveMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
          samTurningMotor = new rev::CANSparkMax(m_MotorControllerTurning, rev::CANSparkMax::MotorType::kBrushless);
          samDriveEncoder = new rev::CANEncoder(*samDriveMotor, m_EncoderType, m_counts_per_rev);
-         samTurningEncoder = new rev::CANEncoder(*samTurningMotor, m_EncoderTypeTurning, m_counts_per_revTurning);
+        //  samTurningEncoder = new rev::CANEncoder(*samTurningMotor, m_EncoderTypeTurning, m_counts_per_revTurning);
+         samTurningEncoder = new ctre::phoenix::sensors::CANCoder(TurningEncoderNumber);	
+
          m_reverseDriveEncoder = driveEncoderReversed;
          m_reverseTurningEncoder = turningEncoderReversed;
-        
+         samTurningEncoder->ConfigSensorDirection(m_reverseTurningEncoder);
+        //Can't independently invert drive endcoder from drive motor.
+
   // Set the distance per pulse for the drive encoder. We can simply use the
   // distance traveled for one rotation of the wheel divided by the encoder
   // resolution.
   samDriveEncoder->SetPositionConversionFactor(
       ModuleConstants::kDriveEncoderDistancePerPulse);
 
-  // Set the distance (in this case, angle) per pulse for the turning encoder.
+  // Set the distance (in this case, angle, radians) per pulse for the turning encoder.
   // This is the the angle through an entire rotation (2 * wpi::math::pi)
   // divided by the encoder resolution.
-  samTurningEncoder->SetPositionConversionFactor(
-      ModuleConstants::kTurningEncoderDistancePerPulse);
-
+  samTurningEncoder->ConfigFeedbackCoefficient(
+  0.00153980788, "Radians", ctre::phoenix::sensors::SensorTimeBase());
   // Limit the PID Controller's input range between -pi and pi and set the input
   // to be continuous.
   m_turningPIDController.EnableContinuousInput(units::radian_t(-wpi::math::pi),
