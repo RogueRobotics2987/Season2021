@@ -9,21 +9,24 @@ autoTrimAngle::autoTrimAngle(ShooterActuator* a_actuator, bool shootingMode) {
   m_shootingMode = shootingMode;
   AddRequirements(m_actuator);
   myTimer = new frc::Timer;
-  myTimer -> Reset();
   myTimer -> Start();
-  myTimer -> Get();
-  
+  myTimer -> Reset();
+
 }
 
 // Called when the command is initially scheduled.
-void autoTrimAngle::Initialize() {}
+void autoTrimAngle::Initialize() {
+  myTimer->Reset();
+}
 
 // Called repeatedly when this Command is scheduled to run
 void autoTrimAngle::Execute() {
   currTime = myTimer -> Get();
 
-  if (currTime <= 5 && m_shootingMode == true){
+  if (currTime <= 45 && m_shootingMode == true){
     m_actuator->SetAutoAim(m_shootingMode);
+    m_actuator->setAngleH(0.0);
+    m_actuator->setAngleV(0.0);
   } else {
     m_shootingMode = false;
   }
@@ -36,7 +39,7 @@ void autoTrimAngle::End(bool interrupted) {}
 bool autoTrimAngle::IsFinished() {
   currTime = myTimer -> Get();
   
-  if (currTime > 5){
+  if (currTime > 45){
     return true;
   } else { 
     return false;
