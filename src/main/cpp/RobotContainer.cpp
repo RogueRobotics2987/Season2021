@@ -211,9 +211,13 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
       return new frc2::SequentialCommandGroup(
+      IntakeOut(&m_intake, true), // does this work?
+      PickupBallAuto(m_intake, true),
       std::move(ramseteCommandA3),
-      std::move(ramseteCommandA6),
-      std::move(ramseteCommandA9),
+      // std::move(ramseteCommandA6),
+      // std::move(ramseteCommandA9),
+      PickupBallAuto(m_intake, false),
+      IntakeOut(&m_intake, false), // does this work?
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
 
 

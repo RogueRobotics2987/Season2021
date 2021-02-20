@@ -20,6 +20,7 @@
 #include "subsystems/ShooterActuator.h"
 #include "subsystems/Intake.h"
 #include "commands/PickupBall.h"
+#include "commands/PickupBallAuto.h"
 #include "subsystems/Compressor.h"
 #include "commands/beginCompressor.h"
 #include "subsystems/Climber.h"
