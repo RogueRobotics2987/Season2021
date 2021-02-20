@@ -37,10 +37,10 @@ constexpr int kRearLeftTurningMotorPort = 8;
 constexpr int kFrontRightTurningMotorPort = 4;
 constexpr int kRearRightTurningMotorPort = 6;
 
-constexpr int kFrontLeftTurningEncoderNumber = 0;
-constexpr int kFrontRightTurningEncoderNumber = 0;
-constexpr int kRearLeftTurningEncoderNumber = 0;
-constexpr int kRearRightTurningEncoderNumber = 0;
+constexpr int kFrontLeftTurningEncoderNumber = 9;
+constexpr int kFrontRightTurningEncoderNumber = 12;
+constexpr int kRearLeftTurningEncoderNumber = 10;
+constexpr int kRearRightTurningEncoderNumber = 11;
 
 
 // constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
