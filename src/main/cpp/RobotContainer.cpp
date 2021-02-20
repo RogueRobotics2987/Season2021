@@ -164,7 +164,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc::Translation2d(3.7_m, 0.4_m),
       frc::Translation2d(5.87_m, -1.47_m),
       frc::Translation2d(7_m, -0.95_m),
-      frc::Translation2d(6.52_m, -0.08_m),
+      frc::Translation2d(6.52_m, -0.1_m),
       frc::Translation2d(1.34_m, -0.1_m)
      },
 
@@ -178,6 +178,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // Pass the config                                                                      
       config);
 
+
+  frc2::RamseteCommand ramseteCommandExample(
+      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
   frc2::RamseteCommand ramseteCommandA3(
       toA3trajectory, [this]() { return m_drivetrain.GetPose(); },
@@ -258,6 +271,12 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       {&m_drivetrain});
 
 
+  // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
+  // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
+    // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+      m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+
+
 
 
       // return new frc2::SequentialCommandGroup(
@@ -273,11 +292,12 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // std::move(ramseteCommandBarrelEnd),
       // frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       // );
-  // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-  // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose());
 
-    
-    m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+
+    // return new frc2::SequentialCommandGroup(
+    //   std::move(ramseteCommandBarrelReg),
+    //   frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+    // );
 
     return new frc2::SequentialCommandGroup(
       std::move(ramseteCommandBarrelReg),
