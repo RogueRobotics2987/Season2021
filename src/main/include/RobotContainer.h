@@ -26,7 +26,7 @@
 #include "commands/Climb.h"
 #include "commands/ThirdStageWheel.h" 
 #include "commands/ballReset.h"
-
+#include "commands/AutoPickup.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

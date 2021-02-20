@@ -18,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoIntake
-    : public frc2::CommandHelper<frc2::CommandBase, AutoIntake> {
+class AutoPickup
+    : public frc2::CommandHelper<frc2::CommandBase, AutoPickup> {
  public:
-  AutoIntake(/*Intake m_intakeOut, PickupBall m_pickupBall, bool IsFinished()*/);
+  AutoPickup(Intake* c_intake, bool c_run, double c_time);
 
   void Initialize() override;
 
@@ -31,5 +31,16 @@ class AutoIntake
 
   bool IsFinished() override;
 
+
+ private:
+
   frc::Timer* m_timer = nullptr;
+
+  bool m_run = false;
+
+  double m_time = 0;
+  
+  Intake* m_intake = nullptr;
+
+
 };
