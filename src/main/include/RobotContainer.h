@@ -27,6 +27,32 @@
 #include "commands/Climb.h"
 #include "commands/ThirdStageWheel.h" 
 #include "commands/ballReset.h"
+#include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/SequentialCommandGroup.h>
+
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc2/command/button/JoystickButton.h>
+#include <frc2/command/CommandScheduler.h>
+#include "commands/TankDrive.h"
+#include <frc/controller/PIDController.h>
+#include <frc/controller/RamseteController.h>
+#include <iostream>
+#include <frc/trajectory/Trajectory.h>
+#include <frc/trajectory/TrajectoryGenerator.h>
+#include <frc/trajectory/constraint/DifferentialDriveVoltageConstraint.h>
+#include <frc2/command/InstantCommand.h>
+#include <frc2/command/RamseteCommand.h>
+#include "Constants.h" 
+#include "commands/SpinWheel.h"
+#include "commands/PIDShoot.h"
+#include "commands/IntakeOut.h" 
+#include "commands/startConveyor.h" 
+#include "commands/shooterBackwards.h" 
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/Path.h>
+#include <wpi/SmallString.h>
+
 
 
 /**
@@ -48,24 +74,15 @@ class RobotContainer {
   frc::Joystick joyLeft{0}; 
   frc::Joystick joyRight{2}; 
   //frc2::JoystickButton* j1; 
+  //frc2::JoystickButton j1{&joyLeft, 1}; 
   frc::Joystick xbox{1}; 
   ColorSensor cSensor; 
   ShooterActuator actuator;
   CompressorObject m_compressor;
-
-  
-
-  
-
-  //Elevator* m_elevator;
   DriveTrain m_drivetrain;
-  //rc2::JoystickButton j1{&joyLeft, 1}; 
    
-
   //Dannalyn's shooter code
   Shooter m_shooter; 
- //frc2::JoystickButton joyB2{&joyLeft, 2};
-  //frc2::JoystickButton joyB3{&joyLeft, 3};
 
   //Sydneys Intake Code
   Intake m_intake;

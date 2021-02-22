@@ -7,35 +7,6 @@
 
 #include "RobotContainer.h"
 
-#include <frc/smartdashboard/SmartDashboard.h>
-#include <frc2/command/button/JoystickButton.h>
-#include <frc2/command/CommandScheduler.h>
-#include "commands/TankDrive.h"
-#include <frc/controller/PIDController.h>
-#include <frc/controller/RamseteController.h>
-#include <iostream>
-#include <frc/trajectory/Trajectory.h>
-#include <frc/trajectory/TrajectoryGenerator.h>
-#include <frc/trajectory/constraint/DifferentialDriveVoltageConstraint.h>
-#include <frc2/command/InstantCommand.h>
-#include <frc2/command/RamseteCommand.h>
-#include <frc2/command/SequentialCommandGroup.h>
-#include "Constants.h" 
-#include "commands/SpinWheel.h"
-#include "commands/PIDShoot.h"
-#include "commands/SpinWheel.h" 
-#include "commands/IntakeOut.h" 
-#include "commands/startConveyor.h" 
-#include "commands/shooterBackwards.h" 
-#include <frc/Filesystem.h>
-#include <frc/trajectory/TrajectoryUtil.h>
-#include <wpi/Path.h>
-#include <wpi/SmallString.h>
-
-
-
-
-
 RobotContainer::RobotContainer()
     : m_autonomousCommand(&m_drivetrain, &m_shooter, &actuator, &m_intake) 
     {
@@ -164,7 +135,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
 
-  frc2::RamseteCommand ramseteCommandA3(
+  frc2::RamseteCommand ramseteCommandA3 = frc2::RamseteCommand(
       toA3trajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
@@ -177,7 +148,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCommandA6(
+  frc2::RamseteCommand ramseteCommandA6 = frc2::RamseteCommand(
       toA6trajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
@@ -190,7 +161,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCommandA9(
+  frc2::RamseteCommand ramseteCommandA9 = frc2::RamseteCommand(
       toA9trajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
@@ -203,23 +174,30 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-// This does compile
-  frc2::SequentialCommandGroup* myCommandGroup = new frc2::SequentialCommandGroup{
+
+  frc2::ParallelCommandGroup open_and_moveA6 = frc2::ParallelCommandGroup{
     IntakeOut(&m_intake, true),
-    // std::move(ramseteCommandA3)
+    std::move(ramseteCommandA6)
   };
 
-// This does not compile
-  // frc2::ParallelCommandGroup* myCommandGroup2 = new frc2::ParallelCommandGroup{
-  //   IntakeOut(&m_intake, true),
-  //   // std::move(ramseteCommandA3)
-  // };
+  frc2::ParallelCommandGroup close_and_moveA9 = frc2::ParallelCommandGroup{
+    IntakeOut(&m_intake, false),
+    std::move(ramseteCommandA9)
+  };
+
+  frc2::SequentialCommandGroup* myCommandGroup = new frc2::SequentialCommandGroup{
+    IntakeOut(&m_intake, false),
+    std::move(ramseteCommandA3), 
+    std::move(open_and_moveA6),
+    std::move(close_and_moveA9),
+    frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+  };
 
   return myCommandGroup;
   // return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
 }
 
 
-  void RobotContainer::PeriodicDebug(void) {
+void RobotContainer::PeriodicDebug(void) {
     frc::SmartDashboard::PutBoolean("xBox Check2 Button 5", xbox.GetRawButton(5));
-  }
+}
