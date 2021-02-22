@@ -94,27 +94,26 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
  frc2::JoystickButton(&joyLeft, 11).WhenHeld(shooterBackwards(&m_shooter));
 }
 
+
 frc2::Command* RobotContainer::GetAutonomousCommand() {
 
-//PATHWEAVER JSON ATTEMPT
-    wpi::SmallString<64> toA3;
-    frc::filesystem::GetDeployDirectory(toA3);
-    wpi::sys::path::append(toA3, "paths/toA3.wpilib.json");
-    frc::Trajectory toA3trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA3);
+  //PATHWEAVER JSON ATTEMPT
+  wpi::SmallString<64> toA3;
+  frc::filesystem::GetDeployDirectory(toA3);
+  wpi::sys::path::append(toA3, "paths/toA3.wpilib.json");
+  frc::Trajectory toA3trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA3);
 
 
-    wpi::SmallString<64> toA6;
-    frc::filesystem::GetDeployDirectory(toA6);
-    wpi::sys::path::append(toA6, "paths/toA6.wpilib.json");
-    frc::Trajectory toA6trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA6);
+  wpi::SmallString<64> toA6;
+  frc::filesystem::GetDeployDirectory(toA6);
+  wpi::sys::path::append(toA6, "paths/toA6.wpilib.json");
+  frc::Trajectory toA6trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA6);
 
 
-    wpi::SmallString<64> toA9;
-    frc::filesystem::GetDeployDirectory(toA9);
-    wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
-    frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
-
-
+  wpi::SmallString<64> toA9;
+  frc::filesystem::GetDeployDirectory(toA9);
+  wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
+  frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
 
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
@@ -125,8 +124,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   config.SetKinematics(DriveConstants::kDriveKinematics);
   config.AddConstraint(autoVoltageConstraint);
 
-
-//COMMENT IN/OUT WHEN DOING AUTO RUN / GALACTIC SEARCH
+  //COMMENT IN/OUT WHEN DOING AUTO RUN / GALACTIC SEARCH
   // config.SetReversed(true);
 
   auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
@@ -135,8 +133,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       //just go straight forward
       // {frc::Translation2d(1_m, 0_m)},
 
-
-//SYDNEYS FIRST ATTEMPT AT BARREL
+  //SYDNEYS FIRST ATTEMPT AT BARREL
      {frc::Translation2d(2.76_m, -0.01_m), 
       frc::Translation2d(3.11_m, -1.17_m), 
       frc::Translation2d(1.72_m, -1.39_m),
@@ -150,7 +147,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc::Translation2d(6.52_m, -0.08_m),
       frc::Translation2d(1.34_m, -0.1_m)
      },
-
 
       //  // Pass through these two interior waypoints, making an 's' curve path
       //  {frc::Translation2d(1_m, 1_m), frc::Translation2d(2_m, -1_m)},
@@ -167,7 +163,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
   m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-
 
   frc2::RamseteCommand ramseteCommandA3(
       toA3trajectory, [this]() { return m_drivetrain.GetPose(); },
@@ -208,23 +203,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-// frc2::ParallelCommandGroup myGroup = new frc2::ParallelCommandGroup(
-//           PickupBallAuto(m_intake, true),
-//           std::move(ramseteCommandA6)
-//         );
+// This does compile
+  frc2::SequentialCommandGroup* myCommandGroup = new frc2::SequentialCommandGroup{
+    IntakeOut(&m_intake, true),
+    // std::move(ramseteCommandA3)
+  };
 
+// This does not compile
+  // frc2::ParallelCommandGroup* myCommandGroup2 = new frc2::ParallelCommandGroup{
+  //   IntakeOut(&m_intake, true),
+  //   // std::move(ramseteCommandA3)
+  // };
 
-      auto myCommandGroup = new frc2::SequentialCommandGroup(
-        std::move(ramseteCommandA3),
-        std::move(IntakeOut(&m_intake, true)),
-        std::move(ramseteCommandA9),
-        std::move(IntakeOut(&m_intake, false)), 
-        frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
-      );
-
-      return myCommandGroup;
-
-
+  return myCommandGroup;
   // return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
 }
 
