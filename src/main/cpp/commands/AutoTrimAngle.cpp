@@ -7,7 +7,7 @@
 AutoTrimAngle::AutoTrimAngle(ShooterActuator* a_actuator, bool shootingMode) {
   // Use addRequirements() here to declare subsystem dependencies.
   m_actuator = a_actuator; 
-  m_shootingMode = shootingMode;
+  m_shootingMode = shootingMode; 
   AddRequirements(m_actuator);
   myTimer = new frc::Timer;
   

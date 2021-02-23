@@ -23,8 +23,8 @@ void AutoShoot::Initialize() {
 void AutoShoot::Execute() {
     curTime = myTimer1 -> Get();
 
-if (curTime )
-if(m_shooter->getVelocity() < 500){
+// if (curTime )
+if(m_shooter->getVelocity() < 500){ //from PIDShoot
     m_shooter->setPercent(0.5);
   } else {
     m_shooter->setShooter(4000);
@@ -34,7 +34,7 @@ if(m_shooter->getVelocity() < 500){
     dontRun = true; 
     }else{
     dontRun = false; 
-  } */
+  } */ //from pickupBall 
 }
 
 // Called once the command ends or is interrupted.
