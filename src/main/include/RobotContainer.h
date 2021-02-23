@@ -28,6 +28,10 @@
 #include "commands/ballReset.h"
 #include "commands/AutoPickup.h"
 #include "commands/autoTrimAngle.h"
+#include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/ParallelDeadlineGroup.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
