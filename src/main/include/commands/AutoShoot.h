@@ -6,6 +6,10 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Shooter.h"
+#include "subsystems/Intake.h" 
+#include "subsystems/ShooterActuator.h"
+#include <frc/Timer.h> 
 
 /**
  * An example command.
@@ -14,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoShooterWarmup
-    : public frc2::CommandHelper<frc2::CommandBase, AutoShooterWarmup> {
+class AutoShoot
+    : public frc2::CommandHelper<frc2::CommandBase, AutoShoot> {
  public:
-  AutoShooterWarmup();
+  AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake);
 
   void Initialize() override;
 
@@ -26,4 +30,11 @@ class AutoShooterWarmup
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+  private:
+  Shooter* m_shooter = nullptr;
+  Intake* m_intake = nullptr;
+  ShooterActuator* m_actuator = nullptr;
+  frc::Timer* myTimer1 = nullptr;
+  double currTime = 0;
 };
