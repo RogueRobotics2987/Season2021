@@ -184,6 +184,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
   };
 
+  frc2::SequentialCommandGroup* myCommandGroup2 = new frc2::SequentialCommandGroup{
+    IntakeOut(&m_intake, false),
+    frc2::ParallelCommandGroup{
+      IntakeOut(&m_intake, true),
+      std::move(ramseteCommandA6)
+    },
+    frc2::ParallelCommandGroup{
+      IntakeOut(&m_intake, false),
+      std::move(ramseteCommandA9)
+    },
+    frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+  };
+  
   return myCommandGroup;
   // return new Autonomous(&m_drivetrain, &m_shooter, &actuator, &m_intake);
 }

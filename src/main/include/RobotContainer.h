@@ -9,7 +9,6 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
-#include <frc2/command/Command.h>
 #include "ctre/Phoenix.h"
 #include "commands/Autonomous.h"
 #include "subsystems/DriveTrain.h"
@@ -27,8 +26,13 @@
 #include "commands/Climb.h"
 #include "commands/ThirdStageWheel.h" 
 #include "commands/ballReset.h"
+
+#include <frc2/command/Command.h>
+#include <frc2/command/CommandHelper.h>
 #include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/ParallelDeadlineGroup.h>
+#include <frc2/command/ParallelRaceGroup.h>
 
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/button/JoystickButton.h>
