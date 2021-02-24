@@ -119,15 +119,15 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     wpi::sys::path::append(barrelRegFile, "paths/barrel_longBlue_fewPoints.wpilib.json");
     frc::Trajectory barrelRegTrajectory = frc::TrajectoryUtil::FromPathweaverJson(barrelRegFile);
 
-    wpi::SmallString<64> fancyBarrelStart;
-    frc::filesystem::GetDeployDirectory(fancyBarrelStart);
-    wpi::sys::path::append(fancyBarrelStart, "paths/fancyBarrelStart.wpilib.json");
-    frc::Trajectory fancyBarrelStartTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelStart);
+    wpi::SmallString<64> fancyBarrelStartA;
+    frc::filesystem::GetDeployDirectory(fancyBarrelStartA);
+    wpi::sys::path::append(fancyBarrelStartA, "paths/fancyBarrelStartA.wpilib.json");
+    frc::Trajectory fancyBarrelStartATrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelStartA);
 
-    wpi::SmallString<64> fancyBarrelEnd;
-    frc::filesystem::GetDeployDirectory(fancyBarrelEnd);
-    wpi::sys::path::append(fancyBarrelEnd, "paths/fancyBarrelEnd.wpilib.json");
-    frc::Trajectory fancyBarrelEndTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelEnd);
+    wpi::SmallString<64> fancyBarrelEndA;
+    frc::filesystem::GetDeployDirectory(fancyBarrelEndA);
+    wpi::sys::path::append(fancyBarrelEndA, "paths/fancyBarrelEndA.wpilib.json");
+    frc::Trajectory fancyBarrelEndATrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelEndA);
 
 
 
@@ -238,8 +238,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCmdFancyStart(
-      fancyBarrelStartTrajectory, [this]() { return m_drivetrain.GetPose(); },
+  frc2::RamseteCommand ramseteCmdFancyStartA(
+      fancyBarrelStartATrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
@@ -251,8 +251,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCmdFancyEnd(
-      fancyBarrelEndTrajectory, [this]() { return m_drivetrain.GetPose(); },
+  frc2::RamseteCommand ramseteCmdFancyEndA(
+      fancyBarrelEndATrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
@@ -267,7 +267,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-      m_drivetrain.ResetOdometry(fancyBarrelStartTrajectory.InitialPose());
+      m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
 
 
 
@@ -289,18 +289,23 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  frc2::SequentialCommandGroup* fancyBarrelGroup = new frc2::SequentialCommandGroup(
-    std::move(ramseteCmdFancyStart),
-    // frc2::ParallelCommandGroup(
-    //   autoTrimAngle(&actuator, true),
+  frc2::SequentialCommandGroup* fancyBarrelGroupB = new frc2::SequentialCommandGroup(
+    frc2::ParallelCommandGroup(
+      std::move(ramseteCmdFancyStartA),
+      IntakeOut(&m_intake, true),
+      AutoPickup(&m_intake, true, 20.0)
+    ),
 
-    // ),
-    autoTrimAngle(&actuator, true),
-    std::move(ramseteCmdFancyEnd),
+    frc2::ParallelCommandGroup(
+      AutoTrimAngle(&actuator, true),
+      AutoShoot(&m_shooter, &actuator, &m_intake, 5.0, 0.0)
+      // std::move(ramseteCmdFancyMidB)
+    ),
+    std::move(ramseteCmdFancyEndA),
     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
     );
 
-  return fancyBarrelGroup;
+  return fancyBarrelGroupB;
 
 }
 

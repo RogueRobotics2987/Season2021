@@ -32,6 +32,7 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/ParallelDeadlineGroup.h>
+#include "commands/AutoShoot.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
