@@ -21,7 +21,7 @@
 class AutoShoot
     : public frc2::CommandHelper<frc2::CommandBase, AutoShoot> {
  public:
-  AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake);
+  AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake, double spinupTime, double shootTime);
 
   void Initialize() override;
 
@@ -37,4 +37,6 @@ class AutoShoot
   ShooterActuator* m_actuator = nullptr;
   frc::Timer* myTimer1 = nullptr;
   double currTime = 0;
+  double m_spinupTime = 0;
+  double m_shootTime = 0;
 };

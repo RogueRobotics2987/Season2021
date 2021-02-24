@@ -4,13 +4,14 @@
 
 #include "commands/AutoShoot.h"
 
-AutoShoot::AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake) {
+AutoShoot::AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake, double spinupTime, double shootTime) {
   // Use addRequirements() here to declare subsystem dependencies.
   m_actuator = c_actuator;
   m_shooter = c_shooter;
   m_intake = c_intake;
   myTimer1 = new frc::Timer;
-
+  m_spinupTime = spinupTime; 
+  m_shootTime = shootTime; 
   AddRequirements(m_shooter);
   AddRequirements(m_actuator);
   AddRequirements(m_intake);
@@ -25,7 +26,7 @@ void AutoShoot::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void AutoShoot::Execute() {
     currTime = myTimer1 -> Get();
-    if (currTime >= 45 && currTime <= 70) {
+    if (currTime >= m_spinupTime && currTime <= m_shootTime) {
 
     
       if(m_shooter->getVelocity() < 500){
