@@ -54,6 +54,12 @@ void AutoShoot::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool AutoShoot::IsFinished() {
-   
-  return false;
+   currTime = myTimer1 -> Get();
+
+  if (currTime>= m_shootTime + 2) {
+    return true;
+  } else {
+    return false;
+  }
+  
 }
