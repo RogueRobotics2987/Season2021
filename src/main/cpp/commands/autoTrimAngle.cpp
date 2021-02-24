@@ -23,7 +23,7 @@ void autoTrimAngle::Initialize() {
 void autoTrimAngle::Execute() {
   currTime = myTimer -> Get();
 
-  if (currTime <= 45 && m_shootingMode == true){
+  if (currTime <= 10 && m_shootingMode == true){
     m_actuator->SetAutoAim(m_shootingMode);
     m_actuator->setAngleH(0.0);
     m_actuator->setAngleV(0.0);
@@ -39,7 +39,7 @@ void autoTrimAngle::End(bool interrupted) {}
 bool autoTrimAngle::IsFinished() {
   currTime = myTimer -> Get();
   
-  if (currTime > 45){
+  if (currTime > 10){
     return true;
   } else { 
     return false;

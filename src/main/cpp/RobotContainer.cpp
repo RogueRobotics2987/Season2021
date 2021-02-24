@@ -114,18 +114,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
     frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
 
-
-    wpi::SmallString<64> barrelStartFile;
-    frc::filesystem::GetDeployDirectory(barrelStartFile);
-    wpi::sys::path::append(barrelStartFile, "paths/barrelStart.wpilib.json");
-    frc::Trajectory barrelStartTrajectory = frc::TrajectoryUtil::FromPathweaverJson(barrelStartFile);
-
-
-    wpi::SmallString<64> barrelEndFile;
-    frc::filesystem::GetDeployDirectory(barrelEndFile);
-    wpi::sys::path::append(barrelEndFile, "paths/barrelEnd.wpilib.json");
-    frc::Trajectory barrelEndTrajectory = frc::TrajectoryUtil::FromPathweaverJson(barrelEndFile);
-
     wpi::SmallString<64> barrelRegFile;
     frc::filesystem::GetDeployDirectory(barrelRegFile);
     wpi::sys::path::append(barrelRegFile, "paths/barrel_longBlue_fewPoints.wpilib.json");
@@ -133,12 +121,12 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
     wpi::SmallString<64> fancyBarrelStart;
     frc::filesystem::GetDeployDirectory(fancyBarrelStart);
-    wpi::sys::path::append(fancyBarrelStart, "paths/barrelStart.wpilib.json");
+    wpi::sys::path::append(fancyBarrelStart, "paths/fancyBarrelStart.wpilib.json");
     frc::Trajectory fancyBarrelStartTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelStart);
 
     wpi::SmallString<64> fancyBarrelEnd;
     frc::filesystem::GetDeployDirectory(fancyBarrelEnd);
-    wpi::sys::path::append(fancyBarrelEnd, "paths/barrelStart.wpilib.json");
+    wpi::sys::path::append(fancyBarrelEnd, "paths/fancyBarrelEnd.wpilib.json");
     frc::Trajectory fancyBarrelEndTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelEnd);
 
 
@@ -237,32 +225,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
-  frc2::RamseteCommand ramseteCommandBarrelStart(
-      barrelStartTrajectory, [this]() { return m_drivetrain.GetPose(); },
-      frc::RamseteController(AutoConstants::kRamseteB,
-                             AutoConstants::kRamseteZeta),
-      frc::SimpleMotorFeedforward<units::meters>(
-          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-      DriveConstants::kDriveKinematics,
-      [this] { return m_drivetrain.GetWheelSpeeds(); },
-      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
-      {&m_drivetrain});
-
-  frc2::RamseteCommand ramseteCommandBarrelEnd(
-      barrelEndTrajectory, [this]() { return m_drivetrain.GetPose(); },
-      frc::RamseteController(AutoConstants::kRamseteB,
-                             AutoConstants::kRamseteZeta),
-      frc::SimpleMotorFeedforward<units::meters>(
-          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
-      DriveConstants::kDriveKinematics,
-      [this] { return m_drivetrain.GetWheelSpeeds(); },
-      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
-      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
-      {&m_drivetrain});
-
   frc2::RamseteCommand ramseteCommandBarrelReg(
       barrelRegTrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
@@ -276,40 +238,69 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
+  frc2::RamseteCommand ramseteCmdFancyStart(
+      fancyBarrelStartTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramseteCmdFancyEnd(
+      fancyBarrelEndTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
 
   // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-  // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
     // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-      m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+      m_drivetrain.ResetOdometry(fancyBarrelStartTrajectory.InitialPose());
 
 
 
 
-  frc2::SequentialCommandGroup* basicBarrel = new frc2::SequentialCommandGroup(
+  frc2::SequentialCommandGroup* basicBarrelGroup = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandA3),
       std::move(ramseteCommandA6),
       std::move(ramseteCommandA9),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  frc2::SequentialCommandGroup* fancyBarrel = new frc2::SequentialCommandGroup(
-      std::move(ramseteCommandBarrelStart),
-      autoTrimAngle(&actuator, true),
-      std::move(ramseteCommandBarrelEnd),
-      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
-      );
-
-  frc2::SequentialCommandGroup* regularBarrel = new frc2::SequentialCommandGroup(
+  frc2::SequentialCommandGroup* regularBarrelGroup = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandBarrelReg),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  frc2::SequentialCommandGroup* points = new frc2::SequentialCommandGroup(
+  frc2::SequentialCommandGroup* pointsGroup = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandExample),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  return regularBarrel;
+  frc2::SequentialCommandGroup* fancyBarrelGroup = new frc2::SequentialCommandGroup(
+    std::move(ramseteCmdFancyStart),
+    // frc2::ParallelCommandGroup(
+    //   autoTrimAngle(&actuator, true),
+
+    // ),
+    autoTrimAngle(&actuator, true),
+    std::move(ramseteCmdFancyEnd),
+    frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+    );
+
+  return fancyBarrelGroup;
 
 }
 
