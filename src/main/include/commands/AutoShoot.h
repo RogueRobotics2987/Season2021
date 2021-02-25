@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/Shooter.h"
 #include "subsystems/Intake.h" 
+#include "subsystems/ShooterActuator.h"
 #include <frc/Timer.h> 
 
 /**
@@ -20,7 +21,7 @@
 class AutoShoot
     : public frc2::CommandHelper<frc2::CommandBase, AutoShoot> {
  public:
-  AutoShoot(Shooter* c_shooter, Intake* c_intake);
+  AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_intake, double spinupTime, double shootTime);
 
   void Initialize() override;
 
@@ -33,7 +34,9 @@ class AutoShoot
   private:
   Shooter* m_shooter = nullptr;
   Intake* m_intake = nullptr;
+  ShooterActuator* m_actuator = nullptr;
   frc::Timer* myTimer1 = nullptr;
-  double curTime = 0;
-  //bool dontRun = false; 
+  double currTime = 0;
+  double m_spinupTime = 5;
+  double m_shootTime = 5;
 };
