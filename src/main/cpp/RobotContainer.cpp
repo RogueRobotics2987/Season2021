@@ -140,6 +140,11 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     frc::filesystem::GetDeployDirectory(fancyBarrelEnd);
     wpi::sys::path::append(fancyBarrelEnd, "paths/barrelStart.wpilib.json");
     frc::Trajectory fancyBarrelEndTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelEnd);
+    
+    wpi::SmallString<64> Slalem_v001;
+    frc::filesystem::GetDeployDirectory(Slalem_v001);
+    wpi::sys::path::append(Slalem_v001, "paths/Slalem_v001.wpilib.json");
+    frc::Trajectory Slalem_v001Trajectory = frc::TrajectoryUtil::FromPathweaverJson(Slalem_v001);
 
 
 
@@ -183,6 +188,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc::Pose2d(0_m, 0_m, frc::Rotation2d(180_deg)),
       // Pass the config                                                                      
       config);
+
+
+
+
+    auto AutoShootTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
+        // Start at the origin facing the +X direction
+        frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
+        //just go straight forward
+        {frc::Translation2d(0.25_m, 0_m),
+        frc::Translation2d(0.5_m, 0_m)},
+        frc::Pose2d(1_m, 0_m, frc::Rotation2d(0_deg)),
+        config);
+
+
 
 
   frc2::RamseteCommand ramseteCommandExample(
@@ -276,11 +295,37 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
+    frc2::RamseteCommand ramseteCommandSlalem_v001(
+      Slalem_v001Trajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+    frc2::RamseteCommand ramseteCommandShoot(
+      AutoShootTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
 
   // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
   // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
     // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-      m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+      m_drivetrain.ResetOdometry(AutoShootTrajectory.InitialPose());
 
 
 
@@ -294,7 +339,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   frc2::SequentialCommandGroup* fancyBarrel = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandBarrelStart),
-      autoTrimAngle(&actuator, true),
+    //   autoTrimAngle(&actuator, true),
       std::move(ramseteCommandBarrelEnd),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
@@ -309,7 +354,21 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  return regularBarrel;
+  frc2::SequentialCommandGroup* Slalem_v001cmd = new frc2::SequentialCommandGroup(
+      std::move(ramseteCommandSlalem_v001),
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+      );
+
+  frc2::SequentialCommandGroup* testDriveAndShoot = new frc2::SequentialCommandGroup(
+      frc2::ParallelCommandGroup{
+        std::move(ramseteCommandShoot),
+        AutoShoot(&m_shooter, &actuator, &m_intake, 3, 15)
+      },
+
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+      );
+
+  return Slalem_v001cmd;
 
 }
 

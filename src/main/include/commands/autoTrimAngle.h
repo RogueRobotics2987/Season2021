@@ -6,13 +6,11 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/ShooterActuator.h" 
+//#include "subsystems/Shooter.h" 
+#include <frc/Timer.h> 
 #include <frc/smartdashboard/SmartDashboard.h> 
-#include "subsystems/ShooterActuator.h"
-#include "subsystems/Shooter.h"
 #include <iostream>
-#include <frc/Timer.h>
-
-
 /**
  * An example command.
  *
@@ -20,10 +18,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class autoTrimAngle
-    : public frc2::CommandHelper<frc2::CommandBase, autoTrimAngle> {
+class AutoTrimAngle
+    : public frc2::CommandHelper<frc2::CommandBase, AutoTrimAngle> {
  public:
-  autoTrimAngle(ShooterActuator* a_actuator, bool shootingMode);
+  AutoTrimAngle(ShooterActuator* a_actuator, bool shootingMode);
 
   void Initialize() override;
 
@@ -33,10 +31,9 @@ class autoTrimAngle
 
   bool IsFinished() override;
 
-private:
-  ShooterActuator* m_actuator = nullptr;
-  bool m_shootingMode = false;
+  private:
+  ShooterActuator* m_actuator = nullptr; 
+  bool m_shootingMode= false;
   frc::Timer* myTimer = nullptr;
-  double currTime = 0;
-  
+  double curTime = 0;
 };
