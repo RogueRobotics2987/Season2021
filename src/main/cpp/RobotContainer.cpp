@@ -41,10 +41,10 @@ RobotContainer::RobotContainer() {
         double safeX = m_driverController.GetX(frc::GenericHID::kLeftHand);
         if(fabs(safeX)<0.1 ) {
             safeX=0;}
-        double safeY = m_driverController.GetY(frc::GenericHID::kRightHand);
-        if(fabs(safeY)<0.1 ) {
+        double safeY = 0 /*m_driverController.GetY(frc::GenericHID::kRightHand)*/;
+        if(fabs(safeY)< 0.1) {
             safeY=0;}
-        double safeRot =  m_driverController.GetZ();
+        double safeRot =  0 /*m_driverController.GetZ()*/;
         if(fabs(safeRot)<0.1 ) {
             safeRot=0;}
         
