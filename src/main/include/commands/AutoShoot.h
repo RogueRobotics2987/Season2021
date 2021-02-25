@@ -37,6 +37,6 @@ class AutoShoot
   ShooterActuator* m_actuator = nullptr;
   frc::Timer* myTimer1 = nullptr;
   double currTime = 0;
-  double m_spinupTime = 0;
-  double m_shootTime = 0;
+  double m_spinupTime = 5;
+  double m_shootTime = 5;
 };
