@@ -325,7 +325,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
   // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
     // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-      m_drivetrain.ResetOdometry(AutoShootTrajectory.InitialPose());
+      m_drivetrain.ResetOdometry(exampleTrajectory.InitialPose());
 
 
 
@@ -361,14 +361,14 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   frc2::SequentialCommandGroup* testDriveAndShoot = new frc2::SequentialCommandGroup(
       frc2::ParallelCommandGroup{
-        std::move(ramseteCommandShoot),
+        std::move(ramseteCommandExample),
         AutoShoot(&m_shooter, &actuator, &m_intake, 3, 15)
       },
 
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  return Slalem_v001cmd;
+  return basicBarrel;
 
 }
 
