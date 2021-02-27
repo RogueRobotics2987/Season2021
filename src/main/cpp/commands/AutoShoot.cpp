@@ -27,8 +27,7 @@ void AutoShoot::Initialize() {
 void AutoShoot::Execute() {
     currTime = myTimer1 -> Get();
     if (currTime >= m_spinupTime && currTime <= m_shootTime) {
-
-    
+      
       if(m_shooter->getVelocity() < 500){
          m_shooter->setPercent(.5);
       }else{

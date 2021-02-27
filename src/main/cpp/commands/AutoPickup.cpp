@@ -30,7 +30,9 @@ void AutoPickup::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void AutoPickup::End(bool interrupted) {}
+void AutoPickup::End(bool interrupted) {
+  m_intake->IntakeBall(0.0);
+}
 
 // Returns true when the command should end.
 bool AutoPickup::IsFinished() {
