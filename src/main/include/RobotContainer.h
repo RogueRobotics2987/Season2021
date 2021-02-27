@@ -27,12 +27,13 @@
 #include "commands/ThirdStageWheel.h" 
 #include "commands/ballReset.h"
 #include "commands/AutoPickup.h"
-#include "commands/autoTrimAngle.h"
+#include "commands/AutoTrimAngle2.h"
 #include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/ParallelDeadlineGroup.h>
 #include "commands/AutoShoot.h"
+#include <frc/smartdashboard/SendableChooser.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -47,6 +48,7 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
   void PeriodicDebug(void);
+  // void frc::SendableChooser();
 
  private:
   // The robot's subsystems and commands are defined here...

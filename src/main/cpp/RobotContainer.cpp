@@ -45,7 +45,6 @@ RobotContainer::RobotContainer()
 
 
 
-
     m_drivetrain.Log(); 
 
     //Dannalyn's shooter code
@@ -352,8 +351,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     // //   AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 0.0)
     // ),
     std::move(ramseteCmdFancyMidB),
-    AutoTrimAngle(&actuator, true),
-    AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 8.0),
+    frc2::ParallelCommandGroup(
+        AutoTrimAngle(&actuator, true),
+        AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 10.0)
+    ),
     std::move(ramseteCmdFancyEndB),
     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
   );
