@@ -46,8 +46,9 @@ bool AutoTrimAngle::IsFinished() {
      curTime = myTimer -> Get();
 
   if (curTime>= 45) {
-    return true;
     nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("ledMode", 0); 
+    return true;
+
   } else {
     return false;
 
