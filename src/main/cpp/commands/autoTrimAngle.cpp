@@ -27,7 +27,7 @@ void AutoTrimAngle::Execute() {
     m_actuator -> limeStream(2); 
       frc::SmartDashboard::PutNumber("Set RPM", 3950); 
     m_actuator->SetAutoAim(m_shootingMode); 
-
+    
   } else {
     m_shootingMode = false;
   } 
