@@ -185,7 +185,6 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // Pass the config                                                                      
       config);
 
-
   frc2::RamseteCommand ramseteCommandExample(
       exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
@@ -348,11 +347,11 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       std::move(ramseteCmdFancyStartB),
       AutoPickup(&m_intake, true, 20.0)
     ),
-    frc2::ParallelCommandGroup(
-      std::move(ramseteCmdFancyMidB)
-    //   AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 0.0)
-      // std::move(ramseteCmdFancyMidB)
-    ),
+    // frc2::ParallelCommandGroup(
+    //   std::move(ramseteCmdFancyMidB)
+    // //   AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 0.0)
+    // ),
+    std::move(ramseteCmdFancyMidB),
     AutoTrimAngle(&actuator, true),
     AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 8.0),
     std::move(ramseteCmdFancyEndB),
