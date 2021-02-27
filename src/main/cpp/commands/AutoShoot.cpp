@@ -13,7 +13,7 @@ AutoShoot::AutoShoot(Shooter* c_shooter, ShooterActuator* c_actuator, Intake* c_
   m_spinupTime = spinupTime; 
   m_shootTime = shootTime; 
   AddRequirements(m_shooter);
-  AddRequirements(m_actuator);
+  //AddRequirements(m_actuator); //doesn't require because it only gets data
   AddRequirements(m_intake);
 }
 
@@ -28,12 +28,11 @@ void AutoShoot::Execute() {
     currTime = myTimer1 -> Get();
     if (currTime >= m_spinupTime && currTime <= m_shootTime) {
 
-    
-      if(m_shooter->getVelocity() < 500){
+    if(m_shooter->getVelocity() < 500){
          m_shooter->setPercent(.5);
       }else{
          m_shooter->setShooter(3950); 
-      }
+      } 
     } else {
         m_shooter->stopShooter();
     }
@@ -46,7 +45,7 @@ void AutoShoot::Execute() {
       m_intake->StartConveyor(.5);
     } else{
       m_intake->StartConveyor(0);
-    }
+    } 
 }
 
 // Called once the command ends or is interrupted.
@@ -56,7 +55,7 @@ void AutoShoot::End(bool interrupted) {}
 bool AutoShoot::IsFinished() {
    currTime = myTimer1 -> Get();
 
-  if (currTime>= m_shootTime + 2) {
+  if (currTime>= m_shootTime) {
     return true;
   } else {
     return false;
