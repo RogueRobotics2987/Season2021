@@ -7,11 +7,12 @@
 
 #include "commands/Climb.h"
 
-Climb::Climb(Climber* c_climber, frc::Joystick* p_stick) {
+Climb::Climb(Climber* c_climber, frc::Joystick* p_stick, frc::Joystick* left_stick) {
   // Use addRequirements() here to declare subsystem dependencies.
   m_climber = c_climber;
   AddRequirements(m_climber);
   m_stick = p_stick;
+  l_stick = left_stick;
   matchTimer = new frc::Timer; 
 }
 
@@ -52,6 +53,12 @@ void Climb::Execute() {
   else if (m_stick->GetPOV() == 180) {
   m_climber->movePin(false); 
   }*/
+  if(l_stick->GetRawButton(16)) {
+    m_climber->movePin(true);
+
+  } else if (l_stick->GetRawButton(15)) {
+    m_climber->movePin(false);
+  }
 
 }
 

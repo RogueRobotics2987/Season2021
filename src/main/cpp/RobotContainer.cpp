@@ -53,7 +53,7 @@ RobotContainer::RobotContainer()
     actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
-    m_climber.SetDefaultCommand(Climb(&m_climber, &xbox));
+    m_climber.SetDefaultCommand(Climb(&m_climber, &xbox, &joyLeft));
 
   // m_drivetrain.Log();
   ConfigureButtonBindings();
@@ -86,7 +86,7 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
  //frc2::JoystickButton(&xbox, 1).WhenHeld(startConveyor(&m_intake, .3)); //shoot, updated button
  //frc2::JoystickButton(&joyLeft, 11).WhenHeld(startConveyor(&m_intake, -.3)); //backwards conveyor, updated button
 
- frc2::JoystickButton(&xbox,9).WhenPressed(SpinWheel(&cSensor)); // updated button
+ frc2::JoystickButton(&joyLeft,10).WhenPressed(SpinWheel(&cSensor)); // updated button
 
  frc2::JoystickButton(&xbox, 5).WhenPressed(IntakeOut(&m_intake, true)); // updated button
  frc2::JoystickButton(&xbox, 6).WhenPressed(IntakeOut(&m_intake, false)); // updated button
