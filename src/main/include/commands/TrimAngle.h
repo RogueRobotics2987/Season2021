@@ -42,11 +42,11 @@ class TrimAngle
   bool IsFinished() override;
 
    private: 
-   ShooterActuator* m_actuator;
+   ShooterActuator* m_actuator = nullptr;
    // Real Val
-   frc::Joystick* rStick; 
-   frc::Timer* myTimer;
-   frc::Joystick* mJoy; 
+   frc::Joystick* rStick = nullptr; 
+   frc::Timer* myTimer = nullptr; 
+   frc::Joystick* mJoy = nullptr; 
    bool camVal = false; 
    bool run = true; 
 

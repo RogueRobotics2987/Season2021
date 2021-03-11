@@ -30,16 +30,16 @@ class Shooter : public frc2::SubsystemBase {
 
 
  private:
-  rev::CANSparkMax* shooterMotor;
-  rev::CANPIDController* shooterPID;
-  rev::CANEncoder* shooterEncoder;
+  rev::CANSparkMax* shooterMotor = nullptr;
+  rev::CANPIDController* shooterPID = nullptr;
+  rev::CANEncoder* shooterEncoder = nullptr;
   double TargetRPM = 4000;
   double kp = 5E-4; 
   double ki = 0; 
   double kd = 0;
   double kff = 2.05E-4; //old number 0.7/3500
   const std::string firmwareVersion = "1.8.2"; 
-  frc::Timer* myTimer;
+  frc::Timer* myTimer = nullptr;
   double Lastkp=0, Lastki=0, Lastkd=0, Lastkff=0;
   double arbFF = 0; 
 

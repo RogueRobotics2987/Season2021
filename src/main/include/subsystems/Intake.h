@@ -37,12 +37,12 @@ class Intake : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  rev::CANSparkMax* p_intakeMotor;
-  rev::CANSparkMax* p_conveyorMotor;
-  frc::DigitalInput* p_intakeSensor;
-  frc::DigitalInput* p_topSensor; 
-  frc::Timer* myTimer; 
-  frc::Timer* myTimer2;
+  rev::CANSparkMax* p_intakeMotor = nullptr;
+  rev::CANSparkMax* p_conveyorMotor = nullptr;
+  frc::DigitalInput* p_intakeSensor = nullptr;
+  frc::DigitalInput* p_topSensor = nullptr; 
+  frc::Timer* myTimer = nullptr; 
+  frc::Timer* myTimer2 = nullptr;
   bool timeGotten = false; 
   double conveyorTime = 0; 
   int ballCount = 0;
@@ -52,9 +52,9 @@ class Intake : public frc2::SubsystemBase {
   int ballOut = 0; 
   bool intakeTime = 0; 
   double firstTime = 0; 
-  frc::DoubleSolenoid* intakeSolenoid; 
+  frc::DoubleSolenoid* intakeSolenoid = nullptr; 
   std::string firmwareVersion = "1.8.2"; 
-  frc::Timer* intakeTimer;
+  frc::Timer* intakeTimer = nullptr;
   bool intakeGood = true; 
   bool sensorSafety = false; 
 };

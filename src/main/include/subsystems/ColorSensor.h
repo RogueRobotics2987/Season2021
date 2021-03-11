@@ -50,20 +50,20 @@ class ColorSensor : public frc2::SubsystemBase {
   std::string targetColor = "T"; 
   bool Run = false; 
   
-  rev::CANSparkMax* spinner; //color wheel spinner
+  rev::CANSparkMax* spinner = nullptr; //color wheel spinner
   std::string getColor2(); 
   private:
-  frc::Timer* myTimer; 
-  frc::Timer* myTimer2; 
+  frc::Timer* myTimer = nullptr; 
+  frc::Timer* myTimer2 = nullptr; 
   std::string ogColor = ""; 
   bool colorChange = false; 
   int colorCount = 0; 
   // Made a pointer called ColorSensor
-    rev::ColorSensorV3* colorSensor;
+    rev::ColorSensorV3* colorSensor = nullptr;
     static constexpr auto i2cPort = frc::I2C::Port::kOnboard;
     frc::Color curColor;
     std::string gameData;
-    rev::ColorMatch* m_colorMatch; 
+    rev::ColorMatch* m_colorMatch = nullptr; 
     static constexpr frc::Color kBlueTarget = frc::Color(0.175, 0.47, 0.356); 
     static constexpr frc::Color kGreenTarget = frc::Color(0.21, 0.55, 0.235); 
     static constexpr frc::Color kRedTarget = frc::Color(0.4, 0.42, 0.17); 
