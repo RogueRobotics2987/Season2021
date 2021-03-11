@@ -52,11 +52,11 @@ void TankDrive::Execute() {
   lastleft = outleft;
   lastright = outright;
 
-  if (m_stickLeft->GetRawButton(2)) { 
+  /*if (m_stickLeft->GetRawButton(2)) { 
     m_drivetrain->Drive(-m_stickLeft ->GetY(), m_stickRight ->GetX());
   } else {
     m_drivetrain->Drive(m_stickLeft ->GetY(), m_stickRight ->GetX()); 
-  } 
+  } */
 }
 
 // Make this return true when this Command no longer needs to run execute()
