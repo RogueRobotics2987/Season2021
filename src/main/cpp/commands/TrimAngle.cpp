@@ -39,8 +39,8 @@ void TrimAngle::Execute() {
       m_actuator->setAngleH(rStick->GetRawAxis(0)); // updated button
       m_actuator->setAngleV(rStick->GetRawAxis(1)); // updated button
       m_actuator->SetAutoAim(rStick->GetRawButton(7)); // updated button
-
-      // switches pipeline using xbox control. (remove x's)
+      
+            // switches pipeline using xbox control. (remove x's)
       if(rStick -> GetPOV()==0){
         m_actuator -> limeStream(1);
         frc::SmartDashboard::PutNumber("Set RPM", 3500); 

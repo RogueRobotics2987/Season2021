@@ -24,7 +24,7 @@
 class Climb
     : public frc2::CommandHelper<frc2::CommandBase, Climb> {
  public:
-  Climb(Climber* c_climber, frc::Joystick* p_stick);
+  Climb(Climber* c_climber, frc::Joystick* p_stick, frc::Joystick* left_stick);
 
   void Initialize() override;
 
@@ -38,4 +38,5 @@ class Climb
   Climber* m_climber = nullptr;
   frc::Joystick* m_stick = nullptr;
   frc::Timer* matchTimer = nullptr; 
+  frc::Joystick* l_stick = nullptr;
 };

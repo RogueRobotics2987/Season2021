@@ -27,6 +27,10 @@
 #include "commands/IntakeOut.h" 
 #include "commands/startConveyor.h" 
 #include "commands/shooterBackwards.h" 
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/Path.h>
+#include <wpi/SmallString.h>
 
 
 
@@ -37,7 +41,11 @@ RobotContainer::RobotContainer()
     {
     //frc::SmartDashboard::PutData(&m_drivetrain);
 
-  
+
+
+
+
+
     m_drivetrain.Log(); 
 
     //Dannalyn's shooter code
@@ -45,7 +53,7 @@ RobotContainer::RobotContainer()
     actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
-    m_climber.SetDefaultCommand(Climb(&m_climber, &xbox));
+    m_climber.SetDefaultCommand(Climb(&m_climber, &xbox, &joyLeft));
 
   // m_drivetrain.Log();
   ConfigureButtonBindings();
@@ -78,7 +86,7 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
  //frc2::JoystickButton(&xbox, 1).WhenHeld(startConveyor(&m_intake, .3)); //shoot, updated button
  //frc2::JoystickButton(&joyLeft, 11).WhenHeld(startConveyor(&m_intake, -.3)); //backwards conveyor, updated button
 
- frc2::JoystickButton(&xbox,9).WhenPressed(SpinWheel(&cSensor)); // updated button
+ frc2::JoystickButton(&joyLeft,10).WhenPressed(SpinWheel(&cSensor)); // updated button
 
  frc2::JoystickButton(&xbox, 5).WhenPressed(IntakeOut(&m_intake, true)); // updated button
  frc2::JoystickButton(&xbox, 6).WhenPressed(IntakeOut(&m_intake, false)); // updated button
@@ -87,6 +95,27 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
+
+//PATHWEAVER JSON ATTEMPT
+    wpi::SmallString<64> toA3;
+    frc::filesystem::GetDeployDirectory(toA3);
+    wpi::sys::path::append(toA3, "paths/toA3.wpilib.json");
+    frc::Trajectory toA3trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA3);
+
+
+    wpi::SmallString<64> toA6;
+    frc::filesystem::GetDeployDirectory(toA6);
+    wpi::sys::path::append(toA6, "paths/toA6.wpilib.json");
+    frc::Trajectory toA6trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA6);
+
+
+    wpi::SmallString<64> toA9;
+    frc::filesystem::GetDeployDirectory(toA9);
+    wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
+    frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
+
+
+
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
       DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
@@ -95,6 +124,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
   config.SetKinematics(DriveConstants::kDriveKinematics);
   config.AddConstraint(autoVoltageConstraint);
+
+
+//COMMENT IN/OUT WHEN DOING AUTO RUN / GALACTIC SEARCH
+  // config.SetReversed(true);
 
   auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
       // Start at the origin facing the +X direction
@@ -128,10 +161,42 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // Pass the config                                                                      
       config);
 
-      m_drivetrain.ResetOdometry(exampleTrajectory.InitialPose()); 
 
-  frc2::RamseteCommand ramseteCommand(
-      exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
+//COMMENT IN/OUT FOR AUTO STUFF/GALACTIC SEARCH
+  //m_intake.IntakeBall(1.0);
+
+
+  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
+
+
+  frc2::RamseteCommand ramseteCommandA3(
+      toA3trajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramseteCommandA6(
+      toA6trajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramseteCommandA9(
+      toA9trajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
                              AutoConstants::kRamseteZeta),
       frc::SimpleMotorFeedforward<units::meters>(
@@ -146,7 +211,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
       return new frc2::SequentialCommandGroup(
-      std::move(ramseteCommand),
+      std::move(ramseteCommandA3),
+      std::move(ramseteCommandA6),
+      std::move(ramseteCommandA9),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {}));
 
 

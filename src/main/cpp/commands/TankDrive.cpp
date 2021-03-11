@@ -27,19 +27,26 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
   
-  double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
-  double Right = m_stickRight ->GetX(); // X-position of joystick
-  static double lastleft = 0.0;
-  static double lastright = 0.0;
-  static double outleft = 0.0;
-  static double outright = 0.0;
-  double maxChange = 0.025;
-  
-  // gradually changes speed
-  if (abs(Left-lastleft)>maxChange){
-    outleft = lastleft + copysignf(1.0, Left-lastleft)*maxChange;
-  } else{
-      outleft = Left;
+  static double lastLeft = 0.0; 
+  static double lastRight = 0.0;
+
+  double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
+  double Right = m_stickRight -> GetX(); //comment
+  double outLeft = 0;
+  double outRight = 0;
+  double maxChange = 0.04; //per second
+ 
+ frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
+ frc::SmartDashboard::PutNumber("Left value", Left);
+ frc::SmartDashboard::PutNumber("lastRight Value", lastRight);
+ frc::SmartDashboard::PutNumber("Right value", Right);
+ frc::SmartDashboard::GetNumber("maxChange", maxChange); 
+ maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
+
+  if (abs(Left-lastLeft) >maxChange) {
+    outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*maxChange;
+    } else {
+      outLeft = Left;
   }
   if (abs(Right-lastright)>maxChange){
     outright = lastright + copysignf(1.0, Right-lastright)*maxChange;
