@@ -20,7 +20,7 @@ void AutoPickup::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutoPickup::Execute() {
-
+  m_intake->PrepareBall();
   if(m_run == true && m_timer->Get() <= m_time){
     m_intake->IntakeBall(0.65);
   }else{

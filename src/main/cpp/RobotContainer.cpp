@@ -317,13 +317,13 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
     //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
-    m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
+     m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
+    //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
 
 
 
 
-  frc2::SequentialCommandGroup* basicBarrelGroup = new frc2::SequentialCommandGroup(
+  frc2::SequentialCommandGroup* basicBounceGroup = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandA3),
       std::move(ramseteCommandA6),
       std::move(ramseteCommandA9),
@@ -339,6 +339,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       std::move(ramseteCommandExample),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
+
+  frc2::SequentialCommandGroup* fancyBarrelGroupA = new frc2::SequentialCommandGroup(
+    IntakeOut(&m_intake, true),
+    frc2::ParallelRaceGroup(
+        AutoPickup(&m_intake, true, 20.0),
+        std::move(ramseteCmdFancyStartA)
+        
+    ),
+    frc2::ParallelCommandGroup(
+        AutoTrimAngle(&actuator, true),
+        AutoShoot(&m_shooter, &actuator, &m_intake, 0.0, 9.0)
+    ),
+    std::move(ramseteCmdFancyEndA)
+  );
 
   frc2::SequentialCommandGroup* fancyBarrelGroupB = new frc2::SequentialCommandGroup(
     IntakeOut(&m_intake, true),
@@ -360,7 +374,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   );
 
     
-  return fancyBarrelGroupB;
+  return fancyBarrelGroupA;
 
 }
 

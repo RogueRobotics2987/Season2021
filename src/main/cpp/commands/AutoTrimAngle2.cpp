@@ -23,7 +23,7 @@ void AutoTrimAngle::Initialize() {
 void AutoTrimAngle::Execute() {
     curTime = myTimer -> Get();
 
-  if (curTime <= 3 && m_shootingMode == true){
+  if (curTime <= 9 && m_shootingMode == true){
     m_actuator -> limeStream(2); 
       frc::SmartDashboard::PutNumber("Set RPM", 3950); 
     m_actuator->SetAutoAim(m_shootingMode); 
@@ -45,7 +45,7 @@ void AutoTrimAngle::End(bool interrupted) {}
 bool AutoTrimAngle::IsFinished() {
      curTime = myTimer -> Get();
 
-  if (curTime>= 3) {
+  if (curTime>= 9) {
     nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("ledMode", 0); 
     return true;
 
