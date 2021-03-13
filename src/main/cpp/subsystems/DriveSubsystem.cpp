@@ -65,7 +65,8 @@ DriveSubsystem::DriveSubsystem()
         kRearRightTurningEncoderReversed
       },
 
-      m_odometry{kDriveKinematics, m_gyro.GetRotation2d(), frc::Pose2d(frc::Translation2d(), frc::Rotation2d(units::degree_t(90)))} {}
+      m_odometry{kDriveKinematics, m_gyro.GetRotation2d()} {}
+      //frc::Pose2d(frc::Translation2d(), frc::Rotation2d(units::degree_t(90)))
 
 void DriveSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
