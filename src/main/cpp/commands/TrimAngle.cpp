@@ -49,7 +49,7 @@ void TrimAngle::Execute() {
 
       } else if(rStick -> GetPOV()==180){
         m_actuator -> limeStream(3);
-        frc::SmartDashboard::PutNumber("Set RPM", 3950); 
+        frc::SmartDashboard::PutNumber("Set RPM", 3800); 
 
       } else if(rStick -> GetPOV()==270){
         m_actuator -> limeStream(4);
