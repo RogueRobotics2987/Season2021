@@ -28,6 +28,7 @@ RobotContainer::RobotContainer() {
 
   // Configure the button bindings
   ConfigureButtonBindings();
+  m_drive.ZeroHeading();
 
   // Set up default drive command
   m_drive.SetDefaultCommand(frc2::RunCommand(
@@ -55,7 +56,7 @@ RobotContainer::RobotContainer() {
                          -safeX),
                       units::radians_per_second_t(
                          -safeRot),
-                      false);
+                      true);
         // m_drive.Drive(units::meters_per_second_t(0),
         // units::meters_per_second_t(1),
         // units::radians_per_second_t(0),
