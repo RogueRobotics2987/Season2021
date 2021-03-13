@@ -27,10 +27,10 @@ DriveTrain::DriveTrain() {
 
   myAhrs = new AHRS(frc::SerialPort::kMXP); 
   m_robotDrive = new frc::DifferentialDrive(*LeftFront, *RightFront);
-  // RightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
-  // LeftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
-  // RightBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
-  // LeftBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
+  RightFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
+  LeftFront->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
+  RightBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
+  LeftBack->SetIdleMode(rev::CANSparkMax::IdleMode::kCoast); 
   LeftBack->Follow(*LeftFront); 
   RightBack->Follow(*RightFront); 
 

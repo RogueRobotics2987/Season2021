@@ -60,8 +60,8 @@ class RobotContainer {
   ShooterActuator actuator;
   CompressorObject m_compressor;
 
-  
-
+  frc::SendableChooser<frc2::Command*> autoChooser;
+  std::unique_ptr<frc2::Command> selectedMode;
   
 
   //Elevator* m_elevator;

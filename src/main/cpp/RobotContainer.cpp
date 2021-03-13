@@ -42,7 +42,7 @@ RobotContainer::RobotContainer()
     //frc::SmartDashboard::PutData(&m_drivetrain);
 
 
-
+    // autoChooser.SetDefaultOption("Do Nothing",);
 
 
     m_drivetrain.Log(); 
@@ -112,6 +112,11 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     frc::filesystem::GetDeployDirectory(toA9);
     wpi::sys::path::append(toA9, "paths/toA9.wpilib.json");
     frc::Trajectory toA9trajectory = frc::TrajectoryUtil::FromPathweaverJson(toA9);
+
+    wpi::SmallString<64> toFinish;
+    frc::filesystem::GetDeployDirectory(toFinish);
+    wpi::sys::path::append(toFinish, "paths/toFinish.wpilib.json");
+    frc::Trajectory toFinishTrajectory = frc::TrajectoryUtil::FromPathweaverJson(toFinish);
 
     wpi::SmallString<64> barrelRegFile;
     frc::filesystem::GetDeployDirectory(barrelRegFile);
@@ -236,6 +241,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
+  frc2::RamseteCommand ramseteCommandBounceFinish(
+      toFinishTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
   frc2::RamseteCommand ramseteCommandBarrelReg(
       barrelRegTrajectory, [this]() { return m_drivetrain.GetPose(); },
       frc::RamseteController(AutoConstants::kRamseteB,
@@ -316,9 +334,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
     //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-    //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-     m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
+     m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+    //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
     //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
+    // m_drivetrain.ResetOdometry(toFinishTrajectory.InitialPose());
 
 
 
@@ -327,6 +346,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       std::move(ramseteCommandA3),
       std::move(ramseteCommandA6),
       std::move(ramseteCommandA9),
+      std::move(ramseteCommandBounceFinish),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
@@ -373,8 +393,12 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
   );
 
+//   frc2::SequentialCommandGroup* doNothing(
+//       frc::Translation2d(0_m, 0_m),
+//       frc::Translation2d(0_m, 0_m)
+//   );
     
-  return fancyBarrelGroupA;
+  return regularBarrelGroup;
 
 }
 
