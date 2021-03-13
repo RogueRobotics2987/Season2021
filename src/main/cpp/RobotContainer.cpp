@@ -17,6 +17,7 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include "commands/ResetHeading.h"
 
 #include "Constants.h"
 #include "subsystems/DriveSubsystem.h"
@@ -66,11 +67,12 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-    frc2::JoystickButton(&m_driverController, 1).WhenPressed(frc2::RunCommand(
-      [this] {
-        m_drive.ZeroHeading();
-      },
-      {&m_drive}));
+    frc2::JoystickButton(&m_driverController, 1).WhenPressed(ResetHeading(&m_drive));
+//       [this] {
+//         m_drive.ZeroHeading();
+    //   },
+//       {&m_drive}));
+      
 }
 
 // frc2::Command* RobotContainer::GetAutonomousCommand() {
