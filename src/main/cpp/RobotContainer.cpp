@@ -56,7 +56,7 @@ RobotContainer::RobotContainer() {
                          -safeX),
                       units::radians_per_second_t(
                          -safeRot),
-                      false);
+                      true);
         // m_drive.Drive(units::meters_per_second_t(0),
         // units::meters_per_second_t(1),
         // units::radians_per_second_t(0),
@@ -65,7 +65,13 @@ RobotContainer::RobotContainer() {
       {&m_drive}));
 }
 
-void RobotContainer::ConfigureButtonBindings() {}
+void RobotContainer::ConfigureButtonBindings() {
+    frc2::JoystickButton(&m_driverController, 1).WhenPressed(frc2::RunCommand(
+      [this] {
+        m_drive.ZeroHeading();
+      },
+      {&m_drive}));
+}
 
 // frc2::Command* RobotContainer::GetAutonomousCommand() {
 //   // Set up config for trajectory
