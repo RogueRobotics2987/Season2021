@@ -1,6 +1,8 @@
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/trajectory/constraint/DifferentialDriveKinematicsConstraint.h>
-#include <units/units.h>
+//#include <units/units.h>
+#include <units/length.h>
+#include <units/voltage.h>
 #include <wpi/math>
 
 #pragma once 
@@ -20,8 +22,8 @@ namespace DriveConstants{
 }
 
 namespace AutoConstants{ 
-     constexpr auto kMaxSpeed = 2_mps; 
-     constexpr auto kMaxAcceleration = 1.5_mps_sq;
+     constexpr auto kMaxSpeed = 2.2_mps; 
+     constexpr auto kMaxAcceleration = 1.2_mps_sq;
      constexpr double  kRamseteB = 2; 
      constexpr double kRamseteZeta = .7;
 
