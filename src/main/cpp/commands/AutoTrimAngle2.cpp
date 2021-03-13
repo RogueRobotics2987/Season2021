@@ -39,14 +39,16 @@ void AutoTrimAngle::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void AutoTrimAngle::End(bool interrupted) {}
+void AutoTrimAngle::End(bool interrupted) {
+  nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("ledMode", 0); 
+
+}
 
 // Returns true when the command should end.
 bool AutoTrimAngle::IsFinished() {
      curTime = myTimer -> Get();
 
   if (curTime>= 45) {
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rr")->PutNumber("ledMode", 0); 
     return true;
 
   } else {
