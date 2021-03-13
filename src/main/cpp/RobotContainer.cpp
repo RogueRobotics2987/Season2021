@@ -141,6 +141,20 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     wpi::sys::path::append(fancyBarrelEnd, "paths/barrelStart.wpilib.json");
     frc::Trajectory fancyBarrelEndTrajectory = frc::TrajectoryUtil::FromPathweaverJson(fancyBarrelEnd);
 
+    wpi::SmallString<64> slalemPath;
+    frc::filesystem::GetDeployDirectory(slalemPath);
+    wpi::sys::path::append(slalemPath, "paths/Slalem_v001.wpilib.json");
+    frc::Trajectory slalemPathTrajectory = frc::TrajectoryUtil::FromPathweaverJson(slalemPath);
+
+    wpi::SmallString<64> gSearchRedB;
+    frc::filesystem::GetDeployDirectory(gSearchRedB);
+    wpi::sys::path::append(gSearchRedB, "paths/GalacticSearchB_Red.wpilib.json");
+    frc::Trajectory gSearchRedBTrajectory = frc::TrajectoryUtil::FromPathweaverJson(gSearchRedB);
+
+    wpi::SmallString<64> gSearchBlueB;
+    frc::filesystem::GetDeployDirectory(gSearchBlueB);
+    wpi::sys::path::append(gSearchBlueB, "paths/GalacticSearchB_Blue.wpilib.json");
+    frc::Trajectory gSearchBlueBTrajectory = frc::TrajectoryUtil::FromPathweaverJson(gSearchBlueB);
 
 
 
@@ -276,12 +290,65 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
       {&m_drivetrain});
 
+        frc2::RamseteCommand ramseteCommandSlalem(
+      slalemPathTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
-  // m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-  // m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
-    // m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-      m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+        frc2::RamseteCommand ramseteCommandGalacticSearchRedB(
+      gSearchRedBTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
+        frc2::RamseteCommand ramseteCmommandGalacticSearchBlueB(
+      gSearchBlueBTrajectory, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+
+
+
+    //    m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
+    //    m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
+    //    m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+       m_drivetrain.ResetOdometry(gSearchRedBTrajectory.InitialPose());
+    // m_drivetrain.ResetOdometry(gSearchBlueBTrajectory.InitialPose());
+
+limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
+    txi = limelightTablerri->GetNumber("tx", 0.0); 
+    tyi = limelightTablerri->GetNumber("ty", 0.0); 
+    frc::SmartDashboard::PutNumber("Galactic X", txi);
+    frc::SmartDashboard::PutNumber("Galactic Y", tyi);
+    if (txi > 3.0 && tyi < -9.0) {
+      RedB = true;
+    } else  { // if (txi < 3)
+      RedB = false;
+    }
+     frc::SmartDashboard::PutBoolean("RedB", RedB);
 
 
 
@@ -294,7 +361,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
   frc2::SequentialCommandGroup* fancyBarrel = new frc2::SequentialCommandGroup(
       std::move(ramseteCommandBarrelStart),
-      autoTrimAngle(&actuator, true),
+    //   autoTrimAngle(&actuator, true),
       std::move(ramseteCommandBarrelEnd),
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
@@ -304,12 +371,47 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
+//   AutoShoot myCmd = AutoShoot(m_shooter, actuator, m_intake, 3.0, 5.0);
+
   frc2::SequentialCommandGroup* points = new frc2::SequentialCommandGroup(
-      std::move(ramseteCommandExample),
+    //   std::move(ramseteCommandExample),
+      AutoTrimAngle(&actuator, true),
+      frc2::ParallelCommandGroup {
+        AutoShoot(&m_shooter, &actuator, &m_intake, 1.0, 15.0)
+      },
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-  return regularBarrel;
+    frc2::SequentialCommandGroup* slalem = new frc2::SequentialCommandGroup(
+      std::move(ramseteCommandSlalem),
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+      );
+
+    frc2::SequentialCommandGroup* galacticRedB = new frc2::SequentialCommandGroup(
+      IntakeOut(&m_intake, true),
+      frc2::ParallelRaceGroup {
+        AutoPickup(&m_intake, true, 30),
+        std::move(ramseteCommandGalacticSearchRedB)
+      },
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+      );
+
+    frc2::SequentialCommandGroup* galacticBlueB = new frc2::SequentialCommandGroup(
+      IntakeOut(&m_intake, true),
+      frc2::ParallelRaceGroup {
+        AutoPickup(&m_intake, true, 30),
+        std::move(ramseteCmommandGalacticSearchBlueB)
+      },
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+      );
+
+if (RedB == true) {
+    return galacticRedB;
+}   else {
+    return galacticBlueB;
+}
+
+//   return galacticRedB;
 
 }
 

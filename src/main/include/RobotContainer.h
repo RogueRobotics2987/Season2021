@@ -27,11 +27,12 @@
 #include "commands/ThirdStageWheel.h" 
 #include "commands/ballReset.h"
 #include "commands/AutoPickup.h"
-#include "commands/autoTrimAngle.h"
+#include "commands/AutoTrimAngle2.h"
 #include <frc2/command/ParallelCommandGroup.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/ParallelRaceGroup.h>
 #include <frc2/command/ParallelDeadlineGroup.h>
+#include "commands/AutoShoot.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -57,6 +58,10 @@ class RobotContainer {
   ShooterActuator actuator;
   CompressorObject m_compressor;
 
+  std::shared_ptr<NetworkTable> limelightTablerri;
+  double txi = 0.0;
+  double tyi = 0.0;
+  bool RedB = false;
   
 
   
