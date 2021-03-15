@@ -89,8 +89,7 @@ void Intake::PrepareBall(){
         }
         
         
-    }
-    else if(p_intakeSensor->Get()){
+    } else if(p_intakeSensor->Get()){
             if(!timeGotten && sensorBool){
                 
                 conveyorTime = myTimer2->Get(); 
@@ -104,7 +103,7 @@ void Intake::PrepareBall(){
                 //Original .08
                 if(myTimer2->Get() - conveyorTime < .25 && ballCount < 3 && p_topSensor->Get()){
                     //Original .375
-                    p_conveyorMotor->Set(.5); 
+                    p_conveyorMotor->Set(.55); 
                 }
                 else{
                     sensorBool = false; 
