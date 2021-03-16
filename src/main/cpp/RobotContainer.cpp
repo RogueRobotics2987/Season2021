@@ -338,7 +338,10 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
        m_drivetrain.ResetOdometry(gSearchRedBTrajectory.InitialPose());
     // m_drivetrain.ResetOdometry(gSearchBlueBTrajectory.InitialPose());
 
-limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
+
+
+nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 0);
+limelightTablerri = NetworkTable::GetTable("limelight-rri");
     txi = limelightTablerri->GetNumber("tx", 0.0); 
     tyi = limelightTablerri->GetNumber("ty", 0.0); 
     frc::SmartDashboard::PutNumber("Galactic X", txi);
