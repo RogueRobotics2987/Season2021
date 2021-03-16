@@ -198,6 +198,41 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
+    wpi::SmallString<64> GSARedStartFile;
+    frc::filesystem::GetDeployDirectory(GSARedStartFile);
+    wpi::sys::path::append(GSARedStartFile, "paths/GSARedStart.wpilib.json");
+    frc::Trajectory GSARedStartTraj = frc::TrajectoryUtil::FromPathweaverJson(GSARedStartFile);
+
+    wpi::SmallString<64> GSARedEndFile;
+    frc::filesystem::GetDeployDirectory(GSARedEndFile);
+    wpi::sys::path::append(GSARedEndFile, "paths/GSARedEnd.wpilib.json");
+    frc::Trajectory GSARedEndTraj = frc::TrajectoryUtil::FromPathweaverJson(GSARedEndFile);
+
+
+
+    wpi::SmallString<64> GSABlueStartFile;
+    frc::filesystem::GetDeployDirectory(GSABlueStartFile);
+    wpi::sys::path::append(GSABlueStartFile, "paths/GSABlueStart.wpilib.json");
+    frc::Trajectory GSABlueStartTraj = frc::TrajectoryUtil::FromPathweaverJson(GSABlueStartFile);
+
+    wpi::SmallString<64> GSABlueMidFile;
+    frc::filesystem::GetDeployDirectory(GSABlueMidFile);
+    wpi::sys::path::append(GSABlueMidFile, "paths/GSABlueMid.wpilib.json");
+    frc::Trajectory GSABlueMidTraj = frc::TrajectoryUtil::FromPathweaverJson(GSABlueMidFile);
+
+    wpi::SmallString<64> GSABlueEndFile;
+    frc::filesystem::GetDeployDirectory(GSABlueEndFile);
+    wpi::sys::path::append(GSABlueEndFile, "paths/GSABlueEnd.wpilib.json");
+    frc::Trajectory GSABlueEndTraj = frc::TrajectoryUtil::FromPathweaverJson(GSABlueEndFile);
+
+
+
+
+
+
+
+
+
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
       frc::SimpleMotorFeedforward<units::meters>(
       DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
@@ -236,6 +271,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       frc::Pose2d(0_m, 0_m, frc::Rotation2d(180_deg)),
       // Pass the config                                                                      
       config);
+
 
   frc2::RamseteCommand ramseteCommandExample(
       exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
@@ -434,6 +470,86 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
+
+
+
+
+  frc2::RamseteCommand ramCmdGSARedStart(
+      GSARedStartTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramCmdGSARedEnd(
+      GSARedEndTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+
+
+
+
+  frc2::RamseteCommand ramCmdGSABlueStart(
+      GSABlueStartTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramCmdGSABlueMid(
+      GSABlueMidTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramCmdGSABlueEnd(
+      GSABlueEndTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+
+
+
+
+
+
+
     //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
     //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
@@ -442,8 +558,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //  m_drivetrain.ResetOdometry(gSearchBlueATrajectory.InitialPose());
      m_drivetrain.ResetOdometry(gSearchRedATrajectory.InitialPose());
     //  m_drivetrain.ResetOdometry(extraBarrelStartTrajectory.InitialPose());
-
-
+    //  m_drivetrain.ResetOdometry(GSARedStartTraj.InitialPose());
+    //  m_drivetrain.ResetOdometry(GSABlueStartTraj.InitialPose());
 
 
 
@@ -543,17 +659,55 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       std::move(ramseteCmdBarrelExtraEnd)
   );
 
+
+
+  frc2::ParallelRaceGroup* GSARedGroup = new frc2::ParallelRaceGroup(
+    frc2::SequentialCommandGroup(
+        std::move(ramCmdGSARedStart),
+        std::move(ramCmdGSARedEnd)
+    ),
+    frc2::SequentialCommandGroup(
+        IntakeOut(&m_intake, true),
+        AutoPickup(&m_intake, true, 30)
+    )
+  );
+
+  frc2::ParallelRaceGroup* GSABlueGroup = new frc2::ParallelRaceGroup(
+    frc2::SequentialCommandGroup(
+        std::move(ramCmdGSABlueStart),
+        std::move(ramCmdGSABlueMid),
+        std::move(ramCmdGSABlueEnd)
+    ),
+    frc2::SequentialCommandGroup(
+        IntakeOut(&m_intake, true),
+        AutoPickup(&m_intake, true, 30)
+    )
+  );
+
 //   autoChooser.SetDefaultOption("Board A", gSearchBlueAGroup);
 //   autoChooser.AddOption("Board B", gSearchRedAGroup);
 //   frc2::SmartDashboard::PutData(autoChooser);
-
     // if (RedA == true){
     //     return gSearchRedAGroup;
     // }else{
     //     return gSearchBlueAGroup;
     // };
 
-    return gSearchRedAGroup; 
+
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
+        if (txi > -10.0) { 
+            RedA = true;
+        } else  { 
+            RedA = false;
+        }
+        frc::SmartDashboard::PutBoolean("RedA", RedA);
+
+
+    if(RedA == true){
+        return gSearchRedAGroup;
+    } else {        // Blue map
+        return gSearchBlueAGroup;
+    }
 }
 
 
