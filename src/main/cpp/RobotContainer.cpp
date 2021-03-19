@@ -49,7 +49,7 @@ RobotContainer::RobotContainer()
     m_drivetrain.Log(); 
 
     //Dannalyn's shooter code
-   // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); 
+   // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); //don't need in 2021
     actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
     m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
     m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
@@ -62,6 +62,34 @@ RobotContainer::RobotContainer()
   // Configure the button bindings
   //std::cout << "Constructor" << std::endl; 
    //j1.WhenPressed(new setHeight(10, &m_elevator));
+    
+    limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
+    txi = limelightTablerri->GetNumber("tx", 0.0); 
+    tyi = limelightTablerri->GetNumber("ty", 0.0); 
+    frc::SmartDashboard::PutNumber("Galactic X", txi);
+    frc::SmartDashboard::PutNumber("Galactic Y", tyi);
+
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
+     if (txi > -10) { 
+      RedA = true;
+    } else  { 
+      RedA = false;
+    }
+     frc::SmartDashboard::PutBoolean("RedA", RedA);
+    
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 0);
+    if (txi > 3.0 && tyi < -9.0) {
+      RedB = true;
+    } else  { 
+      RedB = false;
+    }
+     frc::SmartDashboard::PutBoolean("RedB", RedB);
+
+/*if (txi > -5 && tyi < -14) { 
+      RedA = true;
+    } else  { 
+      RedA = false;
+    } */
 
 }
 

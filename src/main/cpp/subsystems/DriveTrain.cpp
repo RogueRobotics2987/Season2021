@@ -104,12 +104,12 @@ void DriveTrain::Log() {
 // JOYSTICK DRIVE FUNCTION
 void DriveTrain::Drive(double y, double z) { 
   
-// leftFrontEncoder->SetDistancePerPulse();
-// frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
-// frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
-// frc::SmartDashboard::PutNumber("Left Distance", leftEncoder->GetPosition());
-// frc::SmartDashboard::PutNumber("Right Distance", rightEncoder->GetPosition());
-// frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
+  //leftFrontEncoder->SetDistancePerPulse();
+//   frc::SmartDashboard::PutNumber("Right Voltage Output", RightFront->GetAppliedOutput());
+//   frc::SmartDashboard::PutNumber("Left Voltage Output", LeftFront->GetAppliedOutput());
+//   frc::SmartDashboard::PutNumber("Left Distance", LeftEncoder.GetPosition());
+//   frc::SmartDashboard::PutNumber("Right Distance", RightEncoder.GetPosition());
+//  //frc::SmartDashboard::PutNumber("AHRS Heading", GetHeading()); 
   m_robotDrive->ArcadeDrive(-y, z);
   
 }

@@ -74,5 +74,11 @@ class RobotContainer {
 
   Autonomous m_autonomousCommand;
 
+  std::shared_ptr<NetworkTable> limelightTablerri;
+   double txi = 0.0;
+   double tyi = 0.0;
+   bool RedB = false;
+   bool RedA = false;
+
   void ConfigureButtonBindings();
 };

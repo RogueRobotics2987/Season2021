@@ -27,16 +27,16 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
   
-  static double lastLeft = 0.0; 
-  static double lastRight = 0.0;
-
-  double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
-  double Right = m_stickRight -> GetX(); //comment
-  double outLeft = 0;
-  double outRight = 0;
-  double maxChange = 0.04; //per second
- 
- frc::SmartDashboard::PutNumber("lastLeft Value", lastLeft);
+  double Left = m_stickLeft ->GetY();   // Gets Y-position of joystick
+  double Right = m_stickRight ->GetX(); // X-position of joystick
+  
+  static double lastleft = 0.0;
+  static double lastright = 0.0;
+  double outleft = 0.0; // in dan_pose is a double not a static double
+  double outright = 0.0; // in dan_pose is a double not a static double
+  double maxChange = 0.04; //per second //was 0.025  
+  
+ frc::SmartDashboard::PutNumber("lastLeft Value", lastleft);
  frc::SmartDashboard::PutNumber("Left value", Left);
  frc::SmartDashboard::PutNumber("lastRight Value", lastRight);
  frc::SmartDashboard::PutNumber("Right value", Right);

@@ -15,6 +15,7 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/smartdashboard/Field2d.h>
+//#include "rev/CANPIDController.h"
 #include <frc2/command/SubsystemBase.h>
 
 //#include <units/units.h>
@@ -73,6 +74,18 @@ class DriveTrain : public frc2::SubsystemBase {
     frc::DifferentialDrive* m_robotDrive = nullptr;
     AHRS* myAhrs = nullptr; 
     frc::DifferentialDriveOdometry* m_odometry = nullptr; 
+
+  /*rev::CANSparkMax* LeftBack = nullptr;
+  rev::CANSparkMax* LeftFront = nullptr;
+  rev::CANSparkMax* RightBack = nullptr;
+  rev::CANSparkMax* RightFront = nullptr;
+  rev::CANEncoder* leftEncoder = nullptr;
+  rev::CANEncoder* rightEncoder = nullptr; 
+  frc::DifferentialDrive* m_robotDrive = nullptr;
+  AHRS* myAhrs = nullptr; 
+  frc::DifferentialDriveOdometry* m_odometry = nullptr; 
+
+  frc::Field2d m_field; */
 
     frc::Field2d m_field;
 };
