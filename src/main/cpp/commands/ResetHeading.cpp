@@ -22,7 +22,7 @@ void ResetHeading::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void ResetHeading::Execute() {
    m_Drive->ZeroHeading(); 
-
+ 
 }
 
 // Called once the command ends or is interrupted.
