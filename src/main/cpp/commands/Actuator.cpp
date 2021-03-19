@@ -7,7 +7,7 @@
 
 #include "commands/Actuator.h"
 
-Actuator::Actuator(ActuatorSubsystem* m_Actuator):m_Acuator(m_Actuator) {
+Actuator::Actuator(ActuatorSubsystem* m_Actuator):m_Actuator(m_Actuator) {
   AddRequirements(m_Actuator);
   // Use addRequirements() here to declare subsystem dependencies.
 }
