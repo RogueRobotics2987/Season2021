@@ -346,7 +346,7 @@ limelightTablerri = NetworkTable::GetTable("limelight-rri");
     tyi = limelightTablerri->GetNumber("ty", 0.0); 
     frc::SmartDashboard::PutNumber("Galactic X", txi);
     frc::SmartDashboard::PutNumber("Galactic Y", tyi);
-    if (txi > 3.0 && tyi < -9.0) {
+    if (txi > -2.0) {
       RedB = true;
     } else  { // if (txi < 3)
       RedB = false;
