@@ -92,6 +92,28 @@ frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // upda
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
+  std::cout<<"***DJO*** I'm running GetAutonomousCommand()" << std::endl;
+
+
+  limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
+  nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
+  std::cout<<"***DJO*** I'm running pipeline update to pipeline 1" << std::endl;
+  txi = nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri")->GetNumber("tx", -20.0); 
+  tyi = limelightTablerri->GetNumber("ty", 0.0); 
+  frc::SmartDashboard::PutNumber("Galactic X", txi);
+  frc::SmartDashboard::PutNumber("Galactic Y", tyi);
+  // if (txi > 3.0 && tyi < -9.0) {
+  //   RedA = true;
+  // } else  { // if (txi < 3)
+  //   RedA = false;
+  // }
+
+  if (txi > -10.0) { 
+      RedA = true;
+  } else  { 
+      RedA = false;
+  }
+  frc::SmartDashboard::PutBoolean("RedA", RedA);
 
 //JSON FILES AND PATHS
     wpi::SmallString<64> toA3;
@@ -782,7 +804,15 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //     return gSearchBlueAGroup;
     // }
     
-    return basicBounceGroup;
+    // return basicBounceGroup;
+    
+
+
+    if(RedA == true){
+        return gSearchRedAGroup;
+    } else {        // Blue map
+        return gSearchBlueAGroup;
+    }
 }
 
 
