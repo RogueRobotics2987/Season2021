@@ -59,18 +59,6 @@ RobotContainer::RobotContainer()
    //j1.WhenPressed(new setHeight(10, &m_elevator));
 
 
-   limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
-    txi = limelightTablerri->GetNumber("tx", 0.0); 
-    tyi = limelightTablerri->GetNumber("ty", 0.0); 
-    frc::SmartDashboard::PutNumber("Galactic X", txi);
-    frc::SmartDashboard::PutNumber("Galactic Y", tyi);
-    if (txi > 3.0 && tyi < -9.0) {
-      RedA = true;
-    } else  { // if (txi < 3)
-      RedA = false;
-    }
-     frc::SmartDashboard::PutBoolean("RedA", RedA);
-
 
 }
 
@@ -230,7 +218,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
-
+  frc::CentripetalAccelerationConstraint autoCentripConstraint = frc::CentripetalAccelerationConstraint(
+      2.0_mps_sq
+  );
 
 
   frc::DifferentialDriveVoltageConstraint autoVoltageConstraint(
@@ -241,7 +231,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   frc::TrajectoryConfig config{AutoConstants::kMaxSpeed, AutoConstants::kMaxAcceleration}; 
   config.SetKinematics(DriveConstants::kDriveKinematics);
   config.AddConstraint(autoVoltageConstraint);
-
+  config.SetReversed(false);
+  config.AddConstraint(autoCentripConstraint);
+  
 
   auto exampleTrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
       // Start at the origin facing the +X direction
@@ -272,6 +264,28 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
       // Pass the config                                                                      
       config);
 
+
+//POINT BY POINT TEST
+  auto pointTraj = frc::TrajectoryGenerator::GenerateTrajectory(
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(-26.56505118_deg + 180.0_deg)),
+     {
+      frc::Translation2d(3.583_m, -1.618_m),
+      frc::Translation2d(3.686_m, 0.427_m)
+     },
+      frc::Pose2d(8.352_m, 0.427_m, frc::Rotation2d(-7.917293025_deg + 180.0_deg)),
+      config
+  );
+
+  auto pointDebug = frc::TrajectoryGenerator::GenerateTrajectory(
+      frc::Pose2d(0_m, 0_m, frc::Rotation2d(180.0_deg)),
+     {
+      frc::Translation2d(2.5_m, 0_m),
+      frc::Translation2d(5_m, 0_m),
+      frc::Translation2d(5_m, -1.5_m)
+     },
+      frc::Pose2d(5_m, -3_m, frc::Rotation2d(90.0_deg)),
+      config
+  );
 
   frc2::RamseteCommand ramseteCommandExample(
       exampleTrajectory, [this]() { return m_drivetrain.GetPose(); },
@@ -546,21 +560,70 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
+  frc2::RamseteCommand ramCmdPointTest(
+      pointTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+  frc2::RamseteCommand ramCmdPointDebug(
+      pointDebug, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
 
 
 
 
-    //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
+
+
+
+   limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
+    txi = limelightTablerri->GetNumber("tx", 0.0); 
+    tyi = limelightTablerri->GetNumber("ty", 0.0); 
+    frc::SmartDashboard::PutNumber("Galactic X", txi);
+    frc::SmartDashboard::PutNumber("Galactic Y", tyi);
+
+    if (txi < -1.5) { 
+        RedA = true;
+    } else  { 
+        RedA = false;
+    }
+    frc::SmartDashboard::PutBoolean("RedA", RedA);
+
+
+
+
+
+
+
+     m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(toFinishTrajectory.InitialPose());
+        //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
+        //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
+        //  m_drivetrain.ResetOdometry(toFinishTrajectory.InitialPose());
     //  m_drivetrain.ResetOdometry(gSearchBlueATrajectory.InitialPose());
-     m_drivetrain.ResetOdometry(gSearchRedATrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(extraBarrelStartTrajectory.InitialPose());
-    //  m_drivetrain.ResetOdometry(GSARedStartTraj.InitialPose());
-    //  m_drivetrain.ResetOdometry(GSABlueStartTraj.InitialPose());
-
+    //  m_drivetrain.ResetOdometry(gSearchRedATrajectory.InitialPose());
+        //  m_drivetrain.ResetOdometry(extraBarrelStartTrajectory.InitialPose());
+        //  m_drivetrain.ResetOdometry(GSARedStartTraj.InitialPose());
+        //  m_drivetrain.ResetOdometry(GSABlueStartTraj.InitialPose());
+    //  m_drivetrain.ResetOdometry(pointTraj.InitialPose());
+    //  m_drivetrain.ResetOdometry(pointDebug.InitialPose());
 
 
   frc2::SequentialCommandGroup* basicBounceGroup = new frc2::SequentialCommandGroup(
@@ -684,6 +747,23 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     )
   );
 
+
+
+  frc2::ParallelRaceGroup* pointTestGroup = new frc2::ParallelRaceGroup(
+      std::move(ramCmdPointTest),
+      frc2::SequentialCommandGroup(
+          IntakeOut(&m_intake, true),
+          AutoPickup(&m_intake, true, 30)
+      )
+  );
+
+  frc2::ParallelRaceGroup* pointDebugGroup = new frc2::ParallelRaceGroup(
+      std::move(ramCmdPointDebug),
+      frc2::SequentialCommandGroup(
+          IntakeOut(&m_intake, true),
+          AutoPickup(&m_intake, true, 30)
+      )
+  );
 //   autoChooser.SetDefaultOption("Board A", gSearchBlueAGroup);
 //   autoChooser.AddOption("Board B", gSearchRedAGroup);
 //   frc2::SmartDashboard::PutData(autoChooser);
@@ -694,20 +774,15 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     // };
 
 
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
-        if (txi > -10.0) { 
-            RedA = true;
-        } else  { 
-            RedA = false;
-        }
-        frc::SmartDashboard::PutBoolean("RedA", RedA);
 
 
-    if(RedA == true){
-        return gSearchRedAGroup;
-    } else {        // Blue map
-        return gSearchBlueAGroup;
-    }
+    // if(RedA == true){
+    //     return gSearchRedAGroup;
+    // } else {        // Blue map
+    //     return gSearchBlueAGroup;
+    // }
+    
+    return basicBounceGroup;
 }
 
 

@@ -22,11 +22,11 @@ namespace DriveConstants{
 }
 
 namespace AutoConstants{ 
-     constexpr auto kMaxSpeed = 2.2_mps; 
-     constexpr auto kMaxAcceleration = 1.2_mps_sq;
+     constexpr auto kMaxSpeed = 2.9_mps; 
+     constexpr auto kMaxAcceleration = 2.0_mps_sq;
      constexpr double  kRamseteB = 2; 
      constexpr double kRamseteZeta = .7;
-
+ 
 
 }
 

@@ -34,6 +34,7 @@
 #include <frc2/command/ParallelDeadlineGroup.h>
 #include "commands/AutoShoot.h"
 #include <frc/smartdashboard/SendableChooser.h>
+#include <frc/trajectory/constraint/CentripetalAccelerationConstraint.h>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
