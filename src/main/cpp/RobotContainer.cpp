@@ -238,6 +238,14 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
+    wpi::SmallString<64> slalomFile;
+    frc::filesystem::GetDeployDirectory(slalomFile);
+    wpi::sys::path::append(slalomFile, "paths/Slalem_v001.wpilib.json");
+    frc::Trajectory slalomTraj = frc::TrajectoryUtil::FromPathweaverJson(slalomFile);
+
+
+
+
 
 
   frc::CentripetalAccelerationConstraint autoCentripConstraint = frc::CentripetalAccelerationConstraint(
@@ -614,6 +622,23 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
+
+  frc2::RamseteCommand ramCmdSlalom(
+      slalomTraj, [this]() { return m_drivetrain.GetPose(); },
+      frc::RamseteController(AutoConstants::kRamseteB,
+                             AutoConstants::kRamseteZeta),
+      frc::SimpleMotorFeedforward<units::meters>(
+          DriveConstants::ks, DriveConstants::kv, DriveConstants::ka),
+      DriveConstants::kDriveKinematics,
+      [this] { return m_drivetrain.GetWheelSpeeds(); },
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      frc2::PIDController(DriveConstants::kPDriveVel, 0, 0),
+      [this](auto left, auto right) { m_drivetrain.TankDriveVolts(left, right); },
+      {&m_drivetrain});
+
+
+
+
    limelightTablerri = NetworkTable::GetTable("limelight-rri"); 
     nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
     txi = limelightTablerri->GetNumber("tx", 0.0); 
@@ -634,7 +659,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
 
-     m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
+    //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
         //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
         //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
@@ -646,6 +671,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
         //  m_drivetrain.ResetOdometry(GSABlueStartTraj.InitialPose());
     //  m_drivetrain.ResetOdometry(pointTraj.InitialPose());
     //  m_drivetrain.ResetOdometry(pointDebug.InitialPose());
+     m_drivetrain.ResetOdometry(slalomTraj.InitialPose()); 
+
+
 
 
   frc2::SequentialCommandGroup* basicBounceGroup = new frc2::SequentialCommandGroup(
@@ -786,6 +814,18 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
           AutoPickup(&m_intake, true, 30)
       )
   );
+
+
+
+  frc2::SequentialCommandGroup* slalomGroup = new frc2::SequentialCommandGroup(
+      std::move(ramCmdSlalom),
+      frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
+ );
+
+
+
+
+
 //   autoChooser.SetDefaultOption("Board A", gSearchBlueAGroup);
 //   autoChooser.AddOption("Board B", gSearchRedAGroup);
 //   frc2::SmartDashboard::PutData(autoChooser);
@@ -804,15 +844,19 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //     return gSearchBlueAGroup;
     // }
     
-    // return basicBounceGroup;
+    return slalomGroup;
     
 
 
-    if(RedA == true){
-        return gSearchRedAGroup;
-    } else {        // Blue map
-        return gSearchBlueAGroup;
-    }
+    // if(RedA == true){
+    //     return gSearchRedAGroup;
+    // } else {        // Blue map
+    //     return gSearchBlueAGroup;
+    // }
+
+
+
+
 }
 
 
