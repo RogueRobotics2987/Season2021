@@ -7,7 +7,9 @@
 
 #include "commands/Actuator.h"
 
-Actuator::Actuator(ActuatorSubsystem* m_Actuator):m_Actuator(m_Actuator) {
+Actuator::Actuator(ActuatorSubsystem* m_Actuator, frc::Joystick* m_joystick) {
+  m_Actuator = m_Actuator;
+  m_Joystick = m_joystick;
   AddRequirements(m_Actuator);
   // Use addRequirements() here to declare subsystem dependencies.
 }
@@ -21,8 +23,13 @@ void Actuator::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Actuator::Execute() {
-
- 
+  m_Joystick->GetPOV();
+  if (m_Joystick->GetPOV()==0){
+    m_Actuator->Extend();
+  } else if (m_Joystick->GetPOV()==180){
+    m_Actuator->Retract();
+  }
+   
 }
 
 // Called once the command ends or is interrupted.
