@@ -20,6 +20,7 @@ class ActuatorSubsystem : public frc2::SubsystemBase {
 
   void Extend();
   void Retract();
+  void Neutral();
   rev::CANSparkMax* ActuatorMotor = nullptr;
   int m_MotorController = 40;
 };
