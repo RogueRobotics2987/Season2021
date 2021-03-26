@@ -32,7 +32,7 @@ RobotContainer::RobotContainer() {
   m_drive.ZeroHeading();
 
   // Set up default drive command
-  m_Actuator.SetDefaultCommand(Actuator(&m_Actuator));
+  m_Actuator.SetDefaultCommand(Actuator(&m_Actuator, &m_driverController));
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
           frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetX(frc::GenericHID::kLeftHand));

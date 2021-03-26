@@ -10,6 +10,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/ActuatorSubsystem.h"
+#include <frc/Joystick.h>
 
 /**
  * An example command.
@@ -21,7 +22,7 @@
 class Actuator
     : public frc2::CommandHelper<frc2::CommandBase, Actuator> {
  public:
-  Actuator(ActuatorSubsystem* m_Actuator);
+  Actuator(ActuatorSubsystem* m_Actuator, frc::Joystick* m_joystick);
 
   void Initialize() override;
 
@@ -33,4 +34,5 @@ class Actuator
 
   private:
   ActuatorSubsystem* m_Actuator = nullptr;
+  frc::Joystick* m_Joystick = nullptr;
 };
