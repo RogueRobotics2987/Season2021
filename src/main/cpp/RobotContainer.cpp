@@ -335,7 +335,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //    m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
     //    m_drivetrain.ResetOdometry(barrelStartTrajectory.InitialPose()); 
     //    m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
-       m_drivetrain.ResetOdometry(gSearchRedBTrajectory.InitialPose());
+       m_drivetrain.ResetOdometry(slalemPathTrajectory.InitialPose());
     // m_drivetrain.ResetOdometry(gSearchBlueBTrajectory.InitialPose());
 
 
@@ -408,13 +408,13 @@ limelightTablerri = NetworkTable::GetTable("limelight-rri");
       frc2::InstantCommand([this] { m_drivetrain.TankDriveVolts(0_V, 0_V); }, {})
       );
 
-if (RedB == true) {
-    return galacticRedB;
-}   else {
-    return galacticBlueB;
-}
+// if (RedB == true) {
+//     return galacticRedB;
+// }   else {
+//     return galacticBlueB;
+// }
 
-//   return galacticRedB;
+  return slalem;
 
 }
 
