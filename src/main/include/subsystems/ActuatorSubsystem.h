@@ -6,7 +6,7 @@
 
 
 #include <frc2/command/SubsystemBase.h>
-
+#include "rev/CANSparkMax.h"
 
 class ActuatorSubsystem : public frc2::SubsystemBase {
  public:
@@ -16,6 +16,10 @@ class ActuatorSubsystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+  
 
-  rev::CANSparkMax* AcuatorMotor;
+  void Extend();
+  void Retract();
+  rev::CANSparkMax* ActuatorMotor = nullptr;
+  int m_MotorController = 40;
 };

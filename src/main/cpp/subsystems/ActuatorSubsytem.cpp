@@ -1,9 +1,18 @@
 #include "subsystems/ActuatorSubsystem.h"
 
-ActuatorSubsystem::ActuatorSubsystem(){}
+ActuatorSubsystem::ActuatorSubsystem(){
+ActuatorMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
+}
 
 void ActuatorSubsystem::Periodic() {}
 
-int m_MotorController;
+void ActuatorSubsystem::Extend(){
+ 
+}
+void ActuatorSubsystem::Retract(){
 
-AcuatorMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
+}
+
+
+
+
