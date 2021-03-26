@@ -28,8 +28,9 @@ void Actuator::Execute() {
     m_Actuator->Extend();
   } else if (m_Joystick->GetPOV()==180){
     m_Actuator->Retract();
+  } else if (m_Joystick->GetPOV()==-1){
+    m_Actuator->Neutral();
   }
-   
 }
 
 // Called once the command ends or is interrupted.
