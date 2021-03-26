@@ -42,7 +42,7 @@ constexpr int kRearLeftTurningEncoderNumber = 12;
 constexpr int kFrontRightTurningEncoderNumber = 10;
 constexpr int kRearRightTurningEncoderNumber = 11;
 
-constexpr int Actuator = 40;
+// constexpr int Actuator = 40;
 
 // constexpr int kFrontLeftTurningEncoderPorts[2]{0, 1};
 // constexpr int kRearLeftTurningEncoderPorts[2]{2, 3};
