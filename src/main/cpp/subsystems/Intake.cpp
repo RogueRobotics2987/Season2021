@@ -78,7 +78,7 @@ void Intake::PrepareBall(){
             firstTime = myTimer->Get(); 
             firstTimeGotten = true; 
         }
-        if(myTimer->Get() - firstTime < .30){ //normal < .75, for power port < .30 
+        if(myTimer->Get() - firstTime < 0){ //normal < .75, faster < .30, for power port < 0
             p_conveyorMotor->Set(0); 
         }
         
