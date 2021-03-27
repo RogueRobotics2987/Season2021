@@ -49,7 +49,7 @@ void Shooter::Periodic() {
     double startTime = myTimer->Get();
 
     if(activeShoot){
-        shooterPID->SetReference(TargetRPM, rev::ControlType::kVelocity, arbFF);
+        //shooterPID->SetReference(TargetRPM, rev::ControlType::kVelocity, arbFF);
         
         if(getVelocity() < 500){
             setPercent(0.5);
@@ -57,7 +57,7 @@ void Shooter::Periodic() {
             setShooter();
         }
     } else {
-        // do nothing
+        stopShooter();
     };
 
     if(shooterMotor->GetFirmwareString() != firmwareVersion){

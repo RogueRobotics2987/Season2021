@@ -27,5 +27,5 @@ void toggleShooter::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool toggleShooter::IsFinished() {
-  return false;
+  return true;
 }
