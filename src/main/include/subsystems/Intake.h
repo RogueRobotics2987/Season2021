@@ -32,7 +32,7 @@ class Intake : public frc2::SubsystemBase {
   void startTimer(); 
   void ResetBallCount(); 
   double conveyorVal; 
-  void resetOutBalls(); 
+  //void resetOutBalls(); -> same as ResetBallCount
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

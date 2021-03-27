@@ -41,7 +41,7 @@ void PIDShoot::Execute() {
 // Called once the command ends or is interrupted.
 void PIDShoot::End(bool interrupted) {
   m_intake->ResetBallCount(); 
-  m_intake->resetOutBalls(); 
+  //m_intake->resetOutBalls(); -> same as ResetBallCount
   m_shooter->stopShooter();
 }
 

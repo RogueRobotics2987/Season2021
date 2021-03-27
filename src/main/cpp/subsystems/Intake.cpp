@@ -69,9 +69,9 @@ void Intake::IntakeBall(double setVal){
 void Intake::StartConveyor(double percent){ 
     p_conveyorMotor->Set(percent); 
 }
-void Intake::resetOutBalls(){
+/*void Intake::resetOutBalls(){     // same as ResetBallCount
     ballOut = 0; 
-}
+}*/
 void Intake::PrepareBall(){
     if(!p_intakeSensor->Get() && ballCount < 3){
         if(!firstTimeGotten){

@@ -26,7 +26,11 @@ void PickupBall::Initialize() {
 void PickupBall::Execute() {
   if(m_xbox->GetRawButton(4) || (m_Lstick->GetRawButton(1))){  
     // updated button
-      m_intake->IntakeBall(.65); // intake in
+    m_intake->IntakeBall(.65); // intake in
+
+    m_intake->ResetBallCount(); 
+    //m_intake->resetOutBalls(); -> same as ResetBallCount
+
   }
 
   else if(m_xbox->GetRawButton(2)){ // updated button

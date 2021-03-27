@@ -31,7 +31,7 @@
 #include <frc/trajectory/TrajectoryUtil.h>
 #include <wpi/Path.h>
 #include <wpi/SmallString.h>
-
+#include "commands/toggleShooter.h"
 
 
 
@@ -80,8 +80,8 @@ void RobotContainer::ConfigureButtonBindings() {
  //Sydneys Intake Code
  //frc2::JoystickButton(&xbox,1).WhenHeld(PickupBall(&m_intake));
 
-frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // updated button
- 
+ //frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // updated button
+ frc2::JoystickButton(&xbox,3).WhenPressed(toggleShooter(&m_shooter));
  
  //frc2::JoystickButton(&xbox, 1).WhenHeld(startConveyor(&m_intake, .3)); //shoot, updated button
  //frc2::JoystickButton(&joyLeft, 11).WhenHeld(startConveyor(&m_intake, -.3)); //backwards conveyor, updated button

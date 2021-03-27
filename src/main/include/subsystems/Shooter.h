@@ -26,6 +26,7 @@ class Shooter : public frc2::SubsystemBase {
   void stopShooter();
   void setShooter();
   void setPercent(double percent); 
+  void toggleShoot();
   double getVelocity(); 
 
 
@@ -42,6 +43,7 @@ class Shooter : public frc2::SubsystemBase {
   frc::Timer* myTimer = nullptr;
   double Lastkp=0, Lastki=0, Lastkd=0, Lastkff=0;
   double arbFF = 0; 
+  bool activeShoot = false;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
