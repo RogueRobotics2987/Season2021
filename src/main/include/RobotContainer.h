@@ -22,6 +22,8 @@
 #include "commands/Actuator.h"
 #include "commands/BeginCompressor.h"
 #include "subsystems/Compressor.h"
+#include "subsystems/ShooterSubsystem.h"
+#include "commands/Shooter.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -45,7 +47,7 @@ class RobotContainer {
 
   // The robot's subsystems
   DriveSubsystem m_drive;
-  
+  ShooterSubsystem m_Shooter;
   ActuatorSubsystem m_Actuator;
 
   CompressorObject m_Compressor;

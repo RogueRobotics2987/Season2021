@@ -69,7 +69,8 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-    frc2::JoystickButton(&m_driverController, 1).WhenPressed(ResetHeading(&m_drive));
+    frc2::JoystickButton(&m_driverController, 2).WhenPressed(ResetHeading(&m_drive));
+    frc2::JoystickButton(&m_driverController, 1).WhenPressed(Shooter(&m_Shooter));
 //       [this] {
 //         m_drive.ZeroHeading();
     //   },
