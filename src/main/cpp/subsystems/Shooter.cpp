@@ -56,6 +56,7 @@ void Shooter::Periodic() {
         } else {
             setShooter();
         }
+        
     } else {
         stopShooter();
     };

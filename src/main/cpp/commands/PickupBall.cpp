@@ -28,9 +28,6 @@ void PickupBall::Execute() {
     // updated button
     m_intake->IntakeBall(.65); // intake in
 
-    m_intake->ResetBallCount(); 
-    //m_intake->resetOutBalls(); -> same as ResetBallCount
-
   }
 
   else if(m_xbox->GetRawButton(2)){ // updated button
@@ -47,6 +44,8 @@ void PickupBall::Execute() {
   if(m_xbox->GetRawButton(1)){
     m_intake->StartConveyor(.5);
     dontRun = true; 
+
+    m_intake->ResetBallCount();
     
   }
   else if(m_Lstick->GetRawButton(11)){
