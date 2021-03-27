@@ -7,8 +7,15 @@ ActuatorMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorT
 void ActuatorSubsystem::Periodic() {}
 
 void ActuatorSubsystem::Extend(){
- 
+ ActuatorMotor->SetVoltage(units::voltage::volt_t(8));
 }
-void ActuatorSubsystem::Retract(){
 
+void ActuatorSubsystem::Retract(){
+ ActuatorMotor->SetVoltage(units::voltage::volt_t(-8));
 }
+
+void ActuatorSubsystem::Neutral(){
+ ActuatorMotor->SetVoltage(units::voltage::volt_t(0));
+}
+
+
