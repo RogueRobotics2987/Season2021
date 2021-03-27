@@ -20,6 +20,9 @@
 #include "subsystems/DriveSubsystem.h"
 #include "subsystems/ActuatorSubsystem.h"
 #include "commands/Actuator.h"
+#include "commands/BeginCompressor.h"
+#include "subsystems/Compressor.h"
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -44,6 +47,8 @@ class RobotContainer {
   DriveSubsystem m_drive;
   
   ActuatorSubsystem m_Actuator;
+
+  CompressorObject m_Compressor;
 
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
