@@ -42,7 +42,7 @@ class RobotContainer {
 
   // The robot's subsystems
   DriveSubsystem m_drive;
-  
+  ShooterSubsystem m_Shooter;
   ActuatorSubsystem m_Actuator;
 
   // The chooser for the autonomous routines
