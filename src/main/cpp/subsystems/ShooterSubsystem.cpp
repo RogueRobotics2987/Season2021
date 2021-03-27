@@ -16,27 +16,27 @@ void ShooterSubsystem::Periodic() {}
 void ShooterSubsystem::Open(int SolenoidNum){
     if(SolenoidNum==1){
         ShooterSolenoid1->Set(true);
-    } else if((SolenoidNum==2){
-        ShooterSolenoid1->Set(true);
-    } else if((SolenoidNum==3){
-        ShooterSolenoid1->Set(true);
-    } else if((SolenoidNum==4){
-        ShooterSolenoid1->Set(true);
-    } else if((SolenoidNum==5){
-        ShooterSolenoid1->Set(true);
+    } else if(SolenoidNum==2){
+        ShooterSolenoid2->Set(true);
+    } else if(SolenoidNum==3){
+        ShooterSolenoid3->Set(true);
+    } else if(SolenoidNum==4){
+        ShooterSolenoid4->Set(true);
+    } else if(SolenoidNum==5){
+        ShooterSolenoid5->Set(true);
     }
 } 
 
 void ShooterSubsystem::Close(int SolenoidNum){
     if(SolenoidNum==1){
         ShooterSolenoid1->Set(false);
-    } else if((SolenoidNum==2){
-        ShooterSolenoid1->Set(false);
-    } else if((SolenoidNum==3){
-        ShooterSolenoid1->Set(false);
-    } else if((SolenoidNum==4){
-        ShooterSolenoid1->Set(false);
-    } else if((SolenoidNum==5){
-        ShooterSolenoid1->Set(false);
+    } else if(SolenoidNum==2){
+        ShooterSolenoid2->Set(false);
+    } else if(SolenoidNum==3){
+        ShooterSolenoid3->Set(false);
+    } else if(SolenoidNum==4){
+        ShooterSolenoid4->Set(false);
+    } else if(SolenoidNum==5){
+        ShooterSolenoid5->Set(false);
     }
 }
