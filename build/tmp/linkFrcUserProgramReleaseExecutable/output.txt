@@ -1,0 +1,4 @@
+See file:///C:/FRC2021/ir_restart/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
+linking frcUserProgram successful.
+
+Finished linkFrcUserProgramReleaseExecutable, see full log file:///C:/FRC2021/ir_restart/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.
