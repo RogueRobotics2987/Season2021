@@ -660,7 +660,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
     //  m_drivetrain.ResetOdometry(toA3trajectory.InitialPose()); 
-    //  m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
+     m_drivetrain.ResetOdometry(barrelRegTrajectory.InitialPose());
         //  m_drivetrain.ResetOdometry(fancyBarrelStartATrajectory.InitialPose());
         //  m_drivetrain.ResetOdometry(fancyBarrelStartBTrajectory.InitialPose());
         //  m_drivetrain.ResetOdometry(toFinishTrajectory.InitialPose());
@@ -671,7 +671,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
         //  m_drivetrain.ResetOdometry(GSABlueStartTraj.InitialPose());
     //  m_drivetrain.ResetOdometry(pointTraj.InitialPose());
     //  m_drivetrain.ResetOdometry(pointDebug.InitialPose());
-     m_drivetrain.ResetOdometry(slalomTraj.InitialPose()); 
+        //  m_drivetrain.ResetOdometry(slalomTraj.InitialPose()); 
 
 
 
@@ -844,7 +844,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
     //     return gSearchBlueAGroup;
     // }
     
-    return slalomGroup;
+    return regularBarrelGroup;
     
 
 
