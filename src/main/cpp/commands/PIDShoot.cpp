@@ -28,7 +28,7 @@ void PIDShoot::Execute() {
   if(m_shooter->getVelocity() < 500){
     m_shooter->setPercent(0.5);
   } else {
-    m_shooter->setShooter(4000);
+    m_shooter->setShooter();
   }
   //m_shooter->setPercent(.8);
 

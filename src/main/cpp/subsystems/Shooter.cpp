@@ -94,7 +94,7 @@ void Shooter::stopShooter() {
     shooterMotor->Set(0);
 }
 
-void Shooter::setShooter(double RPM) {
+void Shooter::setShooter() {
    // shooterPID->SetReference(maxRPM, rev::ControlType::kVelocity);
     shooterPID->SetReference(TargetRPM, rev::ControlType::kVelocity, arbFF);
 }

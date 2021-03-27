@@ -42,7 +42,7 @@ void Autonomous::Execute(){
       m_shooter->setPercent(.5);
     }
     else{
-      m_shooter->setShooter(3800); 
+      m_shooter->setShooter(); 
     }
     
 
