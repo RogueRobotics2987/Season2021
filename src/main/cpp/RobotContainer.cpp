@@ -45,15 +45,16 @@ RobotContainer::RobotContainer() {
         
         
         double safeX = m_driverController.GetX(frc::GenericHID::kLeftHand);
-        if(fabs(safeX)<.10) {
+        if(fabs(safeX)<.20) {
             safeX=0;}
         double safeY =  m_driverController.GetY(frc::GenericHID::kRightHand);
         if(fabs(safeY)<.10) { 
             safeY=0;}
         double safeRot = m_driverController.GetZ();
-        if(fabs(safeRot)<.10) {
+        if(fabs(safeRot)<.20) {
             safeRot=0;}
         
+        // std::cout << "Sam Debug" << safeX << "," << safeY << "," << safeRot << std::endl;
         
         m_drive.Drive(units::meters_per_second_t(
                          -safeY),

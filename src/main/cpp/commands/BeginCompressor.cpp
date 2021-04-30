@@ -11,7 +11,7 @@ void beginCompressor::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void beginCompressor::Execute() {
-    std::cout << "Runing The Compressor" << std::endl;
+    // std::cout << "Runing The Compressor" << std::endl;
   m_compressor->startCompressor();
 }
 

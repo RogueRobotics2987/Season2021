@@ -24,12 +24,13 @@ void Shooter::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void Shooter::Execute() {
   if (!Shooting){
-      m_Shooter->Open(TubeCounter);
+      m_Shooter->Close(TubeCounter);
     Shooting = true;
 
   } else {
       Timer = Timer + 1;
   }
+  std::cout << "Open solinoid number " << TubeCounter << std::endl; 
   
 }
 
@@ -40,7 +41,7 @@ void Shooter::End(bool interrupted) {
 // Returns true when the command should end.
 bool Shooter::IsFinished() {
   if (Timer > MaxTime){
-      m_Shooter->Close(TubeCounter);
+      m_Shooter->Open(TubeCounter);
       if (TubeCounter >= 5){
             TubeCounter = 1;
         } else {
@@ -49,7 +50,7 @@ bool Shooter::IsFinished() {
         Shooting = false;
         Timer = 0;
         return true;
-    
+    std::cout << "Finished" << std::endl;
   } else {
       return false;
   }
