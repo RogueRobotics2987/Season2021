@@ -2,6 +2,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Compressor.h>
+#include <iostream>
 
 class CompressorObject : public frc2::SubsystemBase {
  public:

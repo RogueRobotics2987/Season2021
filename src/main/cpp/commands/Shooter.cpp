@@ -6,9 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 #include "commands/Shooter.h"
+#include <iostream>
 
-Shooter::Shooter(ShooterSubsystem* m_Shooter) {
-  m_Shooter = m_Shooter;
+Shooter::Shooter(ShooterSubsystem* m_Shooter):m_Shooter(m_Shooter) {
+  // m_Shooter = m_Shooter;
   AddRequirements(m_Shooter);
   // Use addRequirements() here to declare subsystem dependencies.
 }

@@ -26,6 +26,7 @@ using namespace DriveConstants;
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+      std::cout << "sea out in robot container" << std::endl;
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -36,6 +37,7 @@ RobotContainer::RobotContainer() {
   m_Compressor.SetDefaultCommand(beginCompressor(&m_Compressor));
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
+        //   std::cout << "sea out in robot container" << std::endl;
           frc::SmartDashboard::PutNumber("Left Hand Y", m_driverController.GetX(frc::GenericHID::kLeftHand));
           frc::SmartDashboard::PutNumber("Right Hand Y", m_driverController.GetY(frc::GenericHID::kRightHand));
           frc::SmartDashboard::PutNumber("Left Hand X", m_driverController.GetZ());

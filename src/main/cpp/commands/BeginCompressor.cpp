@@ -1,7 +1,7 @@
 #include "commands/BeginCompressor.h"
 
-beginCompressor::beginCompressor(CompressorObject* c_compressor) {
-  m_compressor = c_compressor;
+beginCompressor::beginCompressor(CompressorObject* c_compressor):m_compressor(c_compressor) {
+//   m_compressor = c_compressor;
   AddRequirements(m_compressor);
   // Use addRequirements() here to declare subsystem dependencies.
 }
@@ -11,6 +11,7 @@ void beginCompressor::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void beginCompressor::Execute() {
+    std::cout << "Runing The Compressor" << std::endl;
   m_compressor->startCompressor();
 }
 

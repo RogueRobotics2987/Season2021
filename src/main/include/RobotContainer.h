@@ -24,6 +24,7 @@
 #include "subsystems/Compressor.h"
 #include "subsystems/ShooterSubsystem.h"
 #include "commands/Shooter.h"
+#include <iostream>
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -49,7 +50,6 @@ class RobotContainer {
   DriveSubsystem m_drive;
   ShooterSubsystem m_Shooter;
   ActuatorSubsystem m_Actuator;
-
   CompressorObject m_Compressor;
 
   // The chooser for the autonomous routines

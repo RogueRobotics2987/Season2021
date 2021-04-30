@@ -36,6 +36,6 @@ class Shooter
   ShooterSubsystem* m_Shooter = nullptr;
   int TubeCounter = 1;
   int Timer = 0;
-  int MaxTime = 2000;
+  int MaxTime = 10;
   bool Shooting = false;
 };

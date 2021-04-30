@@ -8,6 +8,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Solenoid.h>
 #include <frc/DoubleSolenoid.h>
+#include <iostream>
 
 class ShooterSubsystem : public frc2::SubsystemBase {
  public:
