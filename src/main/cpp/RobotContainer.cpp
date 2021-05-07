@@ -26,7 +26,7 @@ using namespace DriveConstants;
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-      std::cout << "sea out in robot container" << std::endl;
+      std::cout << "cout in robot container" << std::endl;
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -35,6 +35,7 @@ RobotContainer::RobotContainer() {
   // Set up default drive command
 //   m_Actuator.SetDefaultCommand(Actuator(&m_Actuator, &m_driverController));
   m_Compressor.SetDefaultCommand(beginCompressor(&m_Compressor));
+  m_Shooter.SetDefaultCommand(ShooterSafe(&m_Shooter));
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
         //   std::cout << "sea out in robot container" << std::endl;
@@ -45,13 +46,13 @@ RobotContainer::RobotContainer() {
         
         
         double safeX = m_driverController.GetX(frc::GenericHID::kLeftHand);
-        if(fabs(safeX)<.20) {
+        if(fabs(safeX)<.225) {
             safeX=0;}
         double safeY =  m_driverController.GetY(frc::GenericHID::kRightHand);
-        if(fabs(safeY)<.10) { 
+        if(fabs(safeY)<.225) { 
             safeY=0;}
         double safeRot = m_driverController.GetZ();
-        if(fabs(safeRot)<.20) {
+        if(fabs(safeRot)<.24) {
             safeRot=0;}
         
         // std::cout << "Sam Debug" << safeX << "," << safeY << "," << safeRot << std::endl;

@@ -18,11 +18,11 @@ class ShooterSubsystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
+
   
 
   void Open(int SolenoidNum);
   void Close(int SolenoidNum);
-  void OpenFirstTime(int SolenoidNum);
   frc::Solenoid* ShooterSolenoid1 = nullptr;
   frc::Solenoid* ShooterSolenoid2 = nullptr;
   frc::Solenoid* ShooterSolenoid3 = nullptr;

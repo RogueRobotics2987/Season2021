@@ -36,6 +36,7 @@ void Shooter::Execute() {
 
 // Called once the command ends or is interrupted.
 void Shooter::End(bool interrupted) {
+  
 }
 
 // Returns true when the command should end.

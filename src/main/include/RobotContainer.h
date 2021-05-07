@@ -25,6 +25,7 @@
 #include "subsystems/ShooterSubsystem.h"
 #include "commands/Shooter.h"
 #include <iostream>
+#include "commands/ShooterSafe.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since

@@ -9,19 +9,14 @@ ShooterSolenoid4 = new frc::Solenoid(4);
 ShooterSolenoid5 = new frc::Solenoid(5); 
 }
 
-
-
 void ShooterSubsystem::Periodic() {}
-
-void ShooterSubsystem::OpenFirstTime(int SolenoidNum){ 
-        ShooterSolenoid1->Set(true);
-        ShooterSolenoid2->Set(true);
-        ShooterSolenoid3->Set(true);
-        ShooterSolenoid4->Set(true);
-        ShooterSolenoid5->Set(true);
-} 
-
 void ShooterSubsystem::Close(int SolenoidNum){
+    std::cout << ShooterSolenoid1->Get() << std::endl;
+    std::cout << ShooterSolenoid2->Get() << std::endl;
+    std::cout << ShooterSolenoid3->Get() << std::endl;
+    std::cout << ShooterSolenoid4->Get() << std::endl;
+    std::cout << ShooterSolenoid5->Get() << std::endl;
+
     if(SolenoidNum==1){
         ShooterSolenoid1->Set(false);
         std::cout << "Solenoid 1 close" << std::endl;
@@ -41,6 +36,7 @@ void ShooterSubsystem::Close(int SolenoidNum){
 }
 
 void ShooterSubsystem::Open(int SolenoidNum){ 
+
     if(SolenoidNum==1){
         ShooterSolenoid1->Set(true);
         std::cout << ShooterSolenoid1->Get() << std::endl;

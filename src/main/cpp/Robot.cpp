@@ -7,7 +7,15 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
-void Robot::RobotInit() {}
+void Robot::RobotInit() {
+  
+    //     ShooterSolenoid1->Set(true);
+    //     ShooterSolenoid2->Set(true);
+    //     ShooterSolenoid3->Set(true);
+    //     ShooterSolenoid4->Set(true);
+    //     ShooterSolenoid5->Set(true);
+    // 
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
