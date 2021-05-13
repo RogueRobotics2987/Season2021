@@ -7,6 +7,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include "rev/CANSparkMax.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 class ActuatorSubsystem : public frc2::SubsystemBase {
  public:
@@ -23,4 +24,5 @@ class ActuatorSubsystem : public frc2::SubsystemBase {
   void Neutral();
   rev::CANSparkMax* ActuatorMotor = nullptr;
   int m_MotorController = 40;
+
 };

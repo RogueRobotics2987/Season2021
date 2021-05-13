@@ -33,7 +33,18 @@ RobotContainer::RobotContainer() {
   m_drive.ZeroHeading();
 
   // Set up default drive command
-//   m_Actuator.SetDefaultCommand(Actuator(&m_Actuator, &m_driverController));
+  m_Actuator.SetDefaultCommand(frc2::RunCommand(
+  [this]{
+    m_driverController.GetPOV();
+  if (m_driverController.GetPOV()==0){
+    m_Actuator.Extend();
+  } else if (m_driverController.GetPOV()==180){
+    m_Actuator.Retract();
+  } else if (m_driverController.GetPOV()==-1){
+    m_Actuator.Neutral();
+  }
+  },
+  {&m_Actuator}));
   m_Compressor.SetDefaultCommand(beginCompressor(&m_Compressor));
   m_Shooter.SetDefaultCommand(ShooterSafe(&m_Shooter));
   m_drive.SetDefaultCommand(frc2::RunCommand(

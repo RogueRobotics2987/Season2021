@@ -23,14 +23,14 @@ void Actuator::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Actuator::Execute() {
-  m_Joystick->GetPOV();
-  if (m_Joystick->GetPOV()==0){
-    m_Actuator->Extend();
-  } else if (m_Joystick->GetPOV()==180){
-    m_Actuator->Retract();
-  } else if (m_Joystick->GetPOV()==-1){
-    m_Actuator->Neutral();
-  }
+  // m_Joystick->GetPOV();
+  // if (m_Joystick->GetPOV()==0){
+  //   m_Actuator->Extend();
+  // } else if (m_Joystick->GetPOV()==180){
+  //   m_Actuator->Retract();
+  // } else if (m_Joystick->GetPOV()==-1){
+  //   m_Actuator->Neutral();
+  // }
 }
 
 // Called once the command ends or is interrupted.
