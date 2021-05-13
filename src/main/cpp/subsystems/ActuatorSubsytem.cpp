@@ -5,12 +5,19 @@ ActuatorMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorT
 }
 
 void ActuatorSubsystem::Periodic() {
-    frc::SmartDashboard::PutBoolean("Forward Limit Switch", ActuatorMotor->GetForwardLimitSwitch(rev::CANDigitalInput::LimitSwitchPolarity::kNormallyClosed).Get());
-    frc::SmartDashboard::PutBoolean("Reverse Limit Switch", ActuatorMotor->GetReverseLimitSwitch(rev::CANDigitalInput::LimitSwitchPolarity::kNormallyClosed).Get());
+    ForwardLimitSwitch = ActuatorMotor->GetForwardLimitSwitch(rev::CANDigitalInput::LimitSwitchPolarity::kNormallyClosed).Get();
+    frc::SmartDashboard::PutBoolean("Forward Limit Switch", ForwardLimitSwitch);
+    // frc::SmartDashboard::PutBoolean("Reverse Limit Switch", ActuatorMotor->GetReverseLimitSwitch(rev::CANDigitalInput::LimitSwitchPolarity::kNormallyClosed).Get());
+    
 }
 
 void ActuatorSubsystem::Extend(){
-//  ActuatorMotor->SetVoltage(units::voltage::volt_t(2));
+    if(ForwardLimitSwitch == false){
+ ActuatorMotor->SetVoltage(units::voltage::volt_t(2));
+    }
+    else{
+        ActuatorMotor->SetVoltage(units::voltage::volt_t(0));
+    }
 }
 
 void ActuatorSubsystem::Retract(){
@@ -18,7 +25,8 @@ void ActuatorSubsystem::Retract(){
 }
 
 void ActuatorSubsystem::Neutral(){
-//  ActuatorMotor->SetVoltage(units::voltage::volt_t(0));
+    
+ ActuatorMotor->SetVoltage(units::voltage::volt_t(0));
 }
 
 

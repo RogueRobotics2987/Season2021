@@ -12,6 +12,7 @@
 class ActuatorSubsystem : public frc2::SubsystemBase {
  public:
   ActuatorSubsystem();
+  bool ForwardLimitSwitch = false;
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
