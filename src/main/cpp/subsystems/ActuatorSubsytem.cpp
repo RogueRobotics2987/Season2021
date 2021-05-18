@@ -2,8 +2,8 @@
 
 ActuatorSubsystem::ActuatorSubsystem(){
 ActuatorMotor = new rev::CANSparkMax(m_MotorController, rev::CANSparkMax::MotorType::kBrushless);
-// ActuatorMotor->EnableSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse, true);
-// ActuatorMotor->SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse, );
+ActuatorMotor->EnableSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse, true);
+ActuatorMotor->SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse, 5000); // TODO Change limit number
 }
 
 void ActuatorSubsystem::Periodic() {
@@ -31,4 +31,6 @@ void ActuatorSubsystem::Neutral(){
  ActuatorMotor->SetVoltage(units::voltage::volt_t(0));
 }
 
-
+bool ActuatorSubsystem::GetForwardLimitSwitch(){ // Gets the bottom limit switch state
+    return ForwardLimitSwitch;
+}
