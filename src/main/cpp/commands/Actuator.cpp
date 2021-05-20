@@ -16,7 +16,11 @@ Actuator::Actuator(ActuatorSubsystem* m_Actuator, frc::Joystick* m_joystick) {
 
 // Called when the command is initially scheduled.
 void Actuator::Initialize() {
-  
+  while (m_Actuator->ForwardLimitSwitch() == false) {
+    m_Actuator->Retract();
+  }
+  m_Actuator->Neutral();
+  m_Actuator->GetEncoder().SetPosition(0);
 }
 
 
@@ -44,3 +48,4 @@ bool Actuator::IsFinished() {
     
 
  }
+
