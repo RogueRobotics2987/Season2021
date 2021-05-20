@@ -36,6 +36,7 @@ RobotContainer::RobotContainer() {
   m_Actuator.SetDefaultCommand(frc2::RunCommand(
   [this]{
     m_driverController.GetPOV();
+    frc::SmartDashboard::PutNumber("My POV Value is ", m_driverController.GetPOV());
   if (m_driverController.GetPOV()==0){
     m_Actuator.Extend();
   } else if (m_driverController.GetPOV()==180){
