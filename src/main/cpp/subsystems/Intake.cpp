@@ -78,13 +78,13 @@ void Intake::PrepareBall(){
             firstTime = myTimer->Get(); 
             firstTimeGotten = true; 
         }
-        if(myTimer->Get() - firstTime < 0){ //normal < .75, faster < .30, for power port < 0
+        if(myTimer->Get() - firstTime < .75){ //normal < .75, faster < .30, for power port < 0, test .50
             p_conveyorMotor->Set(0); 
         }
         
         else if(p_topSensor->Get()){
             // Original .375
-            p_conveyorMotor->Set(.55); 
+            p_conveyorMotor->Set(.7); // was .55 
             sensorBool = true;  
         }
         
@@ -101,9 +101,9 @@ void Intake::PrepareBall(){
             // Top Sensor 
             if(sensorBool){
                 //Original .08
-                if(myTimer2->Get() - conveyorTime < .25 && ballCount < 3 && p_topSensor->Get()){
+                if(myTimer2->Get() - conveyorTime < .15 && ballCount < 3 && p_topSensor->Get()){ //conveyorTime was .25
                     //Original .375
-                    p_conveyorMotor->Set(.55); 
+                    p_conveyorMotor->Set(.7); //was .55
                 }
                 else{
                     sensorBool = false; 
