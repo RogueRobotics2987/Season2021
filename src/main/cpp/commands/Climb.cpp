@@ -14,6 +14,9 @@ Climb::Climb(Climber* c_climber, frc::Joystick* p_stick, frc::Joystick* left_sti
   m_stick = p_stick;
   l_stick = left_stick;
   matchTimer = new frc::Timer; 
+  frc::SmartDashboard::PutBoolean("Climber Pin Auto Lock Enable", true); 
+  frc::SmartDashboard::PutBoolean("Climber Enable", true); 
+
 }
 
 // Called when the command is initially scheduled.
@@ -31,17 +34,21 @@ void Climb::Execute() {
   frc::SmartDashboard::PutNumber("Time Left in Match", 150 - matchTimer->Get()); 
   //Fwd True 
   // Rev False 
+  bool enClimbLock = false;
+  enClimbLock = frc::SmartDashboard::GetBoolean("Climber Pin Auto Lock Enable", false); 
+  bool enClimber = frc::SmartDashboard::GetBoolean("Climber Enable", false); 
+
   double curLeftTrig = m_stick->GetRawAxis(2);
   double curRightTrig = m_stick->GetRawAxis(3);
 
-  if (curLeftTrig > 0.1 && curRightTrig < 0.1){
+  if ((curLeftTrig > 0.1 && curRightTrig < 0.1) && enClimber){
     m_climber->TheClimb(curLeftTrig);
-  } else if (curRightTrig > 0.1 && curLeftTrig < 0.1){
+  } else if ((curRightTrig > 0.1 && curLeftTrig < 0.1) && enClimber){
     m_climber->TheClimb(-curRightTrig);
   } else {
     m_climber->TheClimb(0.0);
   }
-  if(150 - matchTimer->Get() < .5){
+  if((150 - matchTimer->Get() < .5) && enClimbLock){
     m_climber->movePin(true); 
   }
   //m_climber->TheClimb(m_stick->GetRawAxis(5)); 

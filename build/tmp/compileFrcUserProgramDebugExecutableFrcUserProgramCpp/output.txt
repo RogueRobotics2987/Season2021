@@ -1,23 +1,7 @@
 See file:///C:/Users/sdort/Documents/Season2021/build/tmp/compileFrcUserProgramDebugExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramDebugExecutableFrcUserProgramCpp.
-compiling Intake.cpp successful.
-In file included from C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
-                 from C:\Users\sdort\Documents\Season2021\src\main\include/subsystems/Intake.h:11,
-                 from C:\Users\sdort\Documents\Season2021\src\main\cpp\subsystems\Intake.cpp:8:
-C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
-     enum class LimitSwitch { kForward, kReverse };
-                ^~~~~~~~~~~
-C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+compiling Climb.cpp successful.
 
 compiling Constants.cpp successful.
-
-compiling DriveTrain.cpp successful.
-In file included from C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
-                 from C:\Users\sdort\Documents\Season2021\src\main\include/subsystems/DriveTrain.h:10,
-                 from C:\Users\sdort\Documents\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
-C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
-     enum class LimitSwitch { kForward, kReverse };
-                ^~~~~~~~~~~
-C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
 
 compiling Autonomous.cpp successful.
 In file included from C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
@@ -34,6 +18,15 @@ In file included from C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b
                  from C:\Users\sdort\Documents\Season2021\src\main\include/subsystems/DriveTrain.h:10,
                  from C:\Users\sdort\Documents\Season2021\src\main\include/commands/TankDrive.h:14,
                  from C:\Users\sdort\Documents\Season2021\src\main\cpp\commands\TankDrive.cpp:8:
+C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
+     enum class LimitSwitch { kForward, kReverse };
+                ^~~~~~~~~~~
+C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: note: attribute for 'enum class rev::CANDigitalInput::LimitSwitch' must follow the 'enum class' keyword
+
+compiling DriveTrain.cpp successful.
+In file included from C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANSparkMax.h:37:0,
+                 from C:\Users\sdort\Documents\Season2021\src\main\include/subsystems/DriveTrain.h:10,
+                 from C:\Users\sdort\Documents\Season2021\src\main\cpp\subsystems\DriveTrain.cpp:8:
 C:\Users\sdort\.gradle\caches\transforms-2\files-2.1\16a3b888d69d23330f7ecca34eff9395\SparkMax-cpp-1.5.4-headers/rev/CANDigitalInput.h:42:16: warning: attribute ignored in declaration of 'enum class rev::CANDigitalInput::LimitSwitch' [-Wattributes]
      enum class LimitSwitch { kForward, kReverse };
                 ^~~~~~~~~~~

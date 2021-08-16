@@ -29,8 +29,8 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() { 
-  //uncomment lines 33-62 to put acceleration control back in
- /* static double lastLeft = 0.0; 
+  //uncomment lines 33-62 to put acceleration control back in 
+  static double lastLeft = 0.0; 
   static double lastRight = 0.0;
 
   double Left = m_stickLeft -> GetY(); //getting the Y value from the joystick
@@ -59,14 +59,14 @@ void TankDrive::Execute() {
   
   m_drivetrain -> Drive(outLeft, outRight);
    lastLeft = outLeft;
-  lastRight = outRight; */ 
+  lastRight = outRight; 
 
   //comment out lines 64-69 if you put acceleration back in
-  if (m_stickLeft->GetRawButton(2)) {
+  /*if (m_stickLeft->GetRawButton(2)) {
     m_drivetrain->Drive(-m_stickLeft->GetY(), m_stickRight->GetX()); 
   } else {
     m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
-  } 
+  } */
   }
 
 // Make this return true when this Command no longer needs to run execute()
