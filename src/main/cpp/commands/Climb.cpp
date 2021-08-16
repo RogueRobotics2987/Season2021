@@ -40,7 +40,7 @@ void Climb::Execute() {
 
   double curLeftTrig = m_stick->GetRawAxis(2);
   double curRightTrig = m_stick->GetRawAxis(3);
-
+  std::cout<<"Trigger debug "<<curLeftTrig<<", "<<curRightTrig<<std::endl;
   if ((curLeftTrig > 0.1 && curRightTrig < 0.1) && enClimber){
     m_climber->TheClimb(curLeftTrig);
   } else if ((curRightTrig > 0.1 && curLeftTrig < 0.1) && enClimber){

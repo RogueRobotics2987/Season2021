@@ -195,7 +195,7 @@ void ShooterActuator::setAngleV(double stickVal){
 double ShooterActuator::safeStick(double stickVal, double pos) {
     double curMax = 0;
     double curMin =0;
-    if(fabs(stickVal) < .08) { stickVal = 0.0;}
+    if(fabs(stickVal) < .18) { stickVal = 0.0;} //stickVal was <.08 but the deadzone was off
     // if(stickVal>0.4) { // Limit to 0.4 max power
     //     stickVal = 0.4;
     // } else if(stickVal<-0.4) {
