@@ -23,9 +23,10 @@ class ShooterSubsystem : public frc2::SubsystemBase {
 
   void Open(int SolenoidNum);
   void Close(int SolenoidNum);
-  frc::Solenoid* ShooterSolenoid1 = nullptr;
-  frc::Solenoid* ShooterSolenoid2 = nullptr;
-  frc::Solenoid* ShooterSolenoid3 = nullptr;
-  frc::Solenoid* ShooterSolenoid4 = nullptr;
-  frc::Solenoid* ShooterSolenoid5 = nullptr;
+  frc::DoubleSolenoid* ShooterSolenoid1 = nullptr;
+  frc::DoubleSolenoid* ShooterSolenoid2 = nullptr;
+  frc::DoubleSolenoid* ShooterSolenoid3 = nullptr;
+  frc::DoubleSolenoid* ShooterSolenoid4 = nullptr;
+  frc::DoubleSolenoid* ShooterSolenoid5 = nullptr;
 };
+
