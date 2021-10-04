@@ -26,5 +26,6 @@ class ActuatorSubsystem : public frc2::SubsystemBase {
   bool GetForwardLimitSwitch();
   rev::CANSparkMax* ActuatorMotor = nullptr;
   int m_MotorController = 40;
+  rev::CANEncoder GetEncoder(rev::CANEncoder::EncoderType sensorType, int counts_per_rev);
 
 };
