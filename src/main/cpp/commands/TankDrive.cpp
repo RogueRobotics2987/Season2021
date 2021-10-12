@@ -18,7 +18,7 @@ TankDrive::TankDrive(DriveTrain* drivetrain, frc::Joystick* stickRight, frc::Joy
   m_stickRight = stickRight; 
   SetName("TankDrive");
   AddRequirements({m_drivetrain});
-  
+  frc::SmartDashboard::PutBoolean("Acceleration Control", true); 
   
 }
 
@@ -46,12 +46,15 @@ void TankDrive::Execute() {
  frc::SmartDashboard::GetNumber("maxChange", maxChange); 
  maxChange = frc::SmartDashboard::GetNumber("maxChange", maxChange); 
 
-  if (abs(Left-lastLeft) >maxChange) {
+ bool accelCtrl = false; 
+ accelCtrl = frc::SmartDashboard::GetBoolean("Acceleration Control", false); 
+
+  if (abs(Left-lastLeft) >maxChange && accelCtrl) {
     outLeft = lastLeft + copysignf(1.0,Left - lastLeft)*maxChange;
     } else {
       outLeft = Left;
   }
-  if (abs(Right-lastRight) >maxChange) {
+  if (abs(Right-lastRight) >maxChange && accelCtrl) {
     outRight = lastRight + copysignf(1.0,Right - lastRight)*maxChange;
     } else {
       outRight = Right;
@@ -67,6 +70,7 @@ void TankDrive::Execute() {
   } else {
     m_drivetrain->Drive(m_stickLeft->GetY(), m_stickRight->GetX()); 
   } */
+  
   }
 
 // Make this return true when this Command no longer needs to run execute()
