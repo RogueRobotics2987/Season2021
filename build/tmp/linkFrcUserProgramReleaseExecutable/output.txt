@@ -1,4 +1,4 @@
-See file:///C:/Users/sdort/Documents/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
+See file:///C:/FRC2021/git_RR2021_v001/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt for all output for linkFrcUserProgramReleaseExecutable.
 linking frcUserProgram successful.
 
-Finished linkFrcUserProgramReleaseExecutable, see full log file:///C:/Users/sdort/Documents/Season2021/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.
+Finished linkFrcUserProgramReleaseExecutable, see full log file:///C:/FRC2021/git_RR2021_v001/build/tmp/linkFrcUserProgramReleaseExecutable/output.txt.

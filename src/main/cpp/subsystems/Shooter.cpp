@@ -44,14 +44,8 @@ Shooter::Shooter() {
 
 // This method will be called once per scheduler run
 void Shooter::Periodic() {
-    bool shooterWorks = true; 
-
     double startTime = myTimer->Get();
 
-    if(shooterMotor->GetFirmwareString() != firmwareVersion){
-        shooterWorks = false;
-    }
-    frc::SmartDashboard::PutBoolean("Shooter Works", shooterWorks); 
     arbFF = frc::SmartDashboard::GetNumber("ArbFF", 0); 
     kp = frc::SmartDashboard::GetNumber("Set P", kp); 
     ki = frc::SmartDashboard::GetNumber("Set I", ki);
