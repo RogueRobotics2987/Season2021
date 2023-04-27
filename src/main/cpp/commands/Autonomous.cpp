@@ -9,7 +9,7 @@
 
 #include <frc2/command/ParallelCommandGroup.h>
 
-Autonomous::Autonomous( DriveTrain* drivetrain, Shooter* shooter, ShooterActuator* shooteractuator, Intake* intake) {
+Autonomous::Autonomous( DriveTrain* drivetrain) {
   SetName("Autonomous");
   AddCommands();
   m_timer = new frc::Timer; 
@@ -19,13 +19,7 @@ Autonomous::Autonomous( DriveTrain* drivetrain, Shooter* shooter, ShooterActuato
   // clang-format on
 
   m_driveTrain = drivetrain;
-  m_intake = intake;
-  m_shooter = shooter;
-  m_shooterActuator = shooteractuator;
   AddRequirements(m_driveTrain);
-  AddRequirements(m_intake);
-  AddRequirements(m_shooterActuator);
-  AddRequirements(m_shooter);
 
 }
 
@@ -38,80 +32,14 @@ void Autonomous::Initialize(){
 
 }
 void Autonomous::Execute(){
-  if(m_shooter->getVelocity() < 500){
-      m_shooter->setPercent(.5);
-    }
-    else{
-      m_shooter->setShooter(3800); 
-    }
-    
 
-  if(state == 0){
-    shootTime = m_timer->Get(); 
-    state++; 
-  }
-
-  if(state == 1){
-    m_shooterActuator->SetAutoAim(true);
-    m_shooterActuator->setAngleH(0); 
-    m_shooterActuator->setAngleV(0); 
-    if(m_shooter->getVelocity() >= .95 * 3800 && m_shooterActuator->GetTX() < 1 && m_shooterActuator->GetTX() > -1 && m_shooterActuator->GetTY() < 1 && m_shooterActuator->GetTY() > -1){
-      m_intake->StartConveyor(.5);
-    }
-
-    if(m_timer->Get() - shootTime >= 6){
-      state++; 
-    }
-
-  }
-
-  if(state == 2){
-    m_intake->setSolenoidTrue(); 
-    driveTime = m_timer->Get(); 
-    m_intake->ResetBallCount(); 
-    state++; 
-    m_intake->StartConveyor(0); 
-    }
-
-  if(state == 3){
-    m_shooterActuator->SetAutoAim(true);
-    m_shooterActuator->setAngleH(0); 
-    m_shooterActuator->setAngleV(0);
-    m_driveTrain->autonDrive(); 
-    m_intake->IntakeBall(.65); 
-    //m_intake->StartConveyor(.6); 
-    //m_intake->PrepareBall(); 
-    if(m_timer->Get() - driveTime > 4){
-      state++; 
-      driveTime = m_timer->Get(); 
-    }
-  }
-  if(state == 4){
-    m_shooterActuator->SetAutoAim(true);
-    m_shooterActuator->setAngleH(0); 
-    m_shooterActuator->setAngleV(0); 
-    if(m_shooter->getVelocity() >= .95 * 3800 && m_shooterActuator->GetTX() < 2 && m_shooterActuator->GetTX() > -2 && m_shooterActuator->GetTY() < 2 && m_shooterActuator->GetTY() > -2){
-      m_intake->StartConveyor(.5);
-    }
-  if(m_timer->Get() - driveTime < .5){
-    m_driveTrain->Drive(0, .3); 
-  }
-  else{
-  m_driveTrain->Drive(0, 0);}
-  }
-
-  
   }
 
 
 
 
 void Autonomous::End(bool interrupted){
-  m_intake->ResetBallCount(); 
-  m_shooter->stopShooter(); 
-  m_intake->StopMotors(); 
   m_driveTrain->Drive(0, 0);
-  m_intake->StartConveyor(0); 
 }
 
 bool Autonomous::IsFinished(){

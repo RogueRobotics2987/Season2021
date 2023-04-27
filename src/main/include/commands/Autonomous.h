@@ -12,9 +12,7 @@
 
 #include "subsystems/DriveTrain.h"
 #include <frc/Timer.h>
-#include "subsystems/Shooter.h"
-#include "subsystems/Intake.h"
-#include "subsystems/ShooterActuator.h"
+
 
 /**
  * The main autonomous command to pickup and deliver the soda to the box.
@@ -22,7 +20,7 @@
 class Autonomous
     : public frc2::CommandHelper<frc2::SequentialCommandGroup, Autonomous> {
  public:
-  Autonomous(DriveTrain* drivetrain, Shooter* shooter, ShooterActuator* shooteractuator, Intake* intake);
+  Autonomous(DriveTrain* drivetrain);
 
   void Initialize();
   void Execute();
@@ -31,9 +29,6 @@ class Autonomous
   bool IsFinished() override;
  private:
   DriveTrain* m_driveTrain = nullptr;
-  Shooter* m_shooter = nullptr;
-  ShooterActuator* m_shooterActuator = nullptr;
-  Intake* m_intake = nullptr;
   frc::Timer* m_timer = nullptr;
   double state = 0;
   double driveTime = 0; 

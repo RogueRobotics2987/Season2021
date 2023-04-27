@@ -13,19 +13,6 @@
 #include "ctre/Phoenix.h"
 #include "commands/Autonomous.h"
 #include "subsystems/DriveTrain.h"
-#include "subsystems/ColorSensor.h"
-#include "subsystems/Shooter.h"
-#include "commands/ShootCmdCls.h"
-#include "commands/TrimAngle.h"
-#include "subsystems/ShooterActuator.h"
-#include "subsystems/Intake.h"
-#include "commands/PickupBall.h"
-#include "subsystems/Compressor.h"
-#include "commands/beginCompressor.h"
-#include "subsystems/Climber.h"
-#include "commands/Climb.h"
-#include "commands/ThirdStageWheel.h" 
-#include "commands/ballReset.h"
 
 
 /**
@@ -44,34 +31,14 @@ class RobotContainer {
 
  private:
   // The robot's subsystems and commands are defined here...
-  frc::Joystick joyLeft{0}; 
+  frc::Joystick joyLeft{1}; 
   frc::Joystick joyRight{2}; 
-  //frc2::JoystickButton* j1; 
-  frc::Joystick xbox{1}; 
-  ColorSensor cSensor; 
-  ShooterActuator actuator;
-  CompressorObject m_compressor;
 
   
-
   
 
-  //Elevator* m_elevator;
   DriveTrain m_drivetrain;
-  //rc2::JoystickButton j1{&joyLeft, 1}; 
    
-
-  //Dannalyn's shooter code
-  Shooter m_shooter; 
- //frc2::JoystickButton joyB2{&joyLeft, 2};
-  //frc2::JoystickButton joyB3{&joyLeft, 3};
-
-  //Sydneys Intake Code
-  Intake m_intake;
-
-  //Climb code
-  Climber m_climber;
-
   Autonomous m_autonomousCommand;
 
   std::shared_ptr<NetworkTable> limelightTablerri;

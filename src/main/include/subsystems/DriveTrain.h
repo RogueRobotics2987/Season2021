@@ -64,12 +64,13 @@ class DriveTrain : public frc2::SubsystemBase {
 
 
   private:
-    rev::CANSparkMax* LeftBack = new rev::CANSparkMax(56, rev::CANSparkMax::MotorType::kBrushless);
-    rev::CANSparkMax* LeftFront = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* LeftBack = new rev::CANSparkMax(54, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* LeftFront = new rev::CANSparkMax(47, rev::CANSparkMax::MotorType::kBrushless);
     rev::CANEncoder LeftEncoder = LeftFront->GetEncoder(); 
-    rev::CANSparkMax* RightBack = new rev::CANSparkMax(50, rev::CANSparkMax::MotorType::kBrushless);
-    rev::CANSparkMax* RightFront = new rev::CANSparkMax(46, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* RightBack = new rev::CANSparkMax(49, rev::CANSparkMax::MotorType::kBrushless);
+    rev::CANSparkMax* RightFront = new rev::CANSparkMax(15, rev::CANSparkMax::MotorType::kBrushless);
     rev::CANEncoder RightEncoder = RightFront->GetEncoder();
+
 
     frc::DifferentialDrive* m_robotDrive = nullptr;
     AHRS* myAhrs = nullptr; 

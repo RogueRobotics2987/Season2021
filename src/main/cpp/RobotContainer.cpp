@@ -21,12 +21,6 @@
 #include <frc2/command/RamseteCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
 #include "Constants.h" 
-#include "commands/SpinWheel.h"
-#include "commands/PIDShoot.h"
-#include "commands/SpinWheel.h" 
-#include "commands/IntakeOut.h" 
-#include "commands/startConveyor.h" 
-#include "commands/shooterBackwards.h" 
 #include <frc/Filesystem.h>
 #include <frc/trajectory/TrajectoryUtil.h>
 #include <wpi/Path.h>
@@ -37,7 +31,7 @@
 
 
 RobotContainer::RobotContainer()
-    : m_autonomousCommand(&m_drivetrain, &m_shooter, &actuator, &m_intake) 
+    : m_autonomousCommand(&m_drivetrain) 
     {
     //frc::SmartDashboard::PutData(&m_drivetrain);
 
@@ -50,10 +44,6 @@ RobotContainer::RobotContainer()
 
     //Dannalyn's shooter code
    // m_shooter.SetDefaultCommand(ShootCmdCls(&m_shooter/*, &m_joy*/)); //don't need in 2021
-    actuator.SetDefaultCommand(TrimAngle(&xbox, &actuator, &joyRight)); // updated button
-    m_compressor.SetDefaultCommand(beginCompressor(&m_compressor));
-    m_intake.SetDefaultCommand(PickupBall(&m_intake, &xbox, &joyLeft)); // updated button
-    m_climber.SetDefaultCommand(Climb(&m_climber, &xbox));
 
   // m_drivetrain.Log();
   ConfigureButtonBindings();
@@ -69,27 +59,7 @@ RobotContainer::RobotContainer()
     frc::SmartDashboard::PutNumber("Galactic X", txi);
     frc::SmartDashboard::PutNumber("Galactic Y", tyi);
 
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 1);
-     if (txi > -10) { 
-      RedA = true;
-    } else  { 
-      RedA = false;
-    }
-     frc::SmartDashboard::PutBoolean("RedA", RedA);
-    
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight-rri") -> PutNumber("pipeline", 0);
-    if (txi > 3.0 && tyi < -9.0) {
-      RedB = true;
-    } else  { 
-      RedB = false;
-    }
-     frc::SmartDashboard::PutBoolean("RedB", RedB);
 
-/*if (txi > -5 && tyi < -14) { 
-      RedA = true;
-    } else  { 
-      RedA = false;
-    } */
 
 }
 
@@ -108,18 +78,11 @@ void RobotContainer::ConfigureButtonBindings() {
  //Sydneys Intake Code
  //frc2::JoystickButton(&xbox,1).WhenHeld(PickupBall(&m_intake));
 
-frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // updated button
+//frc2::JoystickButton(&xbox,3).WhenHeld(PIDShoot(&m_shooter, &m_intake)); // updated button
  
  
  //frc2::JoystickButton(&xbox, 1).WhenHeld(startConveyor(&m_intake, .3)); //shoot, updated button
  //frc2::JoystickButton(&joyLeft, 11).WhenHeld(startConveyor(&m_intake, -.3)); //backwards conveyor, updated button
-
- frc2::JoystickButton(&xbox,9).WhenPressed(SpinWheel(&cSensor)); // updated button
-
- frc2::JoystickButton(&xbox, 5).WhenPressed(IntakeOut(&m_intake, true)); // updated button
- frc2::JoystickButton(&xbox, 6).WhenPressed(IntakeOut(&m_intake, false)); // updated button
- frc2::JoystickButton(&xbox, 10).WhenPressed(ThirdStageWheel(&cSensor)); // updated button
- frc2::JoystickButton(&joyLeft, 11).WhenHeld(shooterBackwards(&m_shooter));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
@@ -251,5 +214,5 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 
 
   void RobotContainer::PeriodicDebug(void) {
-    frc::SmartDashboard::PutBoolean("xBox Check2 Button 5", xbox.GetRawButton(5));
+   // frc::SmartDashboard::PutBoolean("xBox Check2 Button 5", xbox.GetRawButton(5));
   }

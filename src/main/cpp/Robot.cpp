@@ -20,25 +20,6 @@ void Robot::RobotInit() {}
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
-// this is a whole bunch of new code I added to my personal branch that I wanna copy over eventually
 void Robot::RobotPeriodic() { 
   frc2::CommandScheduler::GetInstance().Run();
   if(0)
@@ -97,9 +78,6 @@ void Robot::TeleopPeriodic() {
   // get the 2 joystick objects (joyLeft, joyRight)
   // get drivetrain object (DiffDrivetrain)
   // DiffDrivetrain.Drive(joyLeft.getYAxis(), joyRight.getYAxis())
-
-
-
 
 }
 
