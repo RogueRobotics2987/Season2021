@@ -14,7 +14,7 @@
 #include "frc/smartdashboard/Smartdashboard.h"
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
-
+#include <frc/Servo.h>
 
 using namespace frc;
 using namespace std;
@@ -38,6 +38,7 @@ class Robot : public frc::TimedRobot {
  
   frc::DifferentialDrive m_robotDrive{FrontLeft, FrontRight};
   frc::Joystick m_stick{0};
+  frc::Servo m_servo{0};
   bool BackForwards = false;
   
  // LimelightControl LimelightCam;
@@ -135,7 +136,12 @@ class Robot : public frc::TimedRobot {
      if(m_stick.GetRawButton(5)){
        m_robotDrive.CurvatureDrive(m_stick.GetY(), m_stick.GetX(), false);
      }
-    
+   if(m_stick.GetRawButton(12)){
+     m_servo.SetAngle(140);
+   } 
+   else{
+     m_servo.SetAngle(0);
+   }
   }
     }
     };
